@@ -10,6 +10,7 @@ window.addEventListener('load', () => {
     function startPosition() {
         painting = true;
     }
+    
     function endPosition() {
         painting = false;
         ctx.beginPath();
@@ -17,7 +18,7 @@ window.addEventListener('load', () => {
 
     function draw(e) {
         if (!painting) {
-            return
+            return;
         }
         ctx.lineWidth = 8;
         ctx.lineCap = "round";
@@ -31,5 +32,5 @@ window.addEventListener('load', () => {
     canvas.addEventListener("mousedown", startPosition);
     canvas.addEventListener("mouseup", endPosition);
     canvas.addEventListener("mousemove", draw);
-    canvas.addEventListener("mouseout", endPosition)
+    canvas.addEventListener("mouseout", endPosition);
 });
