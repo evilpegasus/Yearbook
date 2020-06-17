@@ -9,6 +9,7 @@ window.addEventListener('load', () => {
 
     let painting = false;
     let yOffset = canvas.getBoundingClientRect().top;
+    let xOffset = canvas.getBoundingClientRect().left;
 
     // enable painting
     function startPosition() {
@@ -21,9 +22,10 @@ window.addEventListener('load', () => {
         ctx.beginPath();
     }
     
-    // adjust the Y Offset of the painting when scrolled
-    function adjustYOffset() {
+    // adjust the X and Y offsets of the painting
+    function adjustOffsets() {
         yOffset = canvas.getBoundingClientRect().top;
+        xOffset = canvas.getBoundingClientRect().left;
     }
 
     // paint at the cursor's location
@@ -38,14 +40,14 @@ window.addEventListener('load', () => {
         ctx.lineCap = "round";
 
         // draw the line
-        ctx.lineTo(e.clientX, e.clientY - yOffset);
+        ctx.lineTo(e.clientX - xOffset, e.clientY - yOffset);
         ctx.stroke();
         ctx.beginPath();
-        ctx.moveTo(e.clientX, e.clientY - yOffset);
+        ctx.moveTo(e.clientX - xOffset, e.clientY - yOffset);
     }
 
     // detect and respond to user actions
-    window.addEventListener("scroll", adjustYOffset);
+    window.addEventListener("scroll", adjustOffsets);
     canvas.addEventListener("mousedown", startPosition);
     canvas.addEventListener("mouseup", endPosition);
     canvas.addEventListener("mousemove", draw);
