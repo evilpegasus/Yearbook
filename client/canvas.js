@@ -46,10 +46,17 @@ window.addEventListener('load', () => {
         ctx.moveTo(e.clientX - xOffset, e.clientY - yOffset);
     }
 
+    // clear the canvas
+    const clearButton = document.getElementById("clearButton");
+    clearButton.onclick = function() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+
     // detect and respond to user actions
     window.addEventListener("scroll", adjustOffsets);
     canvas.addEventListener("mousedown", startPosition);
     canvas.addEventListener("mouseup", endPosition);
     canvas.addEventListener("mousemove", draw);
     canvas.addEventListener("mouseout", endPosition);
+
 });
