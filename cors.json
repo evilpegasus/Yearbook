@@ -1,6 +1,6 @@
 [
     {
-      "origin": ["https://firebasestorage.googleapis.com/"],
+      "origin": ["gs://yearbook-hhs.appspot.com"],
       "responseHeader": ["Content-Type"],
       "method": ["GET"],
       "maxAgeSeconds": 3600
