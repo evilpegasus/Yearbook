@@ -54,7 +54,7 @@ function getImage() {
 
     // Create a reference with an initial file path and name
     var storage = firebase.storage();
-    var pathReference = storage.ref('test.png');
+    var pathReference = storage.ref('test');
 
     // Get the download URL
     pathReference.getDownloadURL().then(function(url) {
