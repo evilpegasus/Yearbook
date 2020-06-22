@@ -4,8 +4,8 @@ window.addEventListener('load', () => {
     const ctx = canvas.getContext("2d");
 
     // set canvas properties
-    canvas.height = 800;
-    canvas.width = 800;
+    canvas.height = 400;
+    canvas.width = 400;
 
     var painting = false;
     var offsetY = canvas.getBoundingClientRect().top;
