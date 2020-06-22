@@ -105,7 +105,8 @@ window.addEventListener('load', () => {
     const downloadButton = document.getElementById("downloadButton");
     downloadButton.onclick = function() {
         let download = document.getElementById("download");
-        let image = document.getElementById("canvas").toDataURL("image/png").replace("image/png", "image/octet-stream");
+        let image = document.getElementById("canvas").toDataURL("image/png")
+                .replace("image/png", "image/octet-stream");
         download.setAttribute("href", image);
     }
 
