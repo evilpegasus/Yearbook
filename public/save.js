@@ -6,6 +6,7 @@ function upload() {
     
     canvas.toBlob(function(blob){
         var image = new Image();
+        image.setAttribute('crossOrigin', 'anonymous');
         image.src = blob;
         var uploadTask = storageRef.child('test').put(blob);
 
