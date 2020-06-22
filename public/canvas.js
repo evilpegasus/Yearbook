@@ -11,6 +11,7 @@ window.addEventListener('load', () => {
     var offsetY = canvas.offsetTop;
     var offsetX = canvas.offsetLeft;
     var color = "black";
+    var size = 8;
 
     // enable painting
     function startPainting() {
@@ -37,7 +38,7 @@ window.addEventListener('load', () => {
         }
         
         // set line properties
-        ctx.lineWidth = 8;
+        ctx.lineWidth = size;
         ctx.lineCap = "round";
         ctx.strokeStyle = color;
 
@@ -59,7 +60,11 @@ window.addEventListener('load', () => {
     // change the drawing color
     function changeColor(newColor) {
         color = newColor;
-        document.getElementById("activeColor").innerHTML = "Active color: " + newColor;
+        if (color === "White") {
+            document.getElementById("activeColor").innerHTML = "Active tool: Eraser";
+        } else {
+            document.getElementById("activeColor").innerHTML = "Active color: " + newColor;
+        }
     }
 
     const blackButton = document.getElementById("blackButton");
@@ -67,16 +72,29 @@ window.addEventListener('load', () => {
     const redButton = document.getElementById("redButton");
     const greenButton = document.getElementById("greenButton");
     blackButton.onclick = function() {
-        changeColor("black");
+        changeColor("Black");
     }
     blueButton.onclick = function() {
-        changeColor("blue");
+        changeColor("Blue");
     }
     redButton.onclick = function() {
-        changeColor("red");
+        changeColor("Red");
     }
     greenButton.onclick = function() {
-        changeColor("green");
+        changeColor("Green");
+    }
+
+    // eraser tool
+    const eraser = document.getElementById("eraser");
+    eraser.onclick = function() {
+        changeColor("White");
+    }
+
+    // size slider
+    const sizeSlider = document.getElementById("sizeSlider");
+    sizeSlider.oninput = function() {
+        size = this.value;
+        document.getElementById("thickness").innerHTML = "Thickness: " + size;
     }
 
     // detect and respond to user actions
