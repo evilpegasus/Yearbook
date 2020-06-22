@@ -24,21 +24,22 @@ function upload() {
             break;
         }
         }, function(error) {
+            console.log("Failed to upload image to the server.");
 
-        // A full list of error codes is available at
-        // https://firebase.google.com/docs/storage/web/handle-errors
-        switch (error.code) {
-        case 'storage/unauthorized':
-            // User doesn't have permission to access the object
-            break;
+            // A full list of error codes is available at
+            // https://firebase.google.com/docs/storage/web/handle-errors
+            switch (error.code) {
+            case 'storage/unauthorized':
+                // User doesn't have permission to access the object
+                break;
 
-        case 'storage/canceled':
-            // User canceled the upload
-            break;
+            case 'storage/canceled':
+                // User canceled the upload
+                break;
 
-        case 'storage/unknown':
-            // Unknown error occurred, inspect error.serverResponse
-            break;
+            case 'storage/unknown':
+                // Unknown error occurred, inspect error.serverResponse
+                break;
         }
         }, function() {
         // Upload completed successfully, now we can get the download URL
@@ -68,7 +69,8 @@ function getImage() {
         };
         console.log("Image from server drawn onto canvas. URL = ", url);
     }).catch(function(error) {
-    
+        console.log("Failed to get image from the server.");
+
         // A full list of error codes is available at
         // https://firebase.google.com/docs/storage/web/handle-errors
         switch (error.code) {
