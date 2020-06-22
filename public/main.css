@@ -18,3 +18,19 @@ body{
 .slider:hover {
     opacity: 1;
 }
+
+#canvasContainer {
+    display: inline-block;
+    position: relative;
+}
+
+#canvas {
+    position: relative;
+    z-index: 20;
+}
+
+#backgroundImage {
+    opacity: 0;
+    position: absolute;
+    z-index: 1;
+}

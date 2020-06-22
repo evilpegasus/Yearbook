@@ -54,6 +54,7 @@ function upload() {
 };
 function getImage() {
     const canvas = document.querySelector("#canvas");
+    const backgroundImage = document.querySelector("#backgroundImage");
     const ctx = canvas.getContext("2d");
 
     // Create a reference with an initial file path and name
@@ -64,12 +65,13 @@ function getImage() {
     pathReference.getDownloadURL().then(function(url) {
 
         // Draw the png file onto the canvas
-        drawing = new Image();
+        // drawing = new Image();
         // drawing.setAttribute('crossOrigin', 'use-credentials');
-        drawing.src = url; // can also be a remote URL e.g. http://
+        // drawing.src = url; // can also be a remote URL e.g. http://
         // var timestamp = new Date().getTime();
-        drawing.onload = function() {
-        ctx.drawImage(drawing,0,0);
+        backgroundImage.src = url;
+        backgroundImage.onload = function() {
+        ctx.drawImage(backgroundImage,0,0);
         };
         console.log("Image from server drawn onto canvas. URL = ", url);
     }).catch(function(error) {
