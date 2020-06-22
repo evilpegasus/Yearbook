@@ -7,25 +7,25 @@ window.addEventListener('load', () => {
     canvas.height = 800;
     canvas.width = 800;
 
-    let painting = false;
-    let yOffset = canvas.getBoundingClientRect().top;
-    let xOffset = canvas.getBoundingClientRect().left;
+    var painting = false;
+    var offsetY = canvas.offsetTop;
+    var offsetX = canvas.offsetLeft;
 
     // enable painting
-    function startPosition() {
+    function startPainting() {
         painting = true;
     }
     
     // disable painting
-    function endPosition() {
+    function endPainting() {
         painting = false;
         ctx.beginPath();
     }
     
     // adjust the X and Y offsets of the painting
     function adjustOffsets() {
-        yOffset = canvas.getBoundingClientRect().top;
-        xOffset = canvas.getBoundingClientRect().left;
+        offsetY = canvas.offsetTop;
+        offsetX = canvas.offsetLeft;
     }
 
     // paint at the cursor's location
@@ -40,10 +40,10 @@ window.addEventListener('load', () => {
         ctx.lineCap = "round";
 
         // draw the line
-        ctx.lineTo(e.clientX - xOffset, e.clientY - yOffset);
+        ctx.lineTo(e.clientX - offsetX, e.clientY - offsetY);
         ctx.stroke();
         ctx.beginPath();
-        ctx.moveTo(e.clientX - xOffset, e.clientY - yOffset);
+        ctx.moveTo(e.clientX - offsetY, e.clientY - offsetY);
     }
 
     // clear the canvas
@@ -56,9 +56,9 @@ window.addEventListener('load', () => {
 
     // detect and respond to user actions
     window.addEventListener("scroll", adjustOffsets);
-    canvas.addEventListener("mousedown", startPosition);
-    canvas.addEventListener("mouseup", endPosition);
+    canvas.addEventListener("mousedown", startPainting);
+    canvas.addEventListener("mouseup", endPainting);
     canvas.addEventListener("mousemove", draw);
-    canvas.addEventListener("mouseout", endPosition);
+    canvas.addEventListener("mouseout", endPainting);
 
 });
