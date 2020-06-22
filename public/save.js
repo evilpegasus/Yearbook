@@ -63,10 +63,10 @@ function getImage() {
 
         // Draw the png file onto the canvas
         drawing = new Image();
-        drawing.setAttribute('crossOrigin', 'use-credentials');
+        // drawing.setAttribute('crossOrigin', 'use-credentials');
         drawing.src = url; // can also be a remote URL e.g. http://
-        var timestamp = new Date().getTime();
-        image.src = url + '?' + timestamp;
+        // var timestamp = new Date().getTime();
+        image.src = url; // + '?' + timestamp;
         drawing.onload = function() {
         ctx.drawImage(drawing,0,0);
         };
