@@ -51,6 +51,7 @@ function upload() {
 };
 function getImage() {
     const canvas = document.querySelector("#canvas");
+    const ctx = canvas.getContext("2d");
 
     // Create a reference with an initial file path and name
     var storage = firebase.storage();
@@ -63,7 +64,7 @@ function getImage() {
         drawing = new Image();
         drawing.src = url; // can also be a remote URL e.g. http://
         drawing.onload = function() {
-        context.drawImage(drawing,0,0);
+        ctx.drawImage(drawing,0,0);
         };
         console.log("Image from server drawn onto canvas. URL = ", url);
     }).catch(function(error) {
