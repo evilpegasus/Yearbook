@@ -65,6 +65,8 @@ function getImage() {
         drawing = new Image();
         drawing.setAttribute('crossOrigin', 'anonymous');
         drawing.src = url; // can also be a remote URL e.g. http://
+        var timestamp = new Date().getTime();
+        img.src = url + '?' + timestamp;
         drawing.onload = function() {
         ctx.drawImage(drawing,0,0);
         };
