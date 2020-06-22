@@ -1,6 +1,7 @@
 body{
     background-color: rgb(64, 64, 64);
     color: white;
+    position: fixed;
 }
 
 #canvas {

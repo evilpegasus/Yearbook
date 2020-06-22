@@ -112,4 +112,10 @@ window.addEventListener('load', () => {
     canvas.addEventListener("mousemove", draw);
     canvas.addEventListener("mouseout", endPainting);
 
+    // user actions on mobile devices
+    canvas.addEventListener("touchstart", startPainting);
+    canvas.addEventListener("touchend", endPainting);
+    canvas.addEventListener("touchmove", draw);
+    canvas.addEventListener("touchcancel", endPainting);
+
 });
