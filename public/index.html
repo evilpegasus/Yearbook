@@ -5,7 +5,7 @@
             Yearbook Signatures
         </title>
         <script src="canvas.js"></script>
-        <script src="upload.js"></script>
+        <script src="save.js"></script>
         <link rel="stylesheet" href="main.css">
         
     </head>
@@ -26,9 +26,11 @@
         <h1>Yearbook</h1>
         <canvas id="canvas" width="800" height="800">Your browser is not supported.</canvas>
         
+        <br>
         <button id="clearButton" type="button">Clear</button>
         <a id="download" download="image.png"><button id="downloadButton" type="button">Download</button></a>
         <button id="saveButton" type="button" onclick="upload()">Upload</button>
+        <button id="getImageButton" type="button" onclick="getImage()">Get Image</button>
         
         <br>
         <button id="blackButton" type="button">Black</button>
