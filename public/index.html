@@ -9,28 +9,18 @@
         
     </head>
     <body>
-        <script>
-            const firebaseConfig = {
-                apiKey: "AIzaSyDyGrLL3OyIoIMiwO_ZNEQI7CXsTzvSU-8",
-                authDomain: "yearbook-hhs.firebaseapp.com",
-                databaseURL: "https://yearbook-hhs.firebaseio.com",
-                projectId: "yearbook-hhs",
-                storageBucket: "yearbook-hhs.appspot.com",
-                messagingSenderId: "132960891254",
-                appId: "1:132960891254:web:6a5dad2334b2800ea68a57",
-                measurementId: "G-GJS10QDTDJ"
-              };
-        </script>
-
         <!-- The core Firebase JS SDK is always required and must be listed first -->
         <script src="/__/firebase/7.15.3/firebase-app.js"></script>
 
-        <!-- TODO: Add SDKs for Firebase products that you want to use
-            https://firebase.google.com/docs/web/setup#available-libraries -->
-        <script src="/__/firebase/7.15.3/firebase-analytics.js"></script>
+        <!-- Insert this script at the bottom of the HTML, but before you use any Firebase services -->
+
+        <!-- Add the entire Firebase JavaScript SDK -->
+        <script src="/__/firebase/7.15.3/firebase.js"></script>
 
         <!-- Initialize Firebase -->
         <script src="/__/firebase/init.js"></script>
+
+
 
         <h1>Yearbook</h1>
         <canvas id="canvas" width="500" height="500">Your browser is not supported.</canvas>
