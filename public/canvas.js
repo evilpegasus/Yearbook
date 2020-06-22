@@ -10,6 +10,7 @@ window.addEventListener('load', () => {
     var painting = false;
     var offsetY = canvas.offsetTop;
     var offsetX = canvas.offsetLeft;
+    var color = "black";
 
     // enable painting
     function startPainting() {
@@ -38,6 +39,7 @@ window.addEventListener('load', () => {
         // set line properties
         ctx.lineWidth = 8;
         ctx.lineCap = "round";
+        ctx.strokeStyle = color;
 
         // draw the line
         ctx.lineTo(e.clientX - offsetX, e.clientY - offsetY);
@@ -52,6 +54,29 @@ window.addEventListener('load', () => {
         if (confirm("Are you sure you want to clear the canvas?")) {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
         }
+    }
+
+    // change the drawing color
+    function changeColor(newColor) {
+        color = newColor;
+        document.getElementById("activeColor").innerHTML = "Active color: " + newColor;
+    }
+
+    const blackButton = document.getElementById("blackButton");
+    const blueButton = document.getElementById("blueButton");
+    const redButton = document.getElementById("redButton");
+    const greenButton = document.getElementById("greenButton");
+    blackButton.onclick = function() {
+        changeColor("black");
+    }
+    blueButton.onclick = function() {
+        changeColor("blue");
+    }
+    redButton.onclick = function() {
+        changeColor("red");
+    }
+    greenButton.onclick = function() {
+        changeColor("green");
     }
 
     // detect and respond to user actions
