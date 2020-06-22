@@ -97,6 +97,14 @@ window.addEventListener('load', () => {
         document.getElementById("thickness").innerHTML = "Thickness: " + size;
     }
 
+    // download the image
+    const downloadButton = document.getElementById("downloadButton");
+    downloadButton.onclick = function() {
+        let download = document.getElementById("download");
+        let image = document.getElementById("canvas").toDataURL("image/png").replace("image/png", "image/octet-stream");
+        download.setAttribute("href", image);
+    }
+
     // detect and respond to user actions
     window.addEventListener("scroll", adjustOffsets);
     canvas.addEventListener("mousedown", startPainting);
