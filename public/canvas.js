@@ -8,8 +8,8 @@ window.addEventListener('load', () => {
     canvas.width = 800;
 
     var painting = false;
-    var offsetY = canvas.offsetTop;
-    var offsetX = canvas.offsetLeft;
+    var offsetY = canvas.getBoundingClientRect().top;
+    var offsetX = canvas.getBoundingClientRect().left;
     var color = "black";
     var size = 8;
 
@@ -26,8 +26,8 @@ window.addEventListener('load', () => {
     
     // adjust the X and Y offsets of the painting
     function adjustOffsets() {
-        offsetY = canvas.offsetTop;
-        offsetX = canvas.offsetLeft;
+        offsetY = canvas.getBoundingClientRect().top;
+        offsetX = canvas.getBoundingClientRect().left;
     }
 
     // paint at the cursor's location
