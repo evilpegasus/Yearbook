@@ -25,7 +25,7 @@ function upload() {
         }
         }, function(error) {
             console.log("Failed to upload image to the server.");
-
+            console.log(error);
             // A full list of error codes is available at
             // https://firebase.google.com/docs/storage/web/handle-errors
             switch (error.code) {
@@ -73,6 +73,7 @@ function getImage() {
         console.log("Image from server drawn onto canvas. URL = ", url);
     }).catch(function(error) {
         console.log("Failed to get image from the server.");
+        console.log(error);
 
         // A full list of error codes is available at
         // https://firebase.google.com/docs/storage/web/handle-errors
