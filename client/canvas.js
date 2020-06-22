@@ -49,7 +49,10 @@ window.addEventListener('load', () => {
     // clear the canvas
     const clearButton = document.getElementById("clearButton");
     clearButton.onclick = function() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        let confirmClear = confirm("Are you sure you want to clear the canvas?");
+        if (confirmClear) {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
     }
 
     // detect and respond to user actions
