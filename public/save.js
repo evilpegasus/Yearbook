@@ -4,9 +4,8 @@ function upload() {
     // Create a root reference
     var storageRef = firebase.storage().ref();
     
-    var image = new Image();
-    image.setAttribute('crossorigin', 'anonymous');
     canvas.toBlob(function(blob){
+        var image = new Image();
         image.src = blob;
         var uploadTask = storageRef.child('test').put(blob);
 
@@ -65,6 +64,7 @@ function getImage() {
         // Draw the png file onto the canvas
         drawing = new Image();
         drawing.src = url; // can also be a remote URL e.g. http://
+        drawing.setAttribute('crossOrigin', 'anonymous');
         drawing.onload = function() {
         ctx.drawImage(drawing,0,0);
         };
