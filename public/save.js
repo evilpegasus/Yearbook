@@ -5,7 +5,7 @@ function upload() {
     var storageRef = firebase.storage().ref();
     
     var image = new Image();
-    image.setAttribute('crossOrigin', 'anonymous');
+    image.setAttribute('crossorigin', 'anonymous');
     canvas.toBlob(function(blob){
         image.src = blob;
         var uploadTask = storageRef.child('test').put(blob);
