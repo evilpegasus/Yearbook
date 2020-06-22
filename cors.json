@@ -1,0 +1,7 @@
+[
+    {
+      "origin": ["gs://yearbook-hhs.appspot.com"],
+      "method": ["GET"],
+      "maxAgeSeconds": 3600
+    }
+]
