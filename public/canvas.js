@@ -45,7 +45,7 @@ window.addEventListener('load', () => {
         ctx.lineTo(e.clientX - offsetX, e.clientY - offsetY);
         ctx.stroke();
         ctx.beginPath();
-        ctx.moveTo(e.clientX - offsetY, e.clientY - offsetY);
+        ctx.moveTo(e.clientX - offsetX, e.clientY - offsetY);
     }
 
     // clear the canvas
