@@ -63,8 +63,8 @@ function getImage() {
 
         // Draw the png file onto the canvas
         drawing = new Image();
-        drawing.src = url; // can also be a remote URL e.g. http://
         drawing.setAttribute('crossOrigin', 'anonymous');
+        drawing.src = url; // can also be a remote URL e.g. http://
         drawing.onload = function() {
         ctx.drawImage(drawing,0,0);
         };
