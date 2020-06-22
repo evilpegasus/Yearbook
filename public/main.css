@@ -11,6 +11,7 @@ body{
 .slider {
     background: #d3d3d3;
     opacity: 0.9;
+    width: 10%;
 }
 
 .slider:hover {
