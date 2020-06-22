@@ -13,6 +13,10 @@ window.addEventListener('load', () => {
     var color = "black";
     var size = 8;
 
+    // set a white background
+    ctx.fillStyle = "white";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
     // enable painting
     function startPainting() {
         painting = true;
@@ -113,9 +117,9 @@ window.addEventListener('load', () => {
     canvas.addEventListener("mouseout", endPainting);
 
     // user actions on mobile devices
-    canvas.addEventListener("touchstart", startPainting);
-    canvas.addEventListener("touchend", endPainting);
-    canvas.addEventListener("touchmove", draw);
-    canvas.addEventListener("touchcancel", endPainting);
+    // canvas.addEventListener("touchstart", startPainting);
+    // canvas.addEventListener("touchend", endPainting);
+    // canvas.addEventListener("touchmove", draw);
+    // canvas.addEventListener("touchcancel", endPainting);
 
 });
