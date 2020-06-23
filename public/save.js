@@ -4,11 +4,7 @@ function upload() {
     // Create a root reference
     var storageRef = firebase.storage().ref();
     
-    var image = new Image();
-    image.crossOrigin = "Anonymous";
     canvas.toBlob(function(blob){
-
-        image.src = blob;
         var uploadTask = storageRef.child('test').put(blob);
 
         // Listen for state changes, errors, and completion of the upload.
