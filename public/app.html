@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Yearbook Signatures
+        </title>
+        <!-- The core Firebase JS SDK is always required and must be listed first -->
+        <script src="/__/firebase/7.15.3/firebase-app.js"></script>
+
+        <!-- Insert this script at the bottom of the HTML, but before you use any Firebase services -->
+
+        <!-- Add the entire Firebase JavaScript SDK -->
+        <script src="/__/firebase/7.15.3/firebase.js"></script>
+
+        <!-- Initialize Firebase -->
+        <script src="/__/firebase/init.js"></script>
+
+
+        <!-- Font -->
+        <link href="https://fonts.googleapis.com/css2?family=Gruppo&display=swap" rel="stylesheet">
+
+
+        <script src="canvas.js"></script>
+        <script src="save.js"></script>
+        <script src="auth.js"></script>
+        <link rel="stylesheet" href="main.css">
+
+    </head>
+    <body>
+        <h1>Yearbook 2020</h1>
+        <canvas id="canvas" width="500" height="500" crossOrigin="anonymous">Your browser is not supported.</canvas>
+
+        <div class="canvas-toolbar-label">
+            <p>Size:</p>
+            <p>Color:</p>
+        </div>
+
+        <div class="canvas-toolbar">
+            <select id="widthSelector">
+              <option value="2">2</option>
+              <option value="4">4</option>
+              <option value="6">6</option>
+              <option value="8" selected = "selected">8</option>
+              <option value="10">10</option>
+              <option value="12">12</option>
+            </select>
+      
+            <select id="colorSelector">
+              <option value="black" selected="selected">Black</option>
+              <option value="blue">Blue</option>
+              <option value="red">Red</option>
+              <option value="green">Green</option>
+              <option value="gray">Gray</option>
+              <option value="eraser">Eraser</option>
+            </select>
+        </div>
+
+        <div class="button-toolbar">
+            <button id="clearButton" class="btn" type="button">Clear Canvas</button>
+            <a id="download" download="image.png"><button id="downloadButton" class="btn" type="button">Download</button></a>
+            <button id="saveButton" class="btn" type="button" onclick="upload()">Upload</button>
+            <button id="getImageButton" class="btn" type="button" onclick="getImage()">Get Image</button>
+        </div>
+    </body>
+</html>
