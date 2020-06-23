@@ -1,5 +1,5 @@
 body{
-    background-color: rgb(64, 64, 64);
+    background-color: #1C2833;
     color: white;
     /* position: fixed;   use this to disable scrolling*/
 }
@@ -7,8 +7,19 @@ body{
 #canvas {
     border: 2px solid black;
     background-color: white;
+    margin: auto;
+    display: block;
+    border-radius: 10px;
 }
 
+h1 {
+    text-align: center;
+    color: white;
+    font-size: 64px;
+    font-variant: small-caps;
+}
+
+/*
 .slider {
     background: #d3d3d3;
     opacity: 0.9;
@@ -17,4 +28,52 @@ body{
 
 .slider:hover {
     opacity: 1;
+}
+*/
+
+.button-toolbar {
+    text-align: center;
+}
+  
+.canvas-toolbar {
+    text-align: center;
+    margin: 0px 0px 35px 0px;
+}
+
+.canvas-toolbar select {
+    border-radius: 0px;
+    width: 150px;
+    height: 35px;
+    margin: 0px 25px 0px 0px;
+    padding: 0px;
+    font-family: Century Gothic;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 5px;
+}
+  
+.button-toolbar button {
+    border-radius: 0px;
+    width: 200px;
+    height: 50px;
+    margin: 0px 25px 0px 0px;
+    font-family: Century Gothic;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+.canvas-toolbar-label {
+    text-align: center;
+}
+
+.canvas-toolbar-label p {
+    display: inline-block;
+    font-family: Century Gothic;
+    font-size: 18px;
+    font-weight: bold;
+    width: 150px;
+    height: 35px;
+    margin: 50px 25px 0px 0px;
+    padding: 0px;
 }

@@ -3,15 +3,20 @@ window.addEventListener('load', () => {
     const canvas = document.querySelector("#canvas");
     const ctx = canvas.getContext("2d");
 
+    // create the buttons on the canvas
+    const clearButton = document.querySelector("#clearButton");
+    const colorSelector = document.querySelector("#colorSelector");
+    const widthSelector = document.querySelector("#widthSelector");
+
     // set canvas properties
-    canvas.height = 400;
-    canvas.width = 400;
+    canvas.height = 500;
+    canvas.width = 500;
 
     var painting = false;
     var offsetY = canvas.getBoundingClientRect().top;
     var offsetX = canvas.getBoundingClientRect().left;
-    var color = "black";
-    var size = 8;
+    // var color = "black";
+    // var size = 8;
 
     // set a white background
     ctx.fillStyle = "white";
@@ -42,9 +47,9 @@ window.addEventListener('load', () => {
         }
         
         // set line properties
-        ctx.lineWidth = size;
+        ctx.lineWidth = widthSelector.options[widthSelector.selectedIndex].value;
         ctx.lineCap = "round";
-        ctx.strokeStyle = color;
+        ctx.strokeStyle = colorSelector.options[colorSelector.selectedIndex].value;
 
         // draw the line
         ctx.lineTo(e.clientX - offsetX, e.clientY - offsetY);
@@ -54,13 +59,13 @@ window.addEventListener('load', () => {
     }
 
     // clear the canvas
-    const clearButton = document.getElementById("clearButton");
     clearButton.onclick = function() {
         if (confirm("Are you sure you want to clear the canvas?")) {
             ctx.fillRect(0, 0, canvas.width, canvas.height);
         }
     }
 
+    /*
     // change the drawing color
     function changeColor(newColor) {
         color = newColor;
@@ -71,10 +76,6 @@ window.addEventListener('load', () => {
         }
     }
 
-    const blackButton = document.getElementById("blackButton");
-    const blueButton = document.getElementById("blueButton");
-    const redButton = document.getElementById("redButton");
-    const greenButton = document.getElementById("greenButton");
     blackButton.onclick = function() {
         changeColor("Black");
     }
@@ -100,12 +101,12 @@ window.addEventListener('load', () => {
         size = this.value;
         document.getElementById("thickness").innerHTML = "Thickness: " + size;
     }
+    */
 
     // download the image
-    const downloadButton = document.getElementById("downloadButton");
-    downloadButton.onclick = function() {
-        let download = document.getElementById("download");
-        let image = document.getElementById("canvas").toDataURL("image/png")
+    function download() {
+        var download = document.querySelector("#download");
+        var image = document.querySelector("#canvas").toDataURL("image/png")
                 .replace("image/png", "image/octet-stream");
         download.setAttribute("href", image);
     }

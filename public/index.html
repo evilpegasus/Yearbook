@@ -24,14 +24,9 @@
 
 
         <h1>Yearbook</h1>
-        <canvas id="canvas" width="400" height="400" crossOrigin="anonymous">Your browser is not supported.</canvas>
+        <canvas id="canvas" width="500" height="500" crossOrigin="anonymous">Your browser is not supported.</canvas>
         
-        <br>
-        <button id="clearButton" type="button">Clear</button>
-        <a id="download" download="image.png"><button id="downloadButton" type="button">Download</button></a>
-        <button id="saveButton" type="button" onclick="upload()">Upload</button>
-        <button id="getImageButton" type="button" onclick="getImage()">Get Image</button>
-        
+        <!--
         <br>
         <button id="blackButton" type="button">Black</button>
         <button id="blueButton" type="button">Blue</button>
@@ -45,6 +40,39 @@
         <p id="thickness">Thickness: 8</p>
         <div class="sliderContainer">
             <input type="range" min="4" max="24" value="8" class="slider" id="sizeSlider">
+        </div>
+        -->
+
+        <div class="canvas-toolbar-label">
+            <p>Size:</p>
+            <p>Color:</p>
+        </div>
+
+        <div class="canvas-toolbar">
+            <select id="widthSelector">
+              <option value="2">2</option>
+              <option value="4">4</option>
+              <option value="6">6</option>
+              <option value="8" selected = "selected">8</option>
+              <option value="10">10</option>
+              <option value="12">12</option>
+            </select>
+      
+            <select id="colorSelector">
+              <option value="black" selected="selected">Black</option>
+              <option value="blue">Blue</option>
+              <option value="red">Red</option>
+              <option value="green">Green</option>
+              <option value="gray">Gray</option>
+              <option value="eraser">Eraser</option>
+            </select>
+        </div>
+
+        <div class="button-toolbar">
+            <button id="clearButton" class="btn" type="button">Clear Canvas</button>
+            <a id="download" download="image.png"><button id="downloadButton" class="btn" type="button" onclick="download()">Download</button></a>
+            <button id="saveButton" class="btn" type="button" onclick="upload()">Upload</button>
+            <button id="getImageButton" class="btn" type="button" onclick="getImage()">Get Image</button>
         </div>
     </body>
 </html>
