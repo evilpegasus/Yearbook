@@ -1,14 +1,10 @@
 function upload() {
     const canvas = document.querySelector("#canvas");
-    const ctx = canvas.getContext("2d");
-    var imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-    var imageJSON = JSON.stringify(imageData);
 
     // Create a root reference
     var storageRef = firebase.storage().ref();
     
-    var blob = new Blob([imageJSON], {type: "application/json"});
-    // imageJSON.toBlob(function(blob){
+    canvas.toBlob(function(blob){
         var uploadTask = storageRef.child('test').put(blob);
 
         // Listen for state changes, errors, and completion of the upload.
@@ -50,7 +46,7 @@ function upload() {
         window.alert("Upload successful");
         });
         });
-    // });
+    });
 };
 function getImage() {
     const canvas = document.querySelector("#canvas");
@@ -63,23 +59,15 @@ function getImage() {
     // Get the download URL
     pathReference.getDownloadURL().then(function(url) {
 
-        var xhr = new XMLHttpRequest();
-        xhr.responseType = 'blob';
-        xhr.onload = function(event) {
-            var blob = xhr.response;
-
-            // Draw the png file onto the canvas
-            var drawing = JSON.parse(blob);
-            // drawing.setAttribute('crossOrigin', 'use-credentials');
-            // drawing.src = url; // can also be a remote URL e.g. http://
-            // var timestamp = new Date().getTime();
-            drawing.onload = function() {
-            ctx.drawImage(drawing,0,0);
-            };
-            console.log("Image from server drawn onto canvas. URL = ", url);
+        // Draw the png file onto the canvas
+        drawing = new Image();
+        // drawing.setAttribute('crossOrigin', 'use-credentials');
+        drawing.src = url; // can also be a remote URL e.g. http://
+        // var timestamp = new Date().getTime();
+        drawing.onload = function() {
+        ctx.drawImage(drawing,0,0);
         };
-        xhr.open('GET', url);
-        xhr.send();
+        console.log("Image from server drawn onto canvas. URL = ", url);
     }).catch(function(error) {
         console.log("Failed to get image from the server.");
         console.log(error);
