@@ -64,9 +64,9 @@ function getImage() {
     pathReference.getDownloadURL().then(function(url) {
 
         // Draw the png file onto the canvas
-        drawing = new Image();
+        // drawing = new Image();
         // drawing.setAttribute('crossOrigin', 'use-credentials');
-        drawing.src = url; // can also be a remote URL e.g. http://
+        // drawing.src = url; // can also be a remote URL e.g. http://
         // var timestamp = new Date().getTime();
         backgroundImage.src = url;
         console.log("background src changed");
