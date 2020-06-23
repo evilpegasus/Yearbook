@@ -1,11 +1,14 @@
 function upload() {
     const canvas = document.querySelector("#canvas");
+    const ctx = canvas.getContext("2d");
+    var imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    var imageJSON = JSON.stringify(imageData);
 
     // Create a root reference
     var storageRef = firebase.storage().ref();
     
-    canvas.toBlob(function(blob){
-        var uploadTask = storageRef.child('test').put(blob);
+    // imageData.toBlob(function(blob){
+        var uploadTask = storageRef.child('test').put(imageJSON);
 
         // Listen for state changes, errors, and completion of the upload.
         uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
@@ -46,7 +49,7 @@ function upload() {
         window.alert("Upload successful");
         });
         });
-    });
+    // });
 };
 function getImage() {
     const canvas = document.querySelector("#canvas");
@@ -59,15 +62,23 @@ function getImage() {
     // Get the download URL
     pathReference.getDownloadURL().then(function(url) {
 
-        // Draw the png file onto the canvas
-        drawing = new Image();
-        // drawing.setAttribute('crossOrigin', 'use-credentials');
-        drawing.src = url; // can also be a remote URL e.g. http://
-        // var timestamp = new Date().getTime();
-        drawing.onload = function() {
-        ctx.drawImage(drawing,0,0);
+        var xhr = new XMLHttpRequest();
+        xhr.responseType = 'blob';
+        xhr.onload = function(event) {
+            var blob = xhr.response;
+
+            // Draw the png file onto the canvas
+            var drawing = JSON.parse(blob);
+            // drawing.setAttribute('crossOrigin', 'use-credentials');
+            // drawing.src = url; // can also be a remote URL e.g. http://
+            // var timestamp = new Date().getTime();
+            drawing.onload = function() {
+            ctx.drawImage(drawing,0,0);
+            };
+            console.log("Image from server drawn onto canvas. URL = ", url);
         };
-        console.log("Image from server drawn onto canvas. URL = ", url);
+        xhr.open('GET', url);
+        xhr.send();
     }).catch(function(error) {
         console.log("Failed to get image from the server.");
         console.log(error);
