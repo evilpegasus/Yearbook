@@ -7,8 +7,8 @@ function upload() {
     // Create a root reference
     var storageRef = firebase.storage().ref();
     
-    // imageData.toBlob(function(blob){
-        var uploadTask = storageRef.child('test').put(imageJSON);
+    imageJSON.toBlob(function(blob){
+        var uploadTask = storageRef.child('test').put(blob);
 
         // Listen for state changes, errors, and completion of the upload.
         uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
@@ -49,7 +49,7 @@ function upload() {
         window.alert("Upload successful");
         });
         });
-    // });
+    });
 };
 function getImage() {
     const canvas = document.querySelector("#canvas");
