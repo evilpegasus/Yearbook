@@ -7,7 +7,8 @@ function upload() {
     // Create a root reference
     var storageRef = firebase.storage().ref();
     
-    imageJSON.toBlob(function(blob){
+    var blob = new Blob([imageJSON], {type: "application/json"});
+    // imageJSON.toBlob(function(blob){
         var uploadTask = storageRef.child('test').put(blob);
 
         // Listen for state changes, errors, and completion of the upload.
@@ -49,7 +50,7 @@ function upload() {
         window.alert("Upload successful");
         });
         });
-    });
+    // });
 };
 function getImage() {
     const canvas = document.querySelector("#canvas");
