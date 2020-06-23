@@ -70,8 +70,10 @@ function getImage() {
         // drawing.src = url; // can also be a remote URL e.g. http://
         // var timestamp = new Date().getTime();
         backgroundImage.src = url;
+        console.log("background src changed");
         backgroundImage.onload = function() {
         ctx.drawImage(backgroundImage,0,0);
+        console.log("background img loaded");
         };
         console.log("Image from server drawn onto canvas. URL = ", url);
     }).catch(function(error) {
