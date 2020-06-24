@@ -62,10 +62,26 @@ function getImage() {
 
         // Draw the png file onto the canvas
         drawing = new Image();
-        drawing.src = url; // can also be a remote URL e.g. http://
+        drawing.crossOrigin = "Anonymous";
         drawing.onload = function() {
-            ctx.drawImage(drawing,0,0);
+            var proxyCanvas = document.createElement("canvas");
+            var proxyCtx = proxyCanvas.getContext("2d");
+
+            proxyCanvas.height = this.naturalHeight;
+            proxyCanvas.width = this.naturalWidth;
+            proxyCtx.drawImage(this, 0, 0);
+
+            var dataURL = proxyCanvas.toDataURL();
+
+            var img = new Image();
+            img.crossOrigin = "Anonymous";
+            img.onload = function() {
+                ctx.drawImage(this, 0, 0);
+                proxyCanvas.remove();
+            };
+            img.src = dataURL;
         };
+        drawing.src = url; // can also be a remote URL e.g. http://
         console.log("Image from server drawn onto canvas. URL = ", url);
     }).catch(function(error) {
         console.log("Failed to get image from the server.");
