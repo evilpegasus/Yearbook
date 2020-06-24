@@ -65,10 +65,8 @@ window.addEventListener('load', () => {
 
     // download the image
     downloadButton.onclick = function() {
-        var download = document.querySelector("#download");
-        var image = document.querySelector("#canvas").toDataURL("image/png")
-                .replace("image/png", "image/octet-stream");
-        download.setAttribute("href", image);
+        var image = canvas.toDataURL().replace("image/png", "image/octet-stream");
+        document.querySelector("#download").setAttribute("href", image);
     }
 
     // detect and respond to user actions
