@@ -1,4 +1,4 @@
-body{
+body {
     background-color: #003262;
     color: #DDD5C7;
     font-family: sans-serif;
@@ -33,12 +33,13 @@ h1 {
 .canvas-toolbar select {
     border-radius: 0px;
     width: 150px;
-    height: 35px;
+    height: 40px;
     margin: 0px 25px 0px 0px;
     padding: 0px;
-    font-size: 12px;
-    font-weight: bold;
-    border-radius: 5px;
+    font-size: 16px;
+    border-radius: 20px;
+    font-family: 'Gruppo', cursive;
+    font-weight: 900;
 }
   
 .button-toolbar button {
@@ -46,9 +47,10 @@ h1 {
     width: 200px;
     height: 50px;
     margin: 0px 25px 0px 0px;
-    font-size: 18px;
-    font-weight: bold;
-    border-radius: 5px;
+    font-size: 22px;
+    border-radius: 25px;
+    font-family: 'Gruppo', cursive;
+    font-weight: 900;
 }
 
 .canvas-toolbar-label {
@@ -57,10 +59,11 @@ h1 {
 
 .canvas-toolbar-label p {
     display: inline-block;
-    font-size: 18px;
-    font-weight: bold;
+    font-size: 22px;
     width: 150px;
     height: 35px;
     margin: 50px 25px 0px 0px;
     padding: 0px;
+    font-family: 'Gruppo', cursive;
+    font-weight: 900;
 }
