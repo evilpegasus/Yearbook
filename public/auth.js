@@ -28,9 +28,9 @@ var uiConfig = {
       firebase.auth.FacebookAuthProvider.PROVIDER_ID,
   ],
   // Terms of service url.
-  tosUrl: 'www.mingyfong.github.io',
+  tosUrl: 'TOS.html',
   // Privacy policy url.
-  privacyPolicyUrl: 'www.mingyfong.github.io'
+  privacyPolicyUrl: 'privacy.html'
 };
 
 /**
