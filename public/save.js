@@ -58,7 +58,6 @@ function upload() {
 function getImage() {
     try {
         const canvas = document.querySelector("#canvas");
-        const ctx = canvas.getContext("2d");
         const backgroundImage = document.querySelector("#backgroundImage");
     
         // Create a reference with an initial file path and name
