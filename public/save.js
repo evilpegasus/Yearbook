@@ -66,7 +66,7 @@ function getImage() {
         drawing.src = url;
         drawing.onload = function() {
             backgroundImage.src = url; // can also be a remote URL e.g. http://
-            canvas.style.removeProperty("background-color");
+            canvas.style.backgroundColor = "transparent";
         }
         console.log("Image from server drawn onto canvas. URL = ", url);
     }).catch(function(error) {
