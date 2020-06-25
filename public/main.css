@@ -2,6 +2,7 @@ body {
     background-color: #003262;
     color: #DDD5C7;
     font-family: sans-serif;
+    text-align: center;
     /* position: fixed;   use this to disable scrolling*/
 }
 
@@ -9,7 +10,7 @@ body {
     border: 2px solid black;
     background-color: white;
     margin: auto;
-    display: block;
+    display: inline-block;
     border-radius: 10px;
     position: relative;
     z-index: 20;
@@ -18,11 +19,15 @@ body {
 #canvasContainer {
     display: inline-block;
     position: relative;
+    margin: auto;
 }
 
 #backgroundImage {
     position: absolute;
+    display: inline-block;
+    margin: auto;
     z-index: 1;
+    border-radius: 10px;
 }
 
 h1 {

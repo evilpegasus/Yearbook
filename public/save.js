@@ -5,7 +5,7 @@ function upload() {
     var storageRef = firebase.storage().ref();
     
     canvas.toBlob(function(blob){
-        var uploadTask = storageRef.child('test-new').put(blob);
+        var uploadTask = storageRef.child('test').put(blob);
 
         // Listen for state changes, errors, and completion of the upload.
         uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
