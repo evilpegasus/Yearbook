@@ -98,6 +98,8 @@ h1 {
 
 .button-toolbar button:active {
     background-color: aquamarine;
+    box-shadow: aquamarine;
+    border: aquamarine;
 }
 
 .canvas-toolbar-label {
