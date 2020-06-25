@@ -2,11 +2,15 @@
 firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
       // User is signed in.
+      user = firebase.auth().currentUser;
+      console.log("displayName: " + user.displayName); // TODO get rid of these console prints
+      console.log("email: " + user.email);
+      console.log("uid: " + user.uid);
     } else {
-      // No user is signed in.
+      // No user is signed in. Kick them out to login screen
       window.location.replace('index.html')
     }
-  });
+});
 
 window.addEventListener('load', () => {
     // create the canvas
