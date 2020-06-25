@@ -67,16 +67,10 @@ window.addEventListener('load', () => {
     }
 
     // detect and respond to user actions
+    window.addEventListener("wheel", adjustOffsets);
     window.addEventListener("scroll", adjustOffsets);
-    canvas.addEventListener("mousedown", startPainting);
-    canvas.addEventListener("mouseup", endPainting);
-    canvas.addEventListener("mousemove", draw);
-    canvas.addEventListener("mouseout", endPainting);
-
-    // user actions on mobile devices
-    // canvas.addEventListener("touchstart", startPainting);
-    // canvas.addEventListener("touchend", endPainting);
-    // canvas.addEventListener("touchmove", draw);
-    // canvas.addEventListener("touchcancel", endPainting);
-
+    canvas.addEventListener("pointerdown", startPainting);
+    canvas.addEventListener("pointerup", endPainting);
+    canvas.addEventListener("pointermove", draw);
+    canvas.addEventListener("pointerout", endPainting);
 });
