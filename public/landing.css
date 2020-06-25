@@ -1,16 +1,16 @@
 body {
-    margin:50px auto;
-    max-width:650px;
-    line-height:1.6;
-    font-size:18px;
-    color:#DDD5C7;
-    padding:0 10px;
+    margin: 50px auto;
+    max-width: 650px;
+    line-height: 1.6;
+    font-size: 18px;
+    color: #DDD5C7;
+    padding: 0 10px;
     font-family: sans-serif;
     background-color: #003262;
 }
 
 h1, h2, h3 {
-    line-height:1.2;
+    line-height: 1.2;
     font-family: 'Gruppo', sans-serif;
 }
 
