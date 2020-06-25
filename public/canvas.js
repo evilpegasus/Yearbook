@@ -44,11 +44,7 @@ window.addEventListener('load', () => {
         // set line properties
         ctx.lineWidth = widthSelector.options[widthSelector.selectedIndex].value;
         ctx.lineCap = "round";
-        if (colorSelector.options[colorSelector.selectedIndex].value != 'eraser') {
-            ctx.strokeStyle = colorSelector.options[colorSelector.selectedIndex].value;
-        } else {
-            ctx.strokeStyle = 'white';
-        }
+        ctx.strokeStyle = colorSelector.options[colorSelector.selectedIndex].value;
 
         // draw the line
         ctx.lineTo(e.clientX - offsetX, e.clientY - offsetY);
