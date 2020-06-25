@@ -16,10 +16,6 @@ window.addEventListener('load', () => {
     var offsetY = canvas.getBoundingClientRect().top;
     var offsetX = canvas.getBoundingClientRect().left;
 
-    // set a white background
-    ctx.fillStyle = "white";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-
     // enable painting
     function startPainting() {
         painting = true;
@@ -58,8 +54,8 @@ window.addEventListener('load', () => {
 
     // clear the canvas
     clearButton.onclick = function() {
-        if (confirm("Are you sure you want to clear the canvas?")) {
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
+        if (confirm("Are you sure you want to clear what you have drawn? This action cannot be undone.")) {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
         }
     }
 

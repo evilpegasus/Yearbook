@@ -5,7 +5,7 @@ function upload() {
     var storageRef = firebase.storage().ref();
     
     canvas.toBlob(function(blob){
-        var uploadTask = storageRef.child('test').put(blob);
+        var uploadTask = storageRef.child('test-new').put(blob);
 
         // Listen for state changes, errors, and completion of the upload.
         uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
@@ -52,6 +52,7 @@ function upload() {
 function getImage() {
     const canvas = document.querySelector("#canvas");
     const ctx = canvas.getContext("2d");
+    const backgroundImage = document.querySelector("#backgroundImage");
 
     // Create a reference with an initial file path and name
     var storage = firebase.storage();
@@ -61,11 +62,11 @@ function getImage() {
     pathReference.getDownloadURL().then(function(url) {
 
         // Draw the png file onto the canvas
-        drawing = new Image();
-        drawing.src = url; // can also be a remote URL e.g. http://
+        var drawing = new Image();
+        drawing.src = url;
         drawing.onload = function() {
-            ctx.drawImage(drawing,0,0);
-        };
+            backgroundImage.src = url; // can also be a remote URL e.g. http://
+        }
         console.log("Image from server drawn onto canvas. URL = ", url);
     }).catch(function(error) {
         console.log("Failed to get image from the server.");

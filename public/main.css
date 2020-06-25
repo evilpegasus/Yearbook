@@ -9,8 +9,19 @@ body {
     border: 2px solid black;
     background-color: white;
     margin: auto;
-    display: block;
     border-radius: 10px;
+    position: relative;
+    z-index: 20;
+}
+
+#canvasContainer {
+    display: inline-block;
+    position: relative;
+}
+
+#backgroundImage {
+    position: absolute;
+    z-index: 1;
 }
 
 h1 {
