@@ -1,3 +1,13 @@
+// check if user is signed in
+firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      // User is signed in.
+    } else {
+      // No user is signed in.
+      window.location.replace('index.html')
+    }
+  });
+
 window.addEventListener('load', () => {
     // create the canvas
     const canvas = document.querySelector("#canvas");
