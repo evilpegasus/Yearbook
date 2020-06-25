@@ -129,4 +129,4 @@ dmypy.json
 .pyre/
 
 # Google Firebase
-firebase/
+.firebase/
