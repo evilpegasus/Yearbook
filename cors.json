@@ -1,6 +1,6 @@
 [
     {
-      "origin": ["gs://yearbook-hhs.appspot.com"],
+      "origin": ["https://yearbook-hhs.web.app/"],
       "responseHeader": ["Content-Type"],
       "method": ["GET"],
       "maxAgeSeconds": 3600
