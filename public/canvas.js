@@ -6,6 +6,7 @@ firebase.auth().onAuthStateChanged(function(user) {
       console.log("displayName: " + user.displayName); // TODO get rid of these console prints
       console.log("email: " + user.email);
       console.log("uid: " + user.uid);
+      console.log('https://yearbook-hhs.web.app/app.html?user=' + user.uid); // unique URL for user <======================= USE THIS TO SEND TO FRIENDS
     } else {
       // No user is signed in. Kick them out to login screen
       window.location.replace('index.html')
@@ -83,6 +84,7 @@ window.addEventListener('load', () => {
     // detect and respond to user actions
     window.addEventListener("wheel", adjustOffsets);
     window.addEventListener("scroll", adjustOffsets);
+    window.addEventListener("resize", adjustOffsets);
     canvas.addEventListener("pointerdown", startPainting);
     canvas.addEventListener("pointerup", endPainting);
     canvas.addEventListener("pointermove", draw);
