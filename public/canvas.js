@@ -15,6 +15,7 @@ window.addEventListener('load', () => {
     var painting = false;
     var offsetY = canvas.getBoundingClientRect().top;
     var offsetX = canvas.getBoundingClientRect().left;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     // enable painting
     function startPainting() {
