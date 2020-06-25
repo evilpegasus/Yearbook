@@ -1,96 +1,106 @@
 function upload() {
-    const canvas = document.querySelector("#canvas");
+    try {
+        const canvas = document.querySelector("#canvas");
 
-    // Create a root reference
-    var storageRef = firebase.storage().ref();
-    
-    canvas.toBlob(function(blob){
-        var uploadTask = storageRef.child('test').put(blob);
+        // Create a root reference
+        var storageRef = firebase.storage().ref();
+        
+        canvas.toBlob(function(blob){
+            var uploadTask = storageRef.child('test').put(blob);
 
-        // Listen for state changes, errors, and completion of the upload.
-        uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
-        function(snapshot) {
-            // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-            var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-            console.log('Upload is ' + progress + '% done');
-            switch (snapshot.state) {
-                case firebase.storage.TaskState.PAUSED: // or 'paused'
-                    console.log('Upload is paused');
-                    break;
-                case firebase.storage.TaskState.RUNNING: // or 'running'
-                    console.log('Upload is running');
-                    break;
-            }
-        }, function(error) {
-            console.log("Failed to upload image to the server.");
-            console.log(error);
-            // A full list of error codes is available at
-            // https://firebase.google.com/docs/storage/web/handle-errors
-            switch (error.code) {
-                case 'storage/unauthorized':
-                    // User doesn't have permission to access the object
-                    break;
+            // Listen for state changes, errors, and completion of the upload.
+            uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
+            function(snapshot) {
+                // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+                var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                console.log('Upload is ' + progress + '% done');
+                switch (snapshot.state) {
+                    case firebase.storage.TaskState.PAUSED: // or 'paused'
+                        console.log('Upload is paused');
+                        break;
+                    case firebase.storage.TaskState.RUNNING: // or 'running'
+                        console.log('Upload is running');
+                        break;
+                }
+            }, function(error) {
+                console.log("Failed to upload image to the server.");
+                console.log(error);
+                // A full list of error codes is available at
+                // https://firebase.google.com/docs/storage/web/handle-errors
+                switch (error.code) {
+                    case 'storage/unauthorized':
+                        // User doesn't have permission to access the object
+                        break;
 
-                case 'storage/canceled':
-                    // User canceled the upload
-                    break;
+                    case 'storage/canceled':
+                        // User canceled the upload
+                        break;
 
-                case 'storage/unknown':
-                    // Unknown error occurred, inspect error.serverResponse
-                    break;
-            }
-        }, function() {
-        // Upload completed successfully, now we can get the download URL
-            uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
-                console.log('File available at', downloadURL);
-                window.alert("Upload successful");
+                    case 'storage/unknown':
+                        // Unknown error occurred, inspect error.serverResponse
+                        break;
+                }
+            }, function() {
+            // Upload completed successfully, now we can get the download URL
+                uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
+                    console.log('File available at', downloadURL);
+                    window.alert("Upload successful");
+                });
             });
         });
-    });
+    } catch(error) {
+        console.log(error);
+        window.alert("Something went wrong while uploading your image:\n" + error.message);
+    }
 };
 
 function getImage() {
-    const canvas = document.querySelector("#canvas");
-    const ctx = canvas.getContext("2d");
-    const backgroundImage = document.querySelector("#backgroundImage");
+    try {
+        const canvas = document.querySelector("#canvas");
+        const ctx = canvas.getContext("2d");
+        const backgroundImage = document.querySelector("#backgroundImage");
 
-    // Create a reference with an initial file path and name
-    var storage = firebase.storage();
-    var pathReference = storage.ref('test');
+        // Create a reference with an initial file path and name
+        var storage = firebase.storage();
+        var pathReference = storage.ref('test');
 
-    // Get the download URL
-    pathReference.getDownloadURL().then(function(url) {
+        // Get the download URL
+        pathReference.getDownloadURL().then(function(url) {
 
-        // Draw the png file onto the canvas
-        var drawing = new Image();
-        drawing.src = url;
-        drawing.onload = function() {
-            backgroundImage.src = url; // can also be a remote URL e.g. http://
-            canvas.style.backgroundColor = "transparent";
-        }
-        console.log("Image from server drawn onto canvas. URL = ", url);
-    }).catch(function(error) {
-        console.log("Failed to get image from the server.");
+            // Draw the png file onto the canvas
+            var drawing = new Image();
+            drawing.src = url;
+            drawing.onload = function() {
+                backgroundImage.src = url; // can also be a remote URL e.g. http://
+                canvas.style.backgroundColor = "transparent";
+            }
+            console.log("Image from server drawn onto canvas. URL = ", url);
+        }).catch(function(error) {
+            console.log("Failed to get image from the server.");
+            console.log(error);
+
+            // A full list of error codes is available at
+            // https://firebase.google.com/docs/storage/web/handle-errors
+            switch (error.code) {
+                case 'storage/object-not-found':
+                    // File doesn't exist
+                    break;
+            
+                case 'storage/unauthorized':
+                    // User doesn't have permission to access the object
+                    break;
+            
+                case 'storage/canceled':
+                    // User canceled the upload
+                    break;
+            
+                case 'storage/unknown':
+                    // Unknown error occurred, inspect the server response
+                    break;
+            }
+        });
+    } catch(error) {
         console.log(error);
-
-        // A full list of error codes is available at
-        // https://firebase.google.com/docs/storage/web/handle-errors
-        switch (error.code) {
-            case 'storage/object-not-found':
-                // File doesn't exist
-                break;
-        
-            case 'storage/unauthorized':
-                // User doesn't have permission to access the object
-                break;
-        
-            case 'storage/canceled':
-                // User canceled the upload
-                break;
-        
-            case 'storage/unknown':
-                // Unknown error occurred, inspect the server response
-                break;
-        }
-    });
+        window.alert("Something went wrong while getting your image:\n" + error.message);
+    }
 }
