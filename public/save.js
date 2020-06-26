@@ -27,8 +27,10 @@ firebase.auth().onAuthStateChanged(function(user) {
         document.getElementById('sharingLink').innerHTML = "<a href='https://yearbook-hhs.web.app/app.html'>https://yearbook-hhs.web.app/app.html</a>";
     }
 
-    // get the image from storage and draw it onto the canvas
-    getImage();
+    // get the image from storage and draw it onto the canvas if existing user
+    if (!currentUser.additionalUserInfo.isNewUser()) {
+        getImage();
+    }
 });
 
 function upload() {
