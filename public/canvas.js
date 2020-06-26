@@ -26,8 +26,8 @@ window.addEventListener('load', () => {
     const widthSelector = document.querySelector("#widthSelector");
 
     // set canvas properties
-    canvas.height = 500;
-    canvas.width = 500;
+    canvas.height = 2500;
+    canvas.width = 1500;
     var painting = false;
     var offsetY = canvas.getBoundingClientRect().top;
     var offsetX = canvas.getBoundingClientRect().left;

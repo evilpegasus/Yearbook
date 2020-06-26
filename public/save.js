@@ -127,7 +127,7 @@ function resetYearbook() {
     const backgroundImage = document.querySelector("#backgroundImage");
     
     // Delete image in storage
-    var imageRef = storageRef.child(currentUser.uid + '/temp.png');
+    var imageRef = storageRef.child(currentUser.uid + '/old.png');
     imageRef.delete().then(function() {
         console.log("Yearbook deleted successfully");
     }).catch(function(error) {
