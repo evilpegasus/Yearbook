@@ -4,10 +4,10 @@ firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
         // User is signed in.
         currentUser = firebase.auth().currentUser;
-        console.log("displayName: " + user.displayName); // TODO get rid of these console prints
-        console.log("email: " + user.email);
-        console.log("uid: " + user.uid);
-        console.log('https://yearbook-hhs.web.app/app.html?user=' + user.uid); // unique URL for user <======================= USE THIS TO SEND TO FRIENDS
+        console.log("displayName: " + currentUser.displayName); // TODO get rid of these console prints
+        console.log("email: " + currentUser.email);
+        console.log("uid: " + currentUser.uid);
+        console.log('https://yearbook-hhs.web.app/app.html?user=' + currentUser.uid); // unique URL for user <======================= USE THIS TO SEND TO FRIENDS
     } else {
         // No user is signed in. Kick them out to login screen
         window.location.replace('index.html');
