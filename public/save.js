@@ -117,9 +117,9 @@ function getImage() {
                 backgroundImage.src = url; // can also be a remote URL e.g. http://
                 canvas.style.backgroundColor = "transparent";
                 backgroundImage.style.display = "inline-block";
+                window.alert("Image retrieved successfully");
+                console.log("Image from server drawn onto canvas. URL = ", url);
             }
-            console.log("Image from server drawn onto canvas. URL = ", url);
-            window.alert("Image retrieved successfully");
         }).catch(function(error) {
             console.log("Failed to get image from the server.");
             console.log(error);
