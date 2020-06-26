@@ -137,4 +137,5 @@ function resetYearbook() {
     // Clear client image
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     backgroundImage.src = "//:0";
+    canvas.style.backgroundColor = "white";
 }
