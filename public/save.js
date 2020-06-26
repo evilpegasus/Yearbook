@@ -37,10 +37,10 @@ function upload() {
 
             var uploadTask;
             // Create old.png if first time uploading, otherwise write to temp.png
-            storageRef.child(serveID + "/old.png").getDownloadURL().then(value => {
+            storageRef.child(serveID + "/old.png").getDownloadURL().then(function() {
                 // old.png already exists, write to temp.png
                 uploadTask = storageRef.child(serveID + '/temp.png').put(blob);
-            }, reason => {
+            }, function() {
                 // old.png does not exist, create it
                 uploadTask = storageRef.child(serveID + '/old.png').put(blob);
             }).then(function() {
