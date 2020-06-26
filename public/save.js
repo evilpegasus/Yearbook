@@ -112,7 +112,7 @@ function getImage() {
                 backgroundImage.style.display = "inline-block";
             }
             console.log("Image from server drawn onto canvas. URL = ", url);
-            alert("Image retrieved successfully");
+            window.alert("Image retrieved successfully");
         }).catch(function(error) {
             console.log("Failed to get image from the server.");
             console.log(error);
