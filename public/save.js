@@ -6,8 +6,18 @@ function upload() {
         var storageRef = firebase.storage().ref();
         
         canvas.toBlob(function(blob){
-            var uploadTask = storageRef.child('test').put(blob);
-    
+
+            // Create old.png if first time uploading, otherwise write to temp.png
+            storageRef.child(user.uid + "/old.png").getDownloadURL().then(onResolve, onReject);
+            // old.png already exists, write to temp.png
+            function onResolve() {
+                var uploadTask = storageRef.child(user.uid + '/temp.png').put(blob);
+            }
+            // old.png does not exist, create it
+            function onReject(error) {
+                var uploadTask = storageRef.child(user.uid + '/old.png').put(blob);
+            }
+
             // Listen for state changes, errors, and completion of the upload.
             uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
             function(snapshot) {
@@ -63,7 +73,7 @@ function getImage() {
     
         // Create a reference with an initial file path and name
         var storage = firebase.storage();
-        var pathReference = storage.ref('test');
+        var pathReference = storage.ref(user.uid + '/old.png');
     
         // Get the download URL
         pathReference.getDownloadURL().then(function(url) {
@@ -105,5 +115,4 @@ function getImage() {
         window.alert("Something went wrong while getting your image:\n" + error.message);
         console.log(error);
     }
-    
 }

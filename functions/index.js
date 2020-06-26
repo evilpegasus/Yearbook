@@ -1,8 +1,16 @@
 const functions = require('firebase-functions');
+const os = require('os');
+const path = require('path');
+const fs = require('fs');
 
-// // Create and Deploy Your First Cloud Functions
-// // https://firebase.google.com/docs/functions/write-firebase-functions
-//
-exports.helloWorld = functions.https.onRequest((request, response) => {
- response.send("Hello from Firebase!");
+exports.combineImages = functions.storage.object().onFinalize(event => {
+    
+    // ignore delete events
+    if (event.data.resourceState == 'not_exists') return false;
+
+    const filePath = event.data.name;
+    const fileDir = path.dirname(filePath);
+    const fileName = path.basename(filePath);
+
+    const oldFile = fireDir + "/old.png"
 });
