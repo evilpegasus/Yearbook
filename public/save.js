@@ -95,6 +95,7 @@ function getImage() {
         }).catch(function(error) {
             console.log("Failed to get image from the server.");
             console.log(error);
+            window.alert("Something went wrong while getting your image:\n" + error.message);
     
             // A full list of error codes is available at
             // https://firebase.google.com/docs/storage/web/handle-errors

@@ -33,7 +33,7 @@ body {
     background-color: white;
 }
 
-h1 {
+.title-box {
     text-align: center;
     color: #DDD5C7;
     font-size: 64px;
