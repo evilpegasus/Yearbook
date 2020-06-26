@@ -104,7 +104,7 @@ async function sendWelcomeEmail(email, displayName, uid) {
 
     // Body of the email
     mailOptions.subject = 'Welcome to ${APP_NAME}!';
-    mailOptions.text = "Hey " + displayName + "! Welcome to " + APP_NAME + ". We hope you will enjoy your yearbook. To share your yearbook with your friends, send them this link: https://yearbook-hhs.web.app/app.html?user=" + uid + "\n\n If you have any question or issues, please email us at yearbook2020app@gmail.com. \n\n -The Yearbook Team";
+    mailOptions.text = "Hey " + displayName + "! Welcome to " + APP_NAME + ". We hope you will enjoy your yearbook. To share your yearbook with your friends, send them this link: \n https://yearbook-hhs.web.app/app.html?user=" + uid + "\n\n If you have any question or issues, please email us at yearbook2020app@gmail.com. \n\n -The Yearbook Team";
     await mailTransport.sendMail(mailOptions);
     console.log('New welcome email sent to:', email);
     return null;
