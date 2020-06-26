@@ -14,12 +14,14 @@ body {
     border-radius: 10px;
     position: relative;
     z-index: 20;
+    margin-bottom: 15%;
 }
 
 #canvas-container {
     display: inline-block;
     position: relative;
     margin: auto;
+    margin-top: 80px;
 }
 
 #backgroundImage {
@@ -38,10 +40,34 @@ h1 {
     font-variant: small-caps;
     font-family: Gruppo, cursive;
     text-shadow: 0 0 20px black;
+    background-color: #003262;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 10px;
+    z-index: 50;
+    width: 500px;
+    height: 70px;
+    margin: auto;
+    margin-top: 50px;
+    border-radius: 10px;
+}
+
+#toolbars {
+    position: sticky;
+    top: 70%;
+    text-align: center;
+    margin: auto;
+    border-radius: 10px;
+    background-color: #003262;
+    bottom: 10px;
+    z-index: 40;
+    height: 200px;
+    width: 1000px;;
 }
 
 .button-toolbar {
     text-align: center;
+    margin-bottom: 10%;
 }
   
 .canvas-toolbar {
@@ -53,7 +79,7 @@ h1 {
     border-radius: 0px;
     width: 150px;
     height: 40px;
-    margin: 0px 25px 0px 0px;
+    margin: 0px 12px 0px 12px;
     padding: 0px;
     font-size: 16px;
     border-radius: 7px;
@@ -79,7 +105,7 @@ h1 {
     border-radius: 0px;
     width: 200px;
     height: 50px;
-    margin: 0px 25px 0px 0px;
+    margin: 0px 12px 0px 12px;
     font-size: 18px;
     border-radius: 10px;
     background-color: #003262;
@@ -111,7 +137,7 @@ h1 {
     font-size: 20px;
     width: 150px;
     height: 35px;
-    margin: 50px 25px 0px 0px;
+    margin: 20px 12px 0px 12px;
     padding: 0px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     color: white;
