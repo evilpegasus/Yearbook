@@ -61,8 +61,8 @@ h1 {
     background-color: #003262;
     bottom: 10px;
     z-index: 40;
-    height: 200px;
-    width: 1000px;
+    height: 160px;
+    width: 800px;
     border: 1px solid white;
 }
 
@@ -73,17 +73,17 @@ h1 {
   
 .canvas-toolbar {
     text-align: center;
-    margin: 0px 0px 35px 0px;
+    margin: 0px 0px 28px 0px;
 }
 
 .canvas-toolbar select {
     border-radius: 0px;
-    width: 150px;
-    height: 40px;
-    margin: 0px 12px 0px 12px;
+    width: 120px;
+    height: 32px;
+    margin: 0px 10px 0px 10px;
     padding: 0px;
-    font-size: 16px;
-    border-radius: 7px;
+    font-size: 13px;
+    border-radius: 5px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     background-color: #003262;
     border: 2px solid white;
@@ -102,13 +102,19 @@ h1 {
     color: #003262;
 }
 
+.canvas-toolbar select:active {
+    background-color: aquamarine;
+    box-shadow: aquamarine;
+    border: aquamarine;
+}
+
 .button-toolbar button {
     border-radius: 0px;
-    width: 200px;
-    height: 50px;
-    margin: 0px 12px 0px 12px;
-    font-size: 18px;
-    border-radius: 10px;
+    width: 160px;
+    height: 40px;
+    margin: 0px 10px 0px 10px;
+    font-size: 16px;
+    border-radius: 8px;
     background-color: #003262;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     border: 2px solid white;
@@ -135,10 +141,10 @@ h1 {
 
 .canvas-toolbar-label p {
     display: inline-block;
-    font-size: 20px;
-    width: 150px;
-    height: 35px;
-    margin: 20px 12px 0px 12px;
+    font-size: 15px;
+    width: 120px;
+    height: 28px;
+    margin: 16px 10px 0px 10px;
     padding: 0px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     color: white;
