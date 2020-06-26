@@ -24,6 +24,9 @@ firebase.auth().onAuthStateChanged(function(user) {
     } else {
         document.getElementById('owner').innerHTML = "You are viewing someone else's yearbook. Sign away!";
     }
+
+    // get the image from storage and draw it onto the canvas
+    getImage();
 });
 
 function upload() {
