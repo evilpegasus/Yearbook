@@ -113,3 +113,28 @@ function getImage() {
         console.log(error);
     }
 }
+
+function resetYearbook() {
+    // Confirm yearbook should be reset
+    if (!confirm("Are you sure you want to reset your yearbook? This action cannot be undone.")) {
+        return;
+    }
+
+    // Reset yearbook
+    var storageRef = firebase.storage().ref();
+    const canvas = document.querySelector("#canvas");
+    const ctx = canvas.getContext("2d");
+    const backgroundImage = document.querySelector("#backgroundImage");
+    
+    // Delete image in storage
+    var imageRef = storageRef.child(currentUser.uid + '/temp.png');
+    imageRef.delete().then(function() {
+        console.log("Yearbook deleted successfully");
+    }).catch(function(error) {
+        console.log(error);
+    });
+
+    // Clear client image
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    backgroundImage.src = "//:0";
+}
