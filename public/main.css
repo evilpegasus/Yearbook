@@ -57,12 +57,13 @@ h1 {
     top: 70%;
     text-align: center;
     margin: auto;
-    border-radius: 10px;
+    border-radius: 20px;
     background-color: #003262;
     bottom: 10px;
     z-index: 40;
     height: 200px;
-    width: 1000px;;
+    width: 1000px;
+    border: 1px solid white;
 }
 
 .button-toolbar {
