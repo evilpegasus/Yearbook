@@ -18,7 +18,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 serveID = urlParams.get('user')
-if (serveID == "" || serveID == currentUser) {
+if (serveID == "" || serveID == this.currentUser.uid) {
     serveID = currentUser.uid;
     document.getElementById('owner').innerHTML("You are viewing your own yearbook");
 } else {
