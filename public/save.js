@@ -1,3 +1,11 @@
+// check for params in URL
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+serveID = urlParams.get('user')
+if (serveID == "") {
+    serveID = currentUser.uid;
+}
+
 function upload() {
     try {
         const canvas = document.querySelector("#canvas");
@@ -9,12 +17,12 @@ function upload() {
 
             var uploadTask;
             // Create old.png if first time uploading, otherwise write to temp.png
-            storageRef.child(currentUser.uid + "/old.png").getDownloadURL().then(value => {
+            storageRef.child(serveID + "/old.png").getDownloadURL().then(value => {
                 // old.png already exists, write to temp.png
-                uploadTask = storageRef.child(currentUser.uid + '/temp.png').put(blob);
+                uploadTask = storageRef.child(serveID + '/temp.png').put(blob);
             }, reason => {
                 // old.png does not exist, create it
-                uploadTask = storageRef.child(currentUser.uid + '/old.png').put(blob);
+                uploadTask = storageRef.child(serveID + '/old.png').put(blob);
             }).then(function() {
                 // Listen for state changes, errors, and completion of the upload.
                 uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
@@ -70,7 +78,7 @@ function getImage() {
     
         // Create a reference with an initial file path and name
         var storage = firebase.storage();
-        var pathReference = storage.ref(currentUser.uid + '/old.png');
+        var pathReference = storage.ref(serveID + '/old.png');
     
         // Get the download URL
         pathReference.getDownloadURL().then(function(url) {
@@ -127,7 +135,7 @@ function resetYearbook() {
     const backgroundImage = document.querySelector("#backgroundImage");
     
     // Delete image in storage
-    var imageRef = storageRef.child(currentUser.uid + '/old.png');
+    var imageRef = storageRef.child(serveID + '/old.png');
     imageRef.delete().then(function() {
         console.log("Yearbook deleted successfully");
     }).catch(function(error) {
