@@ -1,3 +1,4 @@
+[![forthebadge](https://forthebadge.com/images/badges/made-with-javascript.svg)](https://forthebadge.com) [![forthebadge](https://forthebadge.com/images/badges/uses-html.svg)](https://forthebadge.com)
 # Yearbook  
 A personal virtual yearbook for class of 2020 graduates to sign.
 https://yearbook-hhs.web.app/
