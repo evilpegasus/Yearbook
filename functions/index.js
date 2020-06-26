@@ -24,7 +24,7 @@ exports.combineImages = functions.storage.object().onFinalize(async (object) => 
     const oldFile = fileDir + "/old.png";
     const oldName = path.basename(oldFile);
 
-    // Exit if the image is already a thumbnail
+    // Exit if the triggering image is old.png
     if (fileName.startsWith('old')) {
         return console.log('Already merged the image');
     }
@@ -62,7 +62,7 @@ exports.combineImages = functions.storage.object().onFinalize(async (object) => 
     }).catch(function(error) {
         // An error occurred
         console.log(error);
-    }};
+    });
 
     // Once the thumbnail has been uploaded delete the local file to free up disk space
     return fs.unlinkSync(tempFilePath);
