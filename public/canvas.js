@@ -1,4 +1,5 @@
 // check if user is signed in
+var user;
 firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
         // User is signed in.
