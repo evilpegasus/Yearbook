@@ -12,5 +12,5 @@ exports.combineImages = functions.storage.object().onFinalize(event => {
     const fileDir = path.dirname(filePath);
     const fileName = path.basename(filePath);
 
-    const oldFile = fireDir + "/old.png"
+    const oldFile = fileDir + "/old.png"
 });
