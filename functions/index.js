@@ -56,7 +56,7 @@ exports.combineImages = functions.storage.object().onFinalize(async (object) => 
     });
 
     // Delete the temporary overlay file
-    filePath.delete().then(function() {
+    bucket.file(filePath).delete().then(function() {
         // Deleted successfully
         console.log('Temp file deleted');
         return null;

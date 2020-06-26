@@ -155,7 +155,7 @@ body {
 }
 
 .name:link {
-    color: white;
+    color: #DDD5C7;
 }
 
 .name:visited {
@@ -164,6 +164,7 @@ body {
 
 .name:hover {
     text-shadow: 0 0 5px white;
+    color: white;
 }
 
 .name:active {
