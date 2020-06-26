@@ -14,7 +14,7 @@ body {
     border-radius: 10px;
     position: relative;
     z-index: 20;
-    margin-bottom: 15%;
+    margin-bottom: 100px;
 }
 
 #canvas-container {
