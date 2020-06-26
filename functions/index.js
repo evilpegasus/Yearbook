@@ -98,7 +98,7 @@ exports.sendWelcomeEmail = functions.auth.user().onCreate((user) => {
 // Sends a welcome email to the given user.
 async function sendWelcomeEmail(email, displayName, uid) {
      const mailOptions = {
-        from: '${APP_NAME} <noreply@firebase.com>',
+        from: APP_NAME + " <noreply@firebase.com>",
         to: email,
     };
 

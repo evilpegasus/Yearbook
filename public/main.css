@@ -150,24 +150,24 @@ body {
     color: white;
 }
 
-.name {
+a {
     transition: all 0.2s;
 }
 
-.name:link {
+a:link {
     color: #DDD5C7;
 }
 
-.name:visited {
+a:visited {
     color: white;
 }
 
-.name:hover {
+a:hover {
     text-shadow: 0 0 5px white;
     color: white;
 }
 
-.name:active {
+a:active {
     color: aquamarine;
 }
 
