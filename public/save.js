@@ -2,8 +2,11 @@
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 serveID = urlParams.get('user')
-if (serveID == "") {
+if (serveID == "" || serveID ==currentUser.uid) {
     serveID = currentUser.uid;
+    document.getElementById('owner').innerHTML("You are viewing your own yearbook");
+} else {
+    document.getElementById('owner').innerHTML("You are signing someone else's yearbook");
 }
 
 function upload() {

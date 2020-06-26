@@ -14,14 +14,14 @@ body {
     border-radius: 10px;
     position: relative;
     z-index: 20;
-    margin-bottom: 100px;
+    margin-bottom: 60px;
 }
 
 #canvas-container {
     display: inline-block;
     position: relative;
     margin: auto;
-    margin-top: 80px;
+    margin-top: 40px;
 }
 
 #backgroundImage {
