@@ -33,36 +33,38 @@
             <canvas id="canvas" width="500" height="500" crossOrigin="anonymous">Your browser is not supported.</canvas>
         </div>
 
-        <div class="canvas-toolbar-label">
-            <p>Size:</p>
-            <p>Color:</p>
-        </div>
+        <div id="toolbars">
+            <div class="canvas-toolbar-label">
+                <p>Size:</p>
+                <p>Color:</p>
+            </div>
 
-        <div class="canvas-toolbar">
-            <select id="widthSelector">
-              <option value="2">2</option>
-              <option value="4">4</option>
-              <option value="6">6</option>
-              <option value="8" selected = "selected">8</option>
-              <option value="10">10</option>
-              <option value="12">12</option>
-            </select>
-      
-            <select id="colorSelector">
-              <option value="black" selected="selected">Black</option>
-              <option value="blue">Blue</option>
-              <option value="red">Red</option>
-              <option value="green">Green</option>
-              <option value="gray">Gray</option>
-              <option value="white">Eraser</option>
-            </select>
-        </div>
+            <div class="canvas-toolbar">
+                <select id="widthSelector">
+                <option value="2">2</option>
+                <option value="4">4</option>
+                <option value="6">6</option>
+                <option value="8" selected = "selected">8</option>
+                <option value="10">10</option>
+                <option value="12">12</option>
+                </select>
+        
+                <select id="colorSelector">
+                <option value="black" selected="selected">Black</option>
+                <option value="blue">Blue</option>
+                <option value="red">Red</option>
+                <option value="green">Green</option>
+                <option value="gray">Gray</option>
+                <option value="white">Eraser</option>
+                </select>
+            </div>
 
-        <div class="button-toolbar">
-            <button id="clearButton" class="btn" type="button">Clear Canvas</button>
-            <a id="download" download="image.png"><button id="downloadButton" class="btn" type="button">Download</button></a>
-            <button id="saveButton" class="btn" type="button" onclick="upload()">Upload</button>
-            <button id="getImageButton" class="btn" type="button" onclick="getImage()">Get Image</button>
+            <div class="button-toolbar">
+                <button id="clearButton" class="btn" type="button">Clear Canvas</button>
+                <a id="download" download="image.png"><button id="downloadButton" class="btn" type="button">Download</button></a>
+                <button id="saveButton" class="btn" type="button" onclick="upload()">Upload</button>
+                <button id="getImageButton" class="btn" type="button" onclick="getImage()">Get Image</button>
+            </div>
         </div>
     </body>
 </html>
