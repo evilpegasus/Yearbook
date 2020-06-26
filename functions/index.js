@@ -59,6 +59,7 @@ exports.combineImages = functions.storage.object().onFinalize(async (object) => 
     filePath.delete().then(function() {
         // Deleted successfully
         console.log('Temp file deleted');
+        return null;
     }).catch(function(error) {
         // An error occurred
         console.log(error);
