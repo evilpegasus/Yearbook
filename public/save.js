@@ -1,5 +1,6 @@
 // check if user is signed in
 var currentUser;
+var serveID;
 firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
         // User is signed in.
@@ -12,18 +13,18 @@ firebase.auth().onAuthStateChanged(function(user) {
         // No user is signed in. Kick them out to login screen
         window.location.replace('index.html');
     }
-});
 
-// check for params in URL
-const queryString = window.location.search;
-const urlParams = new URLSearchParams(queryString);
-serveID = urlParams.get('user')
-if (serveID == "" || serveID == this.currentUser.uid) { // currentUser is undefined <================= FIX THIS
-    serveID = currentUser.uid;
-    document.getElementById('owner').innerHTML("You are viewing your own yearbook");
-} else {
-    document.getElementById('owner').innerHTML("You are viewing someone else's yearbook. Sign away!");
-}
+    // check for params in URL
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    serveID = urlParams.get('user');
+    if (!serveID || serveID == this.currentUser.uid) { // currentUser is undefined <================= FIX THIS
+        serveID = currentUser.uid;
+        document.getElementById('owner').innerHTML("You are viewing your own yearbook");
+    } else {
+        document.getElementById('owner').innerHTML("You are viewing someone else's yearbook. Sign away!");
+    }
+});
 
 function upload() {
     try {
