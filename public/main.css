@@ -1,6 +1,6 @@
 body {
     background-color: #003262;
-    color: #DDD5C7;
+    color: white;
     font-family: sans-serif;
     text-align: center;
     /* position: fixed;   use this to disable scrolling*/
@@ -148,6 +148,26 @@ h1 {
     padding: 0px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     color: white;
+}
+
+.name {
+    transition: all 0.2s;
+}
+
+.name:link {
+    color: white;
+}
+
+.name:visited {
+    color: white;
+}
+
+.name:hover {
+    text-shadow: 0 0 5px white;
+}
+
+.name:active {
+    color: aquamarine;
 }
 
 :focus {
