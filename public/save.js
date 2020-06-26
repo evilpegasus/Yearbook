@@ -7,13 +7,14 @@ function upload() {
         
         canvas.toBlob(function(blob){
 
+            var uploadTask;
             // Create old.png if first time uploading, otherwise write to temp.png
             storageRef.child(currentUser.uid + "/old.png").getDownloadURL().then(value => {
                 // old.png already exists, write to temp.png
-                var uploadTask = storageRef.child(currentUser.uid + '/temp.png').put(blob);
+                uploadTask = storageRef.child(currentUser.uid + '/temp.png').put(blob);
             }, reason => {
                 // old.png does not exist, create it
-                var uploadTask = storageRef.child(currentUser.uid + '/old.png').put(blob);
+                uploadTask = storageRef.child(currentUser.uid + '/old.png').put(blob);
             }).then(function() {
                 // Listen for state changes, errors, and completion of the upload.
                 uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
