@@ -6,7 +6,7 @@ if (serveID == "" || serveID ==currentUser.uid) {
     serveID = currentUser.uid;
     document.getElementById('owner').innerHTML("You are viewing your own yearbook");
 } else {
-    document.getElementById('owner').innerHTML("You are signing someone else's yearbook");
+    document.getElementById('owner').innerHTML("You are viewing someone else's yearbook. Sign away!");
 }
 
 function upload() {
