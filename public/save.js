@@ -1,8 +1,24 @@
+// check if user is signed in
+var currentUser;
+firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+        // User is signed in.
+        currentUser = firebase.auth().currentUser;
+        console.log("displayName: " + currentUser.displayName); // TODO get rid of these console prints
+        console.log("email: " + currentUser.email);
+        console.log("uid: " + currentUser.uid);
+        console.log('https://yearbook-hhs.web.app/app.html?user=' + currentUser.uid); // unique URL for user <======================= USE THIS TO SEND TO FRIENDS
+    } else {
+        // No user is signed in. Kick them out to login screen
+        window.location.replace('index.html');
+    }
+});
+
 // check for params in URL
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 serveID = urlParams.get('user')
-if (serveID == "" || serveID ==currentUser.uid) {
+if (serveID == "" || serveID == currentUser) {
     serveID = currentUser.uid;
     document.getElementById('owner').innerHTML("You are viewing your own yearbook");
 } else {
