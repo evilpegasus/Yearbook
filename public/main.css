@@ -171,6 +171,27 @@ a:active {
     color: aquamarine;
 }
 
+h3 {
+    transition: all 0.2s;
+}
+
+h3:link {
+    color: #DDD5C7;
+}
+
+h3:visited {
+    color: white;
+}
+
+h3:hover {
+    text-shadow: 0 0 5px white;
+    color: white;
+}
+
+h3:active {
+    color: aquamarine;
+}
+
 :focus {
     outline: 0;
 }
