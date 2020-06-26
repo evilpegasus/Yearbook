@@ -20,9 +20,9 @@ firebase.auth().onAuthStateChanged(function(user) {
     serveID = urlParams.get('user');
     if (!serveID || serveID == this.currentUser.uid) { // currentUser is undefined <================= FIX THIS
         serveID = currentUser.uid;
-        document.getElementById('owner').innerHTML("You are viewing your own yearbook");
+        document.getElementById('owner').innerHTML = "You are viewing your own yearbook";
     } else {
-        document.getElementById('owner').innerHTML("You are viewing someone else's yearbook. Sign away!");
+        document.getElementById('owner').innerHTML = "You are viewing someone else's yearbook. Sign away!";
     }
 });
 
