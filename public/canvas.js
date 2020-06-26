@@ -17,6 +17,9 @@ window.addEventListener('load', () => {
     var offsetX = canvas.getBoundingClientRect().left;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+    // get the image from storage and draw it onto the canvas
+    getImage();
+
     // enable painting
     function startPainting() {
         painting = true;
