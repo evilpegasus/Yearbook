@@ -62,7 +62,7 @@ exports.combineImages = functions.storage.object().onFinalize(async (object) => 
     }).catch(function(error) {
         // An error occurred
         console.log(error);
-    }};
+    });
 
     // Once the thumbnail has been uploaded delete the local file to free up disk space
     return fs.unlinkSync(tempFilePath);
