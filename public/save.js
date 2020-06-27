@@ -32,14 +32,14 @@ firebase.auth().onAuthStateChanged(function(user) {
         document.getElementById('sharingLink').innerHTML = "<a href='https://yearbook-hhs.web.app/app.html?user=" + currentUser.uid + "'>https://yearbook-hhs.web.app/app.html?user=" + currentUser.uid + "</a>";
         // get the image from storage and draw it onto the canvas if user is not new
         if (!newUser) {
-            getImage();
+            getImage(false);
         }
     } else {
         document.getElementById('owner').innerHTML = "You are viewing someone else's yearbook. Sign away!";
         document.getElementById('sharingLink').innerHTML = " Return to your own page: <a href='https://yearbook-hhs.web.app/app.html'>https://yearbook-hhs.web.app/app.html</a>";
         document.getElementById('downloadButton').remove();
         // get the image from storage and draw it onto the canvas
-        getImage();
+        getImage(false);
     }
 });
 
@@ -168,10 +168,26 @@ function getImage(alert = true) {
 
 function download() {
     const backgroundImage = document.querySelector("#backgroundImage");
+    var storage = firebase.storage();
+    var pathReference = storage.ref(serveID + '/old.png');
 
     upload(false);
     getImage(false);
-    document.querySelector("#download").setAttribute("href", backgroundImage.src);
+    // document.querySelector("#download").setAttribute("href", backgroundImage.src);
+
+    // Get the download URL
+    pathReference.getDownloadURL().then(function(url) {
+
+        // Draw the png file onto the canvas
+        var drawing = new Image();
+        drawing.src = url;
+        drawing.onload = function() {
+            document.querySelector("#download").setAttribute("href", drawing);
+        }
+    }).catch(function(error) {
+        console.log("Failed to get image from the server.");
+        console.log(error);
+    });
 }
 
 function resetYearbook() {
