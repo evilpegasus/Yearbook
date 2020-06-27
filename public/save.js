@@ -168,38 +168,18 @@ function getImage(alert = true) {
 
 function download() {
     var storage = firebase.storage();
-    var pathReference = storage.ref(serveID + '/old.png');
+    var pathReference = storage.ref(currentUser.uid + '/old.png');
 
-    // const backgroundImage = document.querySelector("#backgroundImage");
-    // var storage = firebase.storage();
-    // var pathReference = storage.ref(serveID + '/old.png');
-
-    // upload(false);
-    // getImage(false);
-    // // document.querySelector("#download").setAttribute("href", backgroundImage.src);
-
-    // // Get the download URL
     pathReference.getDownloadURL().then(function(url) {
-
         var link = document.createElement("a");
-        link.setAttribute("download", yearbook.png);
+        link.setAttribute("download", "yearbook.png");
+        link.setAttribute("target", "_blank");
         link.href = url;
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
         delete link;
     });
-
-        // Draw the png file onto the canvas
-    //     var drawing = new Image();
-    //     drawing.src = url;
-    //     drawing.onload = function() {
-    //         document.querySelector("#download").setAttribute("href", drawing);
-    //     }
-    // }).catch(function(error) {
-    //     console.log("Failed to get image from the server.");
-    //     console.log(error);
-    // });
 }
 
 function resetYearbook() {
