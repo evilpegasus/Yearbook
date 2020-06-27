@@ -10,8 +10,7 @@ To draw, select a color or the eraser and click and drag on the white canvas. Li
 The download button will download a copy of the canvas as a .png image file for you to save locally on your computer. The upload button will upload a copy of the canvas to our servers so you can access it again later. The Get Image button will update the canvas to reflect any changes to the canvas that may have happened since the last update. The Get Image button will not overwrite your changes.  
 
 ## Supported Devices  
-Any computer running a modern web browser will be able to access Yearbook. Touchscreen devices are recommended, as drawing with a mouse/trackpad may be difficult.  
-Mobile devices may experience issues with scrolling and/or input lag.  
+Any computer running a modern web browser will be able to access Yearbook. Touchscreen devices are recommended, as drawing with a mouse/trackpad may be difficult. Touchscreen devices will only be able to touch scroll if touched outside the canvas.  
 
 ## Contributing  
 Yearbook is a work in progress. If you want to contribute, please send us a pull request.
