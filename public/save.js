@@ -35,8 +35,8 @@ firebase.auth().onAuthStateChanged(function(user) {
             getImage();
         }
     } else {
-        document.getElementById('owner').innerHTML = "You are viewing someone else's yearbook. Sign away! Return to your own page:";
-        document.getElementById('sharingLink').innerHTML = "<a href='https://yearbook-hhs.web.app/app.html'>https://yearbook-hhs.web.app/app.html</a>";
+        document.getElementById('owner').innerHTML = "You are viewing someone else's yearbook. Sign away!";
+        document.getElementById('sharingLink').innerHTML = " Return to your own page: <a href='https://yearbook-hhs.web.app/app.html'>https://yearbook-hhs.web.app/app.html</a>";
         // get the image from storage and draw it onto the canvas
         getImage();
     }
@@ -105,9 +105,10 @@ function upload() {
         window.alert("Something went wrong while uploading your image:\n" + error.message);
         console.log(error);
     }
+    getImage(false);
 };
 
-function getImage() {
+function getImage(alert = true) {
     try {
         const canvas = document.querySelector("#canvas");
         const backgroundImage = document.querySelector("#backgroundImage");
@@ -126,7 +127,9 @@ function getImage() {
                 backgroundImage.src = url; // can also be a remote URL e.g. http://
                 canvas.style.backgroundColor = "transparent";
                 backgroundImage.style.display = "inline-block";
-                window.alert("Image retrieved successfully");
+                if (alert) {
+                    window.alert("Image retrieved successfully");
+                }
                 console.log("Image from server drawn onto canvas. URL = ", url);
             }
         }).catch(function(error) {
