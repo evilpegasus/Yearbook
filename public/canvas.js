@@ -60,12 +60,6 @@ window.addEventListener('load', () => {
         }
     }
 
-    // download the image
-    downloadButton.onclick = function() {
-        var image = canvas.toDataURL().replace("image/png", "image/octet-stream");
-        document.querySelector("#download").setAttribute("href", image);
-    }
-
     // detect and respond to user actions
     window.addEventListener("wheel", adjustOffsets);
     window.addEventListener("scroll", adjustOffsets);

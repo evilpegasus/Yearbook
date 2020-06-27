@@ -42,7 +42,7 @@ firebase.auth().onAuthStateChanged(function(user) {
     }
 });
 
-function upload() {
+function upload(alert = true) {
     try {
         const canvas = document.querySelector("#canvas");
 
@@ -96,7 +96,9 @@ function upload() {
                 // Upload completed successfully, now we can get the download URL
                     uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
                         console.log('File available at', downloadURL);
-                        window.alert("Upload successful");
+                        if (alert) {
+                            window.alert("Upload successful");
+                        }
                     });
                 });
             });
@@ -161,6 +163,14 @@ function getImage(alert = true) {
         window.alert("Something went wrong while getting your image:\n" + error.message);
         console.log(error);
     }
+}
+
+function download() {
+    const backgroundImage = document.querySelector("#backgroundImage");
+
+    upload(false);
+    getImage(false);
+    document.querySelector("#download").setAttribute("href", backgroundImage.src);
 }
 
 function resetYearbook() {
