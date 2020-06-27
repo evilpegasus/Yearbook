@@ -2,6 +2,11 @@
 var currentUser;
 var serveID;
 firebase.auth().onAuthStateChanged(function(user) {
+    // check for params in URL
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    serveID = urlParams.get('user');
+
     if (user) {
         // User is signed in.
         currentUser = firebase.auth().currentUser;
@@ -10,14 +15,15 @@ firebase.auth().onAuthStateChanged(function(user) {
         console.log("uid: " + currentUser.uid);
         console.log('https://yearbook-hhs.web.app/app.html?user=' + currentUser.uid); // unique URL for user <======================= USE THIS TO SEND TO FRIENDS
     } else {
-        // No user is signed in. Kick them out to login screen
-        window.location.replace('index.html');
+        // No user is signed in. Kick them out to login screen preserving any URL params
+        if (serveID) {
+            window.location.replace('https://yearbook-hhs.web.app/index.html?user=' + serveID);
+        } else {
+            window.location.replace('https://yearbook-hhs.web.app/index.html');
+        }
     }
 
-    // check for params in URL
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
-    serveID = urlParams.get('user');
+    // handle params in URL
     if (!serveID || serveID == currentUser.uid) {
         serveID = currentUser.uid;
         document.getElementById('owner').innerHTML = "You are viewing your own yearbook. Share this link to let your friends sign it:";

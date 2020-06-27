@@ -1,6 +1,19 @@
 // Initialize the FirebaseUI Widget using Firebase.
 var ui = new firebaseui.auth.AuthUI(firebase.auth());
 
+// check for params in URL
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+serveID = urlParams.get('user');
+
+// set the redirect URL preserving any URL params
+var redirectLink;
+if (serveID) {
+  redirectLink = 'https://yearbook-hhs.web.app/app.html?user=' + serveID;
+} else {
+  redirectLink = 'https://yearbook-hhs.web.app/app.html';
+}
+
 var uiConfig = {
   callbacks: {
     signInSuccessWithAuthResult: function(authResult, redirectUrl) {
@@ -17,7 +30,7 @@ var uiConfig = {
   },
   // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
   signInFlow: 'popup',
-  signInSuccessUrl: 'https://yearbook-hhs.web.app/app.html',
+  signInSuccessUrl: redirectLink,
   signInOptions: [
     // Leave the lines as is for the providers you want to offer your users.
     firebase.auth.GoogleAuthProvider.PROVIDER_ID,
