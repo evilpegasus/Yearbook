@@ -14,12 +14,16 @@ if (serveID) {
   redirectLink = 'https://yearbook-hhs.web.app/app.html';
 }
 
+// track if the user is a new user
+var newUser;
+
 var uiConfig = {
   callbacks: {
     signInSuccessWithAuthResult: function(authResult, redirectUrl) {
       // User successfully signed in.
       // Return type determines whether we continue the redirect automatically
       // or whether we leave that to developer to handle.
+      newUser = authResult.additionalUserInfo.isNewUser;
       return true;
     },
     uiShown: function() {

@@ -1,6 +1,7 @@
 // check if user is signed in
 var currentUser;
 var serveID;
+
 firebase.auth().onAuthStateChanged(function(user) {
     // check for params in URL
     const queryString = window.location.search;
@@ -28,13 +29,14 @@ firebase.auth().onAuthStateChanged(function(user) {
         serveID = currentUser.uid;
         document.getElementById('owner').innerHTML = "You are viewing your own yearbook. Share this link to let your friends sign it:";
         document.getElementById('sharingLink').innerHTML = "<a href='https://yearbook-hhs.web.app/app.html?user=" + currentUser.uid + "'>https://yearbook-hhs.web.app/app.html?user=" + currentUser.uid + "</a>";
+        // get the image from storage and draw it onto the canvas if user is not new
+        if (!newUser) {
+            getImage();
+        }
     } else {
         document.getElementById('owner').innerHTML = "You are viewing someone else's yearbook. Sign away! Return to your own page:";
         document.getElementById('sharingLink').innerHTML = "<a href='https://yearbook-hhs.web.app/app.html'>https://yearbook-hhs.web.app/app.html</a>";
-    }
-
-    // get the image from storage and draw it onto the canvas if existing user
-    if (!currentUser.additionalUserInfo.isNewUser()) {
+        // get the image from storage and draw it onto the canvas
         getImage();
     }
 });
