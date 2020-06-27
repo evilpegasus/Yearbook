@@ -7,15 +7,10 @@ const urlParams = new URLSearchParams(queryString);
 serveID = urlParams.get('user');
 
 // set the redirect URL preserving any URL params
-var redirectLink;
+var redirectLink = 'https://yearbook-hhs.web.app/app.html';
 if (serveID) {
-  redirectLink = 'https://yearbook-hhs.web.app/app.html?user=' + serveID;
-} else {
-  redirectLink = 'https://yearbook-hhs.web.app/app.html';
+  redirectLink += '?user=' + serveID;
 }
-
-// track if the user is a new user
-var newUser;
 
 var uiConfig = {
   callbacks: {
@@ -23,7 +18,13 @@ var uiConfig = {
       // User successfully signed in.
       // Return type determines whether we continue the redirect automatically
       // or whether we leave that to developer to handle.
-      newUser = authResult.additionalUserInfo.isNewUser;
+      if (authResult.additionalUserInfo.isNewUser) {
+        if (serveID) {
+          redirectLink += '&newUser=true';
+        } else {
+          redirectLink += '?newUser=true';
+        }
+      }
       return true;
     },
     uiShown: function() {

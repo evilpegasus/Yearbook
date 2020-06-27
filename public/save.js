@@ -7,6 +7,7 @@ firebase.auth().onAuthStateChanged(function(user) {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     serveID = urlParams.get('user');
+    var newUser = urlParams.get('newUser');
 
     if (user) {
         // User is signed in.
