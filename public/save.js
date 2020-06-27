@@ -37,6 +37,7 @@ firebase.auth().onAuthStateChanged(function(user) {
     } else {
         document.getElementById('owner').innerHTML = "You are viewing someone else's yearbook. Sign away!";
         document.getElementById('sharingLink').innerHTML = " Return to your own page: <a href='https://yearbook-hhs.web.app/app.html'>https://yearbook-hhs.web.app/app.html</a>";
+        document.getElementById('downloadButton').remove();
         // get the image from storage and draw it onto the canvas
         getImage();
     }
