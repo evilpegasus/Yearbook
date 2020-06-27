@@ -109,3 +109,35 @@ async function sendWelcomeEmail(email, displayName, uid) {
     console.log('New welcome email sent to:', email);
     return null;
 }
+
+/*
+// TODO: Send an email with the image when export button pressed
+// File will be uploaded containing user information to email to
+
+exports.exportYearbook = functions.storage.object().onFinalize(async (object) => {
+    const email = user.email; // The email of the user
+    const displayName = user.displayName; // The display name of the user
+    const uid = user.uid; // The unique uid of the user
+
+    return sendWelcomeEmail(email, displayName, uid);
+});
+
+// Sends a welcome email to the given user.
+async function sendWelcomeEmail(email, displayName, uid) {
+     const mailOptions = {
+        from: APP_NAME + " <noreply@firebase.com>",
+        to: email,
+        attachments: [{
+            filename: 'yearbook.png',
+            content: fs.createReadStream('/complete-path/image.jpg')
+        }]
+    };
+
+    // Body of the email
+    mailOptions.subject = 'Welcome to ' + APP_NAME + '!';
+    mailOptions.text = "Hey " + displayName + "\n! Welcome to " + APP_NAME + ". We hope you will enjoy your yearbook. To share your yearbook with your friends, send them this link: \n\n https://yearbook-hhs.web.app/app.html?user=" + uid + "\n\nIf you have any question or issues, please email us at yearbook2020app@gmail.com. \n\n -The Yearbook Team";
+    await mailTransport.sendMail(mailOptions);
+    console.log('New welcome email sent to:', email);
+    return null;
+}
+*/
