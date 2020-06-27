@@ -25,7 +25,8 @@ var uiConfig = {
           redirectLink += '?newUser=true';
         }
       }
-      return true;
+      window.location.replace(redirectLink);
+      return false;
     },
     uiShown: function() {
       // The widget is rendered.
