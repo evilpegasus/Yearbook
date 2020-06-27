@@ -182,7 +182,7 @@ function download() {
     pathReference.getDownloadURL().then(function(url) {
 
         var link = document.createElement("a");
-        link.download = "yearbook.png";
+        link.setAttribute("download", yearbook.png);
         link.href = url;
         document.body.appendChild(link);
         link.click();
