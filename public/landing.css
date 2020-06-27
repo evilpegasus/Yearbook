@@ -22,3 +22,15 @@ h1 {
     margin-top: 40%;
     text-align: center;
 }
+
+.login-box {
+    background-color: white;
+    color: grey;
+    margin-top: 20px;
+    margin-left: 20%;
+    margin-right: 20%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 16px;
+    box-shadow: 0px 0px 20px 2px rgb(32, 32, 32);
+}
