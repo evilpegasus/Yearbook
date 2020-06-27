@@ -27,7 +27,7 @@ firebase.auth().onAuthStateChanged(function(user) {
     if (!serveID || serveID == currentUser.uid) {
         serveID = currentUser.uid;
         document.getElementById('owner').innerHTML = "You are viewing your own yearbook. Share this link to let your friends sign it:";
-        document.getElementById('sharingLink').innerHTML = "https://yearbook-hhs.web.app/app.html?user=" + currentUser.uid;
+        document.getElementById('sharingLink').innerHTML = "<a href='https://yearbook-hhs.web.app/app.html?user=" + currentUser.uid + "'>https://yearbook-hhs.web.app/app.html?user=" + currentUser.uid + "</a>";
     } else {
         document.getElementById('owner').innerHTML = "You are viewing someone else's yearbook. Sign away! Return to your own page:";
         document.getElementById('sharingLink').innerHTML = "<a href='https://yearbook-hhs.web.app/app.html'>https://yearbook-hhs.web.app/app.html</a>";
