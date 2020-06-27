@@ -167,27 +167,43 @@ function getImage(alert = true) {
 }
 
 function download() {
-    const backgroundImage = document.querySelector("#backgroundImage");
-    var storage = firebase.storage();
-    var pathReference = storage.ref(serveID + '/old.png');
-
-    upload(false);
-    getImage(false);
-    // document.querySelector("#download").setAttribute("href", backgroundImage.src);
-
-    // Get the download URL
-    pathReference.getDownloadURL().then(function(url) {
-
-        // Draw the png file onto the canvas
-        var drawing = new Image();
-        drawing.src = url;
-        drawing.onload = function() {
-            document.querySelector("#download").setAttribute("href", drawing);
-        }
-    }).catch(function(error) {
-        console.log("Failed to get image from the server.");
+    storageRef.child(serveID + 'old.png').getDownloadURL().then(function(url) {
+        // `url` is the download URL for serveID + 'old.png'
+      
+        // This can be downloaded directly:
+        var xhr = new XMLHttpRequest();
+        xhr.responseType = 'blob';
+        xhr.onload = function(event) {
+          var blob = xhr.response;
+        };
+        xhr.open('GET', url);
+        xhr.send();
+      }).catch(function(error) {
+        // Handle any errors
+        window.alert("Something went wrong while downloading the page:\n" + error.message);
         console.log(error);
-    });
+      });
+    // const backgroundImage = document.querySelector("#backgroundImage");
+    // var storage = firebase.storage();
+    // var pathReference = storage.ref(serveID + '/old.png');
+
+    // upload(false);
+    // getImage(false);
+    // // document.querySelector("#download").setAttribute("href", backgroundImage.src);
+
+    // // Get the download URL
+    // pathReference.getDownloadURL().then(function(url) {
+
+    //     // Draw the png file onto the canvas
+    //     var drawing = new Image();
+    //     drawing.src = url;
+    //     drawing.onload = function() {
+    //         document.querySelector("#download").setAttribute("href", drawing);
+    //     }
+    // }).catch(function(error) {
+    //     console.log("Failed to get image from the server.");
+    //     console.log(error);
+    // });
 }
 
 function resetYearbook() {
