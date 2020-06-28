@@ -87,16 +87,16 @@ body {
   
 .canvas-toolbar {
     text-align: center;
-    margin: 0px 0px 28px 0px;
+    margin: 0px 0px 24px 0px;
 }
 
 .selector {
     border-radius: 0px;
-    width: 120px;
-    height: 32px;
+    width: 130px;
+    height: 35px;
     margin: 0px 10px 0px 10px;
-    padding: 0px;
-    font-size: 13px;
+    padding: 0;
+    font-size: 16px;
     border-radius: 5px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     background-color: var(--theme-color);
