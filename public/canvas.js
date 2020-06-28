@@ -86,14 +86,17 @@ function signOut() {
     });
 }
 
-function goToYourYearbook() {
-    window.location.replace('https://yearbook-hhs.web.app/app.html');
-}
-
 function goToAnotherYearbook() {
     var redirectURL = window.prompt("Enter the URL of the yearbook you want to visit:");
-    if (redirectURL && redirectURL.startsWith('https://yearbook-hhs.web.app/app.html')) {
-        window.location.replace(redirectURL);
+    
+    // Check if redirectURL is null (user pressed cancel)
+    if (!redirectURL) {
+        return;
+    }
+
+    // Mavigate to the URL if it is valid
+    if (redirectURL.startsWith('https://yearbook-hhs.web.app/app.html')) {
+        window.location.assign(redirectURL);
     } else {
         window.alert('Invalid URL');
     }
@@ -107,12 +110,19 @@ function changeTheme() {
 }
 
 function copyURL() {
-    var copyText = document.createElement("p");
-    copyText.innerHTML = "https://yearbook-hhs.web.app/app.html?user=" + currentUser.uid;
+    // Create a temporary input field to copy from
+    var copyText = document.createElement("input");
+    copyText.setAttribute('type', 'text');
+    copyText.setAttribute('value', "https://yearbook-hhs.web.app/app.html?user=" + currentUser.uid);
+    document.body.appendChild(copyText);
 
+    // Copy the URL
     copyText.select();
     copyText.setSelectionRange(0, 99999);
-
     document.execCommand("copy");
+
+    // Delete copyText
+    document.body.removeChild(copyText);
+    delete copyText;
     window.alert("Your yearbook's unique sharing URL has been copied to your clipboard. Share it with your friends!");
 }

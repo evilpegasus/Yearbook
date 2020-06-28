@@ -39,7 +39,7 @@
     </head>
     <body>
         <div id="sideMenu">
-            <a id="closeSideMenuButton" onclick="closeMenu()">&times;</a>
+            <a id="closeMenu" onclick="closeMenu()">&times;</a>
             <p class="sideMenuLabel">Theme:</p>
             <select id="themeSelector" class="selector" onchange="changeTheme()">
                 <option value="black.css">Black</option>
@@ -50,52 +50,68 @@
             </select>
             <br><br><br><br>
             <p class="sideMenuLabel">Go to:</p>
-            <button id="goToYourYearbookButton" class="btn" onclick="goToYourYearbook()">Your Yearbook</button>
+            <a href='app.html'><button id="goToYourYearbookButton" class="btn">Your Yearbook</button></a>
             <br><br>
             <button id="goToSomeoneElseYearbookButton" class="btn" onclick="goToAnotherYearbook()">Someone Else's Yearbook</button>
             <br><br><br><br><br>
             <button id="shareButton" class="btn" onclick="copyURL()">Share Your Yearbook</button>
+            <br><br><br><br><br>
+            <a href='faq.html'><button id="faqButton" class="btn">Frequently Asked Questions</button></a>
             <br><br><br><br><br>
             <button id="signOutButton" class="btn" onclick="signOut()">Sign Out</button>
         </div>
         <p id="openSideMenuButton" onclick="openMenu()">&#9776;</p>
         <div id="main" onmousedown="closeMenu()">
             <h1 class="faq-title-box">Yearbook 2020</h1>
-        <div class="faq-center-div">
-            <h1>Frequently Asked Questions</h1>
-            <br>
-            <h2>What is Yearbook 2020?</h2>
-            <p>Yearbook 2020 is a web app created to let students and graduates sign each other's virtual yearbooks.</p>
-            <br>
-            <h2>How do I let my friends sign my page?</h2>
-            <p>You can let your friends access your Yearbook 2020 page by sending them your custom link. You can find your custom link by opening the menu at the top left and clicking "Share your Yearbook". This will copy your personal link to your keyboard which you can send to your friends.</p>
-            <br>
-            <h2>How do I sign my friend's yearbook pages?</h2>
-            <p>Ask them for their custom link. You can only access pages that you have a link to.</p>
-            <br>
-            <h2>How do I sign in to Yearbook 2020?</h2>
-            <p>Signing in to Yearbook 2020 is done with either a Google account or a Facebook account. You must use one of these methods to use the app. Additional sign in options may be available soon. Make sure to use the same account each time you sign in to make sure you access the same page.</p>
-            <br>
-            <h2>Something is wrong with my page.</h2>
-            <p>Make sure you only give your personal link to people you trust. Send us an email at <a href="mailto:yearbook2020app@gmail.com">yearbook2020app@gmail.com</a> describing your problem and we may be able to help.</p>
-            <br>
-            <h2>How do I change the background color of the app?</h2>
-            <p>Open the menu at the top left and change the color of the theme.</p>
-            <br>
-            <h2>I signed in and my page is blank.</h2>
-            <p>Make sure you sign in with the same Google or Facebook account each time. Your page is linked to your account. If you sign in to the wrong account, open the menu at the top left and click "Sign Out".</p>
-            <br>
-            <h2>How do I help build this project?</h2>
-            <p>If you have comments or suggestions, send them to <a href="mailto:yearbook2020app@gmail.com">yearbook2020app@gmail.com</a>. Our codebase is hosted on Github at <a href="https://github.com/evilpegasus/yearbook">https://github.com/evilpegasus/yearbook</a>. Feel free to send in a pull request!</p>
-            <br>
-            <h2>Who built Yearbook 2020?</h2>
-            <p></p>
-            <p>Yearbook 2020 was built by Hazen High School graduates <a class="name" href="https://mingyfong.github.io/" target="_blank">Ming Fong</a> and <a class="name" href="https://arnavthareja.github.io" target="_blank">Arnav Thareja</a>.</p>
-            <br>
-            <h2>Why is the sky blue?</h2>
-            <p>Gases and particles in Earth's atmosphere scatter sunlight in all directions. Blue light is scattered more than other colors because it travels as shorter, smaller waves. This is why we see a blue sky most of the time.</p>
+            <div class="faq-center-div">
+                <h1>Frequently Asked Questions</h1>
+                <br>
+                <h2>What is Yearbook 2020?</h2>
+                <p>Yearbook 2020 is a web app created to let students and graduates sign each other's virtual yearbooks.</p>
+                <br>
+                <h2>How do I use Yearbook 2020?</h2>
+                <p>You can draw on your Yearbook 2020 page or your friends' pages by moving your mouse with the left mouse button held down or drawing with your fingers
+                    or a stylus if you have a touchscreen. You can change the brush size and color using the dropdown menus at the bottom of the screen and you can access
+                    the menu by clicking on the three lines at the top left corner.</p>
+                <p>Make sure to respect others' signatures by not erasing or drawing over them!</p>
+                <br>
+                <h2>What do the buttons at the bottom of the screen do?</h2>
+                <p>The <strong>Clear Changes</strong> button will clear all changes you have made to the Yearbook 2020 page you are on. This cannot be undone.</p>
+                <p>The <strong>Download</strong> button will open your Yearbook 2020 page in a new tab as a PNG image ready to be saved. You can right click on the image and select "Save As"
+                    to save it to your computer. You can print it once you have saved it to your computer.</p>
+                <p>The <strong>Upload</strong> button will upload all changes you have made to the Yearbook 2020 page you are on to our servers. These changes can be viewed by anyone who has access to the page.</p>
+                <p>The <strong>Get Image</strong> button will update the Yearbook 2020 page you are on with any changes that others have made since you loaded the page or last pressed the button.</p>
+                <br>
+                <h2>How do I let my friends sign my page?</h2>
+                <p>You can let your friends access your Yearbook 2020 page by sending them your custom link. You can find your custom link by opening the menu at the top left and clicking "Share your Yearbook". This will copy your personal link to your keyboard which you can send to your friends.</p>
+                <br>
+                <h2>How do I sign my friend's yearbook pages?</h2>
+                <p>Ask them for their custom link. You can only access pages that you have a link to.</p>
+                <br>
+                <h2>How do I sign in to Yearbook 2020?</h2>
+                <p>Signing in to Yearbook 2020 is done with either a Google account or a Facebook account. You must use one of these methods to use the app. Additional sign in options may be available soon. Make sure to use the same account each time you sign in to make sure you access the same page.</p>
+                <br>
+                <h2>Something is wrong with my page.</h2>
+                <p>Make sure you only give your personal link to people you trust. Send us an email at <a href="mailto:yearbook2020app@gmail.com">yearbook2020app@gmail.com</a> describing your problem and we may be able to help.</p>
+                <br>
+                <h2>I signed in and my page is blank.</h2>
+                <p>Make sure you sign in with the same Google or Facebook account each time. Your page is linked to your account. If you sign in to the wrong account, open the menu at the top left and click "Sign Out".</p>
+                <br>
+                <h2>How do I help build this project?</h2>
+                <p>If you have comments or suggestions, send them to <a href="mailto:yearbook2020app@gmail.com">yearbook2020app@gmail.com</a>. Our codebase is hosted on Github at <a href="https://github.com/evilpegasus/yearbook">https://github.com/evilpegasus/yearbook</a>. Feel free to send in a pull request!</p>
+                <br>
+                <h2>Who built Yearbook 2020?</h2>
+                <p></p>
+                <p>Yearbook 2020 was built by Hazen High School graduates <a class="name" href="https://mingyfong.github.io/" target="_blank">Ming Fong</a> and <a class="name" href="https://arnavthareja.github.io" target="_blank">Arnav Thareja</a>.</p>
+                <br>
+                <h2>Why is the sky blue?</h2>
+                <p>Gases and particles in Earth's atmosphere scatter sunlight in all directions. Blue light is scattered more than other colors because it travels as shorter, smaller waves. This is why we see a blue sky most of the time.</p>
+                <br>
+                <h2>How are babies made?</h2>
+                <p>Ask your parents.</p>
+            </div>
+            <img src="https://forthebadge.com/images/badges/built-with-love.svg" alt="Build with <3"> by <a class="name" href="https://mingyfong.github.io/" target="_blank">Ming Fong</a> and <a class="name" href="https://arnavthareja.github.io" target="_blank">Arnav Thareja</a>. June 2020
+            <p>Question or issues? Contact us at <a href="mailto:yearbook2020app@gmail.com">yearbook2020app@gmail.com</a>.</p>
         </div>
-        <img src="https://forthebadge.com/images/badges/built-with-love.svg" alt="Build with <3"> by <a class="name" href="https://mingyfong.github.io/" target="_blank">Ming Fong</a> and <a class="name" href="https://arnavthareja.github.io" target="_blank">Arnav Thareja</a>. June 2020
-        <p>Question or issues? Contact us at <a href="mailto:yearbook2020app@gmail.com">yearbook2020app@gmail.com</a>.</p>
     </body>
 </html>
