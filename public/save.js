@@ -46,6 +46,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 function upload(alert = true) {
     try {
         const canvas = document.querySelector("#canvas");
+        const ctx = canvas.getContext("2d");
 
         // Create a root reference
         var storageRef = firebase.storage().ref();
@@ -97,6 +98,11 @@ function upload(alert = true) {
                 // Upload completed successfully, now we can get the download URL
                     uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
                         console.log('File available at', downloadURL);
+                        
+                        // Move canvas contents to background image so they can't be cleared
+                        getImage(false);
+                        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
                         if (alert) {
                             window.alert("Upload successful");
                         }
@@ -108,7 +114,6 @@ function upload(alert = true) {
         window.alert("Something went wrong while uploading your image:\n" + error.message);
         console.log(error);
     }
-    getImage(false);
 };
 
 function getImage(alert = true) {
