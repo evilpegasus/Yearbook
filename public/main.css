@@ -91,13 +91,12 @@ body {
 }
 
 .selector {
-    border-radius: 0px;
     width: 130px;
     height: 35px;
     margin: 0px 10px 0px 10px;
     padding: 0;
     font-size: 16px;
-    border-radius: 5px;
+    border-radius: 7px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     background-color: var(--theme-color);
     border: 2px solid var(--text-color);
