@@ -5,7 +5,6 @@ window.addEventListener('load', () => {
 
     // create the buttons on the canvas
     const clearButton = document.querySelector("#clearButton");
-    const downloadButton = document.querySelector("#downloadButton");
     const colorSelector = document.querySelector("#colorSelector");
     const widthSelector = document.querySelector("#widthSelector");
 
@@ -82,65 +81,3 @@ window.addEventListener('load', () => {
     canvas.addEventListener("pointermove", draw);
     canvas.addEventListener("pointerout", endPainting);
 });
-
-function openMenu() {
-    document.querySelector("#sideMenu").style.width = "250px";
-}
-  
-function closeMenu() {
-    document.querySelector("#sideMenu").style.width = "0";
-}
-
-function signOut() {
-    firebase.auth().signOut().then(function() {
-        console.log('Signed out');
-    }, function(error) {
-        console.log('Error signing out');
-    });
-}
-
-function goToAnotherYearbook() {
-    var redirectURL = window.prompt("Enter the URL of the yearbook you want to visit:");
-    
-    // Check if redirectURL is null (user pressed cancel)
-    if (!redirectURL) {
-        return;
-    }
-
-    // Mavigate to the URL if it is valid
-    if (redirectURL.startsWith('https://yearbook-hhs.web.app/app.html')) {
-        window.location.assign(redirectURL);
-    } else {
-        window.alert('Invalid URL');
-    }
-}
-
-function changeTheme() {
-    const themeSelector = document.querySelector("#themeSelector");
-    const stylesheet = document.querySelector("#stylesheet");
-    stylesheet.href = themeSelector.options[themeSelector.selectedIndex].value;
-    console.log('stylesheet changed to ' + stylesheet.href);
-}
-
-function copyURL() {
-    // Create a temporary input field to copy from
-    var copyText = document.createElement("input");
-    copyText.setAttribute('type', 'text');
-    copyText.setAttribute('value', "https://yearbook-hhs.web.app/app.html?user=" + currentUser.uid);
-    document.body.appendChild(copyText);
-
-    // Copy the URL
-    copyText.select();
-    copyText.setSelectionRange(0, 99999);
-    document.execCommand("copy");
-
-    // Delete copyText
-    document.body.removeChild(copyText);
-    delete copyText;
-    window.alert("Your yearbook's unique sharing URL has been copied to your clipboard. Share it with your friends!");
-}
-
-function popup() {
-    // TODO: finish function
-    return;
-}

@@ -23,7 +23,8 @@
 
         <script src="canvas.js"></script>
         <script src="save.js"></script>
-        <link id="stylesheet" rel="stylesheet" href="blue.css">
+        <script src="menu.js"></script>
+        <link rel="stylesheet" href="main.css">
 
         <!-- Link preview metadata -->
         <meta name="name"                      content="Yearbook 2020" />
@@ -44,17 +45,17 @@
             <a id="closeMenu" onclick="closeMenu()">&times;</a>
             <p class="sideMenuLabel">Theme:</p>
             <select id="themeSelector" class="selector" onchange="changeTheme()">
-                <option value="black.css">Black</option>
-                <option value="blue.css" selected="selected">Blue</option>
-                <option value="green.css">Green</option>
-                <option value="red.css">Red</option>
-                <option value="white.css">White</option>
+                <option value="black">Black</option>
+                <option value="blue" selected="selected">Blue</option>
+                <option value="green">Green</option>
+                <option value="red">Red</option>
+                <option value="white">White</option>
             </select>
             <br><br><br><br>
             <p class="sideMenuLabel">Go to:</p>
             <a href='app.html'><button id="goToYourYearbookButton" class="btn">Your Yearbook</button></a>
             <br><br>
-            <button id="goToSomeoneElseYearbookButton" class="btn" onclick="goToAnotherYearbook()">Someone Else's Yearbook</button>
+            <button id="goToAnotherYearbookButton" class="btn" onclick="goToAnotherYearbook()">Someone Else's Yearbook</button>
             <br><br><br><br><br>
             <button id="shareButton" class="btn" onclick="copyURL()">Share Your Yearbook</button>
             <br><br><br><br><br>

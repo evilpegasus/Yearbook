@@ -1,13 +1,25 @@
+:root {
+    --theme-color: #003262;
+    --menu-color: #001631;
+    --text-color: white;
+    --title-color: #DDD5C7;
+    --link-color: #DDD5C7;
+    --active-link-color: aquamarine;
+    --title-shadow: 0 0 20px black;
+    --text-shadow: 0 0 5px var(--text-color);
+    --canvas-shadow: 0 5px 20px black;
+    --menu-shadow: 0 0 30px black;
+}
+
 body {
-    background-color: #6d1212;
-    color: white;
+    background-color: var(--theme-color);
+    color: var(--text-color);
     font-family: sans-serif;
     text-align: center;
-    /* position: fixed;   use this to disable scrolling*/
 }
 
 #canvas {
-    box-shadow: 0 5px 20px black;
+    box-shadow: var(--canvas-shadow);
     background-color: white;
     margin: auto;
     display: inline-block;
@@ -36,12 +48,12 @@ body {
 
 .title-box {
     text-align: center;
-    color: #DDD5C7;
+    color: var(--title-color);
     font-size: 64px;
     font-variant: small-caps;
     font-family: Gruppo, cursive;
-    text-shadow: 0 0 20px black;
-    background-color: #6d1212;
+    text-shadow: var(--title-shadow);
+    background-color: var(--theme-color);
     position: -webkit-sticky;
     position: sticky;
     top: 10px;
@@ -59,12 +71,13 @@ body {
     text-align: center;
     margin: auto;
     border-radius: 20px;
-    background-color: #6d1212;
+    background-color: var(--theme-color);
     bottom: 10px;
     z-index: 40;
     height: 160px;
     width: 800px;
-    border: 1px solid white;
+    border: 1px solid var(--text-color);
+    transition: all 0.2s;
 }
 
 .button-toolbar {
@@ -86,9 +99,9 @@ body {
     font-size: 13px;
     border-radius: 5px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    background-color: #6d1212;
-    border: 2px solid white;
-    color: white;
+    background-color: var(--theme-color);
+    border: 2px solid var(--text-color);
+    color: var(--text-color);
     font-variant: small-caps;
     transition: all 0.2s;
     text-align: center;
@@ -98,16 +111,16 @@ body {
 }
 
 .selector:hover {
-    box-shadow: 0 0 10px white;
-    background-color: white;
-    color: #6d1212;
+    box-shadow: 0 0 10px var(--text-color);
+    background-color: var(--text-color);
+    color: var(--theme-color);
     cursor: pointer;
 }
 
 .selector:active {
-    background-color: aquamarine;
-    box-shadow: aquamarine;
-    border: aquamarine;
+    background-color: var(--active-link-color);
+    box-shadow: var(--active-link-color);
+    border: var(--active-link-color);
 }
 
 .btn {
@@ -117,25 +130,25 @@ body {
     margin: 0px 10px 0px 10px;
     font-size: 16px;
     border-radius: 8px;
-    background-color: #6d1212;
+    background-color: var(--theme-color);
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    border: 2px solid white;
-    color: white;
+    border: 2px solid var(--text-color);
+    color: var(--text-color);
     font-variant: small-caps;
     transition: all 0.2s;
 }
 
 .btn:hover {
-    box-shadow: 0 0 10px white;
-    background-color: white;
-    color: #6d1212;
+    box-shadow: 0 0 10px var(--text-color);
+    background-color: var(--text-color);
+    color: var(--theme-color);
     cursor: pointer;
 }
 
 .btn:active {
-    background-color: aquamarine;
-    box-shadow: aquamarine;
-    border: aquamarine;
+    background-color: var(--active-link-color);
+    box-shadow: var(--active-link-color);
+    border: var(--active-link-color);
 }
 
 .canvas-toolbar-label {
@@ -150,7 +163,7 @@ body {
     margin: 16px 10px 0px 10px;
     padding: 0px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    color: white;
+    color: var(--text-color);
 }
 
 a {
@@ -158,21 +171,21 @@ a {
 }
 
 a:link {
-    color: #DDD5C7;
+    color: var(--link-color);
 }
 
 a:visited {
-    color: white;
+    color: var(--text-color);
 }
 
 a:hover {
-    text-shadow: 0 0 5px white;
-    color: white;
+    text-shadow: var(--text-shadow);
+    color: var(--text-color);
     cursor: pointer;
 }
 
 a:active {
-    color: aquamarine;
+    color: var(--active-link-color);
 }
 
 #sideMenu {
@@ -182,51 +195,51 @@ a:active {
     z-index: 100;
     top: 0;
     left: 0;
-    background-color: #360606;
+    background-color: var(--menu-color);
     overflow-x: hidden;
     padding-top: 60px;
     transition: 0.5s;
-    box-shadow: 0 0 30px black;
+    box-shadow: var(--menu-shadow);
 }
 
 #sideMenu .selector {
-    background-color: #360606;
+    background-color: var(--menu-color);
     transition: 0.2s;
 }
 
 #sideMenu .selector:hover {
-    background-color: white;
-    color: #360606;
+    background-color: var(--text-color);
+    color: var(--menu-color);
 }
 
 #sideMenu .selector:active {
-    background-color: aquamarine;
-    box-shadow: aquamarine;
-    border: aquamarine;
+    background-color: var(--active-link-color);
+    box-shadow: var(--active-link-color);
+    border: var(--active-link-color);
 }
 
 #sideMenu .btn {
-    background-color: #360606;
+    background-color: var(--menu-color);
     height: 50px;
     transition: 0.2s;
 }
 
 #sideMenu .btn:hover {
-    background-color: white;
-    color:#360606;
+    background-color: var(--text-color);
+    color:var(--menu-color);
 }
 
 #sideMenu .btn:active {
-    background-color: aquamarine;
-    box-shadow: aquamarine;
-    border: aquamarine;
+    background-color: var(--active-link-color);
+    box-shadow: var(--active-link-color);
+    border: var(--active-link-color);
 }
   
 #sideMenu #closeMenu {
     padding: 8px 8px 8px 32px;
     text-decoration: none;
     font-size: 25px;
-    color: white;
+    color: var(--text-color);
     display: block;
     transition: 0.2s;
     position: absolute;
@@ -237,8 +250,8 @@ a:active {
 }
   
 #sideMenu #closeMenu:hover {
-    text-shadow: 0 0 5px white;
-    color: white;
+    text-shadow: var(--text-shadow);
+    color: var(--text-color);
     cursor: pointer;
 }
 
@@ -249,13 +262,13 @@ a:active {
     padding: 40px 0 0 50px;
     margin: auto;
     font-size: 32px;
-    color: white;
+    color: var(--text-color);
     transition: 0.2s;
 }
 
 #openSideMenuButton:hover {
-    text-shadow: 0 0 5px white;
-    color: white;
+    text-shadow: var(--text-shadow);
+    color: var(--text-color);
     cursor: pointer;
 }
 
@@ -274,11 +287,11 @@ a:active {
 
 .faq-title-box {
     text-align: center;
-    color: #DDD5C7;
+    color: var(--title-color);
     font-size: 64px;
     font-variant: small-caps;
     font-family: Gruppo, cursive;
-    text-shadow: 0 0 20px black;
+    text-shadow: var(--title-shadow);
     margin: auto;
     margin-top: 50px;
     border-radius: 10px;
