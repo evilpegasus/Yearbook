@@ -265,3 +265,24 @@ a:active {
 :focus {
     outline: 0;
 }
+
+.faq-center-div {
+    max-width: 68%;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 80px;
+    margin-bottom: 200px;
+}
+
+.faq-title-box {
+    text-align: center;
+    color: #DDD5C7;
+    font-size: 64px;
+    font-variant: small-caps;
+    font-family: Gruppo, cursive;
+    text-shadow: 0 0 20px black;
+    margin: auto;
+    margin-top: 50px;
+    border-radius: 10px;
+}

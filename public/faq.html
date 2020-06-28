@@ -2,8 +2,97 @@
 <html>
     <head>
         <title>Frequently Asked Questions</title>
+        <!-- The core Firebase JS SDK is always required and must be listed first -->
+        <script src="/__/firebase/7.15.3/firebase-app.js"></script>
+
+        <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+        <script src="/__/firebase/7.15.4/firebase-analytics.js"></script>
+
+        <!-- Add the entire Firebase JavaScript SDK -->
+        <script src="/__/firebase/7.15.3/firebase.js"></script>
+
+        <!-- Initialize Firebase -->
+        <script src="/__/firebase/init.js"></script>
+
+
+        <!-- Font -->
+        <link href="https://fonts.googleapis.com/css2?family=Gruppo&display=swap" rel="stylesheet">
+
+
+        <script src="canvas.js"></script>
+        <script src="save.js"></script>
+        <link id="stylesheet" rel="stylesheet" href="blue.css">
+
+        <!-- Link preview metadata -->
+        <meta name="name"                      content="Yearbook 2020" />
+        <meta property="og:url"                content="https://yearbook-hhs.web.app/faq.html" />
+        <meta property="og:type"               content="website" />
+        <meta property="og:title"              content="Yearbook 2020" />
+        <meta property="og:description"        content="Frequently Asked Questions! Yearbook 2020 is an online yearbook signing app developed to keep people connected during the quarantine." />
+        <meta name="description"               content="Frequently Asked Questions! Yearbook 2020 is an online yearbook signing app developed to keep people connected during the quarantine." />
+        <meta property="og:image"              content="https://yearbook-hhs.web.app/logo-500x200.png" />
+        <meta itemprop="image"                 content="https://yearbook-hhs.web.app/logo-500x200.png" />
+        <meta name="image"                     content="https://yearbook-hhs.web.app/logo-500x200.png" />
+        <meta property="og:image:width "       content="500" />
+        <meta property="og:image:height"       content="200" />
+        <meta property="fb:app_id"             content="582201189392211" />
     </head>
     <body>
-        Why is the sky blue?
+        <div id="sideMenu">
+            <a id="closeSideMenuButton" onclick="closeMenu()">&times;</a>
+            <p class="sideMenuLabel">Theme:</p>
+            <select id="themeSelector" class="selector" onchange="changeTheme()">
+                <option value="black.css">Black</option>
+                <option value="blue.css" selected="selected">Blue</option>
+                <option value="green.css">Green</option>
+                <option value="red.css">Red</option>
+                <option value="white.css">White</option>
+            </select>
+            <br><br><br><br>
+            <p class="sideMenuLabel">Go to:</p>
+            <button id="goToYourYearbookButton" class="btn" onclick="goToYourYearbook()">Your Yearbook</button>
+            <br><br>
+            <button id="goToSomeoneElseYearbookButton" class="btn" onclick="goToAnotherYearbook()">Someone Else's Yearbook</button>
+            <br><br><br><br><br>
+            <button id="shareButton" class="btn" onclick="copyURL()">Share Your Yearbook</button>
+            <br><br><br><br><br>
+            <button id="signOutButton" class="btn" onclick="signOut()">Sign Out</button>
+        </div>
+        <p id="openSideMenuButton" onclick="openMenu()">&#9776;</p>
+        <div id="main" onmousedown="closeMenu()">
+            <h1 class="faq-title-box">Yearbook 2020</h1>
+        <div class="faq-center-div">
+            <h1>Frequently Asked Questions</h1>
+            <br>
+            <h2>What is Yearbook 2020?</h2>
+            <p>Yearbook 2020 is a web app created to let students and graduates sign each other's virtual yearbooks.</p>
+            <br>
+            <h2>How do I let my friends sign my page?</h2>
+            <p>You can let your friends access your Yearbook 2020 page by sending them your custom link. You can find your custom link by opening the menu at the top left and clicking "Share your Yearbook". This will copy your personal link to your keyboard which you can send to your friends.</p>
+            <br>
+            <h2>How do I sign my friend's yearbook pages?</h2>
+            <p>Ask them for their custom link. You can only access pages that you have a link to.</p>
+            <br>
+            <h2>How do I sign in to Yearbook 2020?</h2>
+            <p>Signing in to Yearbook 2020 is done with either a Google account or a Facebook account. You must use one of these methods to use the app. Additional sign in options may be available soon. Make sure to use the same account each time you sign in to make sure you access the same page.</p>
+            <br>
+            <h2>Something is wrong with my page.</h2>
+            <p>Make sure you only give your personal link to people you trust. Send us an email at <a href="mailto:yearbook2020app@gmail.com">yearbook2020app@gmail.com</a> describing your problem and we may be able to help.</p>
+            <br>
+            <h2>I signed in and my page is blank.</h2>
+            <p>Make sure you sign in with the same Google or Facebook account each time. Your page is linked to your account. If you sign in to the wrong account, open the menu at the top left and click "Sign Out".</p>
+            <br>
+            <h2>How do I help build this project?</h2>
+            <p>If you have comments or suggestions, send them to <a href="mailto:yearbook2020app@gmail.com">yearbook2020app@gmail.com</a>. Our codebase is hosted on Github at <a href="https://github.com/evilpegasus/yearbook">https://github.com/evilpegasus/yearbook</a>. Feel free to send in a pull request!</p>
+            <br>
+            <h2>Who built Yearbook 2020?</h2>
+            <p></p>
+            <p>Yearbook 2020 was built by Hazen High School graduates <a class="name" href="https://mingyfong.github.io/" target="_blank">Ming Fong</a> and <a class="name" href="https://arnavthareja.github.io" target="_blank">Arnav Thareja</a>.</p>
+            <br>
+            <h2>Why is the sky blue?</h2>
+            <p>Gases and particles in Earth's atmosphere scatter sunlight in all directions. Blue light is scattered more than other colors because it travels as shorter, smaller waves. This is why we see a blue sky most of the time.</p>
+        </div>
+        <img src="https://forthebadge.com/images/badges/built-with-love.svg" alt="Build with <3"> by <a class="name" href="https://mingyfong.github.io/" target="_blank">Ming Fong</a> and <a class="name" href="https://arnavthareja.github.io" target="_blank">Arnav Thareja</a>. June 2020
+        <p>Question or issues? Contact us at <a href="mailto:yearbook2020app@gmail.com">yearbook2020app@gmail.com</a>.</p>
     </body>
 </html>
