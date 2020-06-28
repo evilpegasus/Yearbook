@@ -118,7 +118,7 @@ body {
 
 .selector:active {
     background-color: var(--active-link-color);
-    box-shadow: var(--active-link-color);
+    box-shadow: 0 0 10px var(--active-link-color);
     border: var(--active-link-color);
 }
 
@@ -146,7 +146,7 @@ body {
 
 .btn:active {
     background-color: var(--active-link-color);
-    box-shadow: var(--active-link-color);
+    box-shadow: 0 0 10px var(--active-link-color);
     border: var(--active-link-color);
 }
 
@@ -213,13 +213,14 @@ a:active {
 
 #sideMenu .selector:active {
     background-color: var(--active-link-color);
-    box-shadow: var(--active-link-color);
+    box-shadow: 0 0 10px var(--active-link-color);
     border: var(--active-link-color);
 }
 
 #sideMenu .btn {
     background-color: var(--menu-color);
     height: 50px;
+    width: 170px;
     transition: 0.2s;
 }
 
@@ -230,7 +231,7 @@ a:active {
 
 #sideMenu .btn:active {
     background-color: var(--active-link-color);
-    box-shadow: var(--active-link-color);
+    box-shadow: 0 0 10px var(--active-link-color);
     border: var(--active-link-color);
 }
   
