@@ -222,27 +222,24 @@ a:active {
     border: aquamarine;
 }
   
-#sideMenu a {
+#sideMenu #closeMenu {
     padding: 8px 8px 8px 32px;
     text-decoration: none;
     font-size: 25px;
     color: blue;
     display: block;
     transition: 0.2s;
-}
-  
-#sideMenu a:hover {
-    text-shadow: 0 0 5px #003262;
-    color: #003262;
-    cursor: pointer;
-}
-  
-#sideMenu #closeSideMenuButton {
     position: absolute;
     top: 0;
     right: 25px;
     font-size: 36px;
     margin-left: 50px;
+}
+  
+#sideMenu #closeMenu:hover {
+    text-shadow: 0 0 5px #003262;
+    color: #003262;
+    cursor: pointer;
 }
 
 #openSideMenuButton {
