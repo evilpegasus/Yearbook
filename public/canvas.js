@@ -105,3 +105,14 @@ function changeTheme() {
     stylesheet.href = themeSelector.options[themeSelector.selectedIndex].value;
     console.log('stylesheet changed to ' + stylesheet.href);
 }
+
+function copyURL() {
+    var copyText = document.createElement("p");
+    copyText.innerHTML = "https://yearbook-hhs.web.app/app.html?user=" + currentUser.uid;
+
+    copyText.select();
+    copyText.setSelectionRange(0, 99999);
+
+    document.execCommand("copy");
+    window.alert("Your yearbook's unique sharing URL has been copied to your clipboard. Share it with your friends!");
+}

@@ -182,7 +182,7 @@ a:active {
     z-index: 100;
     top: 0;
     left: 0;
-    background-color: darkslategray;
+    background-color: #2f2f2f;
     overflow-x: hidden;
     padding-top: 60px;
     transition: 0.5s;
@@ -190,23 +190,36 @@ a:active {
 }
 
 #sideMenu .selector {
-    background-color: darkslategray;
+    background-color: #2f2f2f;
     transition: 0.2s;
 }
 
 #sideMenu .selector:hover {
     background-color: white;
-    color: darkslategray;
+    color: #2f2f2f;
+}
+
+#sideMenu .selector:active {
+    background-color: aquamarine;
+    box-shadow: aquamarine;
+    border: aquamarine;
 }
 
 #sideMenu .btn {
-    background-color: darkslategray;
+    background-color: #2f2f2f;
+    height: 50px;
     transition: 0.2s;
 }
 
 #sideMenu .btn:hover {
     background-color: white;
-    color: darkslategray;
+    color: #2f2f2f;
+}
+
+#sideMenu .btn:active {
+    background-color: aquamarine;
+    box-shadow: aquamarine;
+    border: aquamarine;
 }
   
 #sideMenu a {

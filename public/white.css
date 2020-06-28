@@ -199,14 +199,27 @@ a:active {
     color: #cccccc;
 }
 
+#sideMenu .selector:active {
+    background-color: aquamarine;
+    box-shadow: aquamarine;
+    border: aquamarine;
+}
+
 #sideMenu .btn {
     background-color: #cccccc;
+    height: 50px;
     transition: 0.2s;
 }
 
 #sideMenu .btn:hover {
     background-color: #003262;
     color:#cccccc;
+}
+
+#sideMenu .btn:active {
+    background-color: aquamarine;
+    box-shadow: aquamarine;
+    border: aquamarine;
 }
   
 #sideMenu a {
