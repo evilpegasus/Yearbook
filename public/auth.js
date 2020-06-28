@@ -25,7 +25,7 @@ var uiConfig = {
           redirectLink += '?newUser=true';
         }
       }
-      window.location.replace(redirectLink);
+      window.location.assign(redirectLink);
       return false;
     },
     uiShown: function() {

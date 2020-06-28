@@ -31,29 +31,25 @@ firebase.auth().onAuthStateChanged(function(user) {
         serveID = currentUser.uid;
         document.getElementById('owner').innerHTML = "You are viewing your own yearbook. Share this link to let your friends sign it:";
         document.getElementById('sharingLink').innerHTML = "<a href='https://yearbook-hhs.web.app/app.html?user=" + currentUser.uid + "'>https://yearbook-hhs.web.app/app.html?user=" + currentUser.uid + "</a>";
-        // get the image from storage and draw it onto the canvas if user is not new
-        if (!newUser) {
-            getImage(false);
-        } else {
-            // Create a white background if serveID/old.png does not exist yet
-            var storageRef = firebase.storage().ref();
-            const canvas = document.querySelector("#canvas");
-            const ctx = canvas.getContext("2d");
-            storageRef.child(serveID + "/old.png").getDownloadURL().then(function() {
-                // old.png already exists
-            }, function() {
-                // old.png does not exist, draw a white background
-                ctx.fillStyle = "white";
-                ctx.fillRect(0, 0, canvas.width, canvas.height);
-            })
-        }
     } else {
         document.getElementById('owner').innerHTML = "You are viewing someone else's yearbook. Sign away!";
         document.getElementById('sharingLink').innerHTML = " Return to your own page: <a href='https://yearbook-hhs.web.app/app.html'>https://yearbook-hhs.web.app/app.html</a>";
         document.getElementById('downloadButton').remove();
-        // get the image from storage and draw it onto the canvas
-        getImage(false);
+        document.querySelector('#toolbars').style.width = "576px";
     }
+
+    // get the image from storage and draw it onto the canvas if user's old.png exists
+    var storageRef = firebase.storage().ref();
+    const canvas = document.querySelector("#canvas");
+    const ctx = canvas.getContext("2d");
+    storageRef.child(serveID + "/old.png").getDownloadURL().then(function() {
+        // old.png already exists
+        getImage(false);
+    }, function() {
+        // old.png does not exist, draw a white background
+        ctx.fillStyle = "white";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+    });
 });
 
 function upload(alert = true) {

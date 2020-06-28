@@ -15,10 +15,16 @@ window.addEventListener('load', () => {
     var painting = false;
     var offsetY = canvas.getBoundingClientRect().top;
     var offsetX = canvas.getBoundingClientRect().left;
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    // adjust the X and Y offsets of the painting
+    function adjustOffsets() {
+        offsetY = canvas.getBoundingClientRect().top;
+        offsetX = canvas.getBoundingClientRect().left;
+    }
 
     // enable painting
     function startPainting() {
+        adjustOffsets();
         painting = true;
     }
     
@@ -26,12 +32,6 @@ window.addEventListener('load', () => {
     function endPainting() {
         painting = false;
         ctx.beginPath();
-    }
-    
-    // adjust the X and Y offsets of the painting
-    function adjustOffsets() {
-        offsetY = canvas.getBoundingClientRect().top;
-        offsetX = canvas.getBoundingClientRect().left;
     }
 
     // paint at the cursor's location
@@ -58,6 +58,19 @@ window.addEventListener('load', () => {
         if (confirm("Are you sure you want to clear what you have drawn? This action cannot be undone.")) {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
         }
+        
+        // get the image from storage and draw it onto the canvas if user's old.png exists
+        var storageRef = firebase.storage().ref();
+        const canvas = document.querySelector("#canvas");
+        const ctx = canvas.getContext("2d");
+        storageRef.child(serveID + "/old.png").getDownloadURL().then(function() {
+            // old.png already exists
+            getImage(false);
+        }, function() {
+            // old.png does not exist, draw a white background
+            ctx.fillStyle = "white";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+        });
     }
 
     // detect and respond to user actions
@@ -125,4 +138,9 @@ function copyURL() {
     document.body.removeChild(copyText);
     delete copyText;
     window.alert("Your yearbook's unique sharing URL has been copied to your clipboard. Share it with your friends!");
+}
+
+function popup() {
+    // TODO: finish function
+    return;
 }
