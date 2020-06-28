@@ -1,5 +1,5 @@
 body {
-    background-color: #6d1212;
+    background-color: black;
     color: white;
     font-family: sans-serif;
     text-align: center;
@@ -7,7 +7,7 @@ body {
 }
 
 #canvas {
-    box-shadow: 0 5px 20px black;
+    box-shadow: 0 5px 20px gray;
     background-color: white;
     margin: auto;
     display: inline-block;
@@ -40,8 +40,8 @@ body {
     font-size: 64px;
     font-variant: small-caps;
     font-family: Gruppo, cursive;
-    text-shadow: 0 0 20px black;
-    background-color: #6d1212;
+    text-shadow: 0 0 20px gray;
+    background-color: black;
     position: -webkit-sticky;
     position: sticky;
     top: 10px;
@@ -59,7 +59,7 @@ body {
     text-align: center;
     margin: auto;
     border-radius: 20px;
-    background-color: #6d1212;
+    background-color: black;
     bottom: 10px;
     z-index: 40;
     height: 160px;
@@ -86,7 +86,7 @@ body {
     font-size: 13px;
     border-radius: 5px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    background-color: #6d1212;
+    background-color: black;
     border: 2px solid white;
     color: white;
     font-variant: small-caps;
@@ -100,7 +100,7 @@ body {
 .selector:hover {
     box-shadow: 0 0 10px white;
     background-color: white;
-    color: #6d1212;
+    color: black;
     cursor: pointer;
 }
 
@@ -117,7 +117,7 @@ body {
     margin: 0px 10px 0px 10px;
     font-size: 16px;
     border-radius: 8px;
-    background-color: #6d1212;
+    background-color: black;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     border: 2px solid white;
     color: white;
@@ -128,7 +128,7 @@ body {
 .btn:hover {
     box-shadow: 0 0 10px white;
     background-color: white;
-    color: #6d1212;
+    color: black;
     cursor: pointer;
 }
 
@@ -182,31 +182,31 @@ a:active {
     z-index: 100;
     top: 0;
     left: 0;
-    background-color: #360606;
+    background-color: darkslategray;
     overflow-x: hidden;
     padding-top: 60px;
     transition: 0.5s;
-    box-shadow: 0 0 30px black;
+    box-shadow: 0 0 30px lightgray;
 }
 
 #sideMenu .selector {
-    background-color: #360606;
+    background-color: darkslategray;
     transition: 0.2s;
 }
 
 #sideMenu .selector:hover {
     background-color: white;
-    color: #360606;
+    color: darkslategray;
 }
 
 #sideMenu .btn {
-    background-color: #360606;
+    background-color: darkslategray;
     transition: 0.2s;
 }
 
 #sideMenu .btn:hover {
     background-color: white;
-    color:#360606;
+    color: darkslategray;
 }
   
 #sideMenu a {

@@ -23,7 +23,7 @@
 
         <script src="canvas.js"></script>
         <script src="save.js"></script>
-        <link rel="stylesheet" href="blue.css">
+        <link id="stylesheet" rel="stylesheet" href="blue.css">
 
         <!-- Link preview metadata -->
         <meta name="name"                      content="Yearbook 2020" />
@@ -40,60 +40,87 @@
         <meta property="fb:app_id"             content="582201189392211" />
     </head>
     <body>
-        <h1 class="title-box">Yearbook 2020</h1>
-        <p id="owner"></p>
-        <h3 id="sharingLink"></h3>
-        <div id="canvas-container" width="1500" height="2500">
-            <img src="//:0" id="backgroundImage" width="1500" height="2500">
-            <canvas id="canvas" width="1500" height="2500" crossOrigin="anonymous">Your browser is not supported.</canvas>
+        <div id="sideMenu">
+            <a id="closeSideMenuButton" onclick="closeMenu()">&times;</a>
+            <p class="sideMenuLabel">Theme:</p>
+            <select id="themeSelector" class="selector" onchange="changeTheme()">
+                <option value="black.css">Black</option>
+                <option value="blue.css" selected="selected">Blue</option>
+                <option value="green.css">Green</option>
+                <option value="red.css">Red</option>
+                <option value="white.css">White</option>
+            </select>
+            <br>
+            <br>
+            <br>
+            <p class="sideMenuLabel">Go to:</p>
+            <button id="goToYourYearbookButton" class="btn" onclick="goToYourYearbook()">Your Yearbook</button>
+            <br>
+            <br>
+            <button id="goToSomeoneElseYearbookButton" class="btn" onclick="goToAnotherYearbook()">Someone Else's Yearbook</button>
+            <br>
+            <br>
+            <br>
+            <br>
+            <button id="signOutButton" class="btn" onclick="signOut()">Sign Out</button>
         </div>
-
-        <div id="toolbars">
-            <div class="canvas-toolbar-label">
-                <p>Size:</p>
-                <p>Color:</p>
+        <p id="openSideMenuButton" onclick="openMenu()">&#9776;</p>
+        <div id="main" onmousedown="closeMenu()">
+            <h1 class="title-box">Yearbook 2020</h1>
+            <p id="owner"></p>
+            <h3 id="sharingLink"></h3>
+            <div id="canvas-container" width="1500" height="2500">
+                <img src="//:0" id="backgroundImage" width="1500" height="2500">
+                <canvas id="canvas" width="1500" height="2500" crossOrigin="anonymous">Your browser is not supported.</canvas>
             </div>
 
-            <div class="canvas-toolbar">
-                <select id="widthSelector">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="4" selected = "selected">4</option>
-                    <option value="6">6</option>
-                    <option value="8">8</option>
-                    <option value="10">12</option>
-                    <option value="24">24</option>
-                    <option value="36">36</option>
-                </select>
-        
-                <select id="colorSelector">
-                    <option value="black" selected="selected">Black</option>
-                    <option value="blue">Blue</option>
-                    <option value="saddlebrown">Brown</option>
-                    <option value="green">Green</option>
-                    <option value="gray">Gray</option>
-                    <option value="deepskyblue">Light Blue</option>
-                    <option value="lime">Light Green</option>
-                    <option value="darkorange">Orange</option>
-                    <option value="deeppink">Pink</option>
-                    <option value="purple">Purple</option>
-                    <option value="red">Red</option>
-                    <option value="white">Eraser</option>
-                </select>
-            </div>
+            <div id="toolbars">
+                <div class="canvas-toolbar-label">
+                    <p>Size:</p>
+                    <p>Color:</p>
+                </div>
 
-            <div class="button-toolbar">
-                <button id="clearButton" class="btn" type="button">Clear Changes</button>
-                <a id="download" download="yearbook.png"><button id="downloadButton" class="btn" type="button" onclick="download()">Download</button></a>
-                <button id="saveButton" class="btn" type="button" onclick="upload()">Upload</button>
-                <button id="getImageButton" class="btn" type="button" onclick="getImage()">Get Image</button>
-                <!-- <button id="resetButton" class="btn" type="button" onclick="resetYearbook()">Reset Yearbook</button> -->
+                <div class="canvas-toolbar">
+                    <select id="widthSelector" class="selector">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="4" selected = "selected">4</option>
+                        <option value="6">6</option>
+                        <option value="8">8</option>
+                        <option value="10">12</option>
+                        <option value="24">24</option>
+                        <option value="36">36</option>
+                    </select>
+            
+                    <select id="colorSelector" class="selector">
+                        <option value="black" selected="selected">Black</option>
+                        <option value="blue">Blue</option>
+                        <option value="saddlebrown">Brown</option>
+                        <option value="green">Green</option>
+                        <option value="gray">Gray</option>
+                        <option value="deepskyblue">Light Blue</option>
+                        <option value="lime">Light Green</option>
+                        <option value="darkorange">Orange</option>
+                        <option value="deeppink">Pink</option>
+                        <option value="purple">Purple</option>
+                        <option value="red">Red</option>
+                        <option value="white">Eraser</option>
+                    </select>
+                </div>
+
+                <div class="button-toolbar">
+                    <button id="clearButton" class="btn" type="button">Clear Changes</button>
+                    <a id="download" download="yearbook.png"><button id="downloadButton" class="btn" type="button" onclick="download()">Download</button></a>
+                    <button id="saveButton" class="btn" type="button" onclick="upload()">Upload</button>
+                    <button id="getImageButton" class="btn" type="button" onclick="getImage()">Get Image</button>
+                    <!-- <button id="resetButton" class="btn" type="button" onclick="resetYearbook()">Reset Yearbook</button> -->
+                </div>
             </div>
+            <br>
+            <br>
+            <img src="https://forthebadge.com/images/badges/built-with-love.svg" alt="Build with <3"> by <a class="name" href="https://mingyfong.github.io/" target="_blank">Ming Fong</a> and <a class="name" href="https://arnavthareja.github.io" target="_blank">Arnav Thareja</a>. June 2020
+            <p>Question or issues? Contact us at <a href="mailto:yearbook2020app@gmail.com">yearbook2020app@gmail.com</a>.</p>
+            <p></p>
         </div>
-        <br>
-        <br>
-        <img src="https://forthebadge.com/images/badges/built-with-love.svg" alt="Build with <3"> by <a class="name" href="https://mingyfong.github.io/" target="_blank">Ming Fong</a> and <a class="name" href="https://arnavthareja.github.io" target="_blank">Arnav Thareja</a>. June 2020
-        <p>Question or issues? Contact us at <a href="mailto:yearbook2020app@gmail.com">yearbook2020app@gmail.com</a>.</p>
-        <p></p>
     </body>
 </html>

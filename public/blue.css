@@ -77,7 +77,7 @@ body {
     margin: 0px 0px 28px 0px;
 }
 
-.canvas-toolbar select {
+.selector {
     border-radius: 0px;
     width: 120px;
     height: 32px;
@@ -97,19 +97,20 @@ body {
     -ms-text-align-last: center;
 }
 
-.canvas-toolbar select:hover {
+.selector:hover {
     box-shadow: 0 0 10px white;
     background-color: white;
     color: #003262;
+    cursor: pointer;
 }
 
-.canvas-toolbar select:active {
+.selector:active {
     background-color: aquamarine;
     box-shadow: aquamarine;
     border: aquamarine;
 }
 
-.button-toolbar button {
+.btn {
     border-radius: 0px;
     width: 160px;
     height: 40px;
@@ -124,13 +125,14 @@ body {
     transition: all 0.2s;
 }
 
-.button-toolbar button:hover {
+.btn:hover {
     box-shadow: 0 0 10px white;
     background-color: white;
     color: #003262;
+    cursor: pointer;
 }
 
-.button-toolbar button:active {
+.btn:active {
     background-color: aquamarine;
     box-shadow: aquamarine;
     border: aquamarine;
@@ -166,10 +168,85 @@ a:visited {
 a:hover {
     text-shadow: 0 0 5px white;
     color: white;
+    cursor: pointer;
 }
 
 a:active {
     color: aquamarine;
+}
+
+#sideMenu {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    background-color: #001631;
+    overflow-x: hidden;
+    padding-top: 60px;
+    transition: 0.5s;
+    box-shadow: 0 0 30px black;
+}
+
+#sideMenu .selector {
+    background-color: #001631;
+    transition: 0.2s;
+}
+
+#sideMenu .selector:hover {
+    background-color: white;
+    color: #001631;
+}
+
+#sideMenu .btn {
+    background-color: #001631;
+    transition: 0.2s;
+}
+
+#sideMenu .btn:hover {
+    background-color: white;
+    color:#001631;
+}
+  
+#sideMenu a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: white;
+    display: block;
+    transition: 0.2s;
+}
+  
+#sideMenu a:hover {
+    text-shadow: 0 0 5px white;
+    color: white;
+    cursor: pointer;
+}
+  
+#sideMenu #closeSideMenuButton {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+#openSideMenuButton {
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 40px 0 0 50px;
+    margin: auto;
+    font-size: 32px;
+    color: white;
+    transition: 0.2s;
+}
+
+#openSideMenuButton:hover {
+    text-shadow: 0 0 5px white;
+    color: white;
+    cursor: pointer;
 }
 
 :focus {

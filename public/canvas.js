@@ -69,3 +69,39 @@ window.addEventListener('load', () => {
     canvas.addEventListener("pointermove", draw);
     canvas.addEventListener("pointerout", endPainting);
 });
+
+function openMenu() {
+    document.querySelector("#sideMenu").style.width = "250px";
+}
+  
+function closeMenu() {
+    document.querySelector("#sideMenu").style.width = "0";
+}
+
+function signOut() {
+    firebase.auth().signOut().then(function() {
+        console.log('Signed out');
+    }, function(error) {
+        console.log('Error signing out');
+    });
+}
+
+function goToYourYearbook() {
+    window.location.replace('https://yearbook-hhs.web.app/app.html');
+}
+
+function goToAnotherYearbook() {
+    var redirectURL = window.prompt("Enter the URL of the yearbook you want to visit:");
+    if (redirectURL && redirectURL.startsWith('https://yearbook-hhs.web.app/app.html')) {
+        window.location.replace(redirectURL);
+    } else {
+        window.alert('Invalid URL');
+    }
+}
+
+function changeTheme() {
+    const themeSelector = document.querySelector("#themeSelector");
+    const stylesheet = document.querySelector("#stylesheet");
+    stylesheet.href = themeSelector.options[themeSelector.selectedIndex].value;
+    console.log('stylesheet changed to ' + stylesheet.href);
+}
