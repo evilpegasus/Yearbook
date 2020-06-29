@@ -259,11 +259,16 @@ a:active {
     position: fixed;
     top: 0;
     left: 0;
-    padding: 40px 0 0 50px;
+    padding: 0 10px;
+    background-color: var(--theme-color);
+    border-radius: 5px;
     margin: auto;
+    margin-top: 30px;
+    margin-left: 40px;
     font-size: 32px;
     color: var(--text-color);
     transition: 0.2s;
+    z-index: 70;
 }
 
 #openSideMenuButton:hover {

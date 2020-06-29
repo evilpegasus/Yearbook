@@ -150,8 +150,8 @@ function upload(alert = true) {
                     uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
                         console.log('File available at', downloadURL);
                         
-                        // Move canvas contents to background image so they can't be cleared
-                        getImage(false);
+                        // Move canvas contents to background image so they can't be cleared and get image after half a second to allow for image merge
+                        setTimeout(getImage(false), 500);
                         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
                         if (alert) {
