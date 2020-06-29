@@ -30,12 +30,12 @@ function goToAnotherYearbook() {
     }
 }
 
-function changeTheme() {
+function changeTheme(newTheme = themeSelector.options[themeSelector.selectedIndex].value) {
     const themeSelector = document.querySelector("#themeSelector");
     const root = document.documentElement;
 
     // change css variables based on the selection
-    switch (themeSelector.options[themeSelector.selectedIndex].value) {
+    switch (newTheme) {
         case "black":
             root.style.setProperty('--theme-color', 'black');
             root.style.setProperty('--menu-color', '#2f2f2f');
@@ -101,7 +101,14 @@ function changeTheme() {
             root.style.setProperty('--menu-shadow', '0 0 30px black');
             break;
     }
-    console.log('theme changed to ' + themeSelector.options[themeSelector.selectedIndex].value);
+    docRef.update({
+        theme: newTheme
+    }).then(function() {
+        console.log("Theme successfully updated to " + newTheme);
+    }).catch(function(error) {
+        console.log("Error updating theme: " + error);
+    });
+    console.log('Theme changed to ' + newTheme);
 }
 
 function copyURL() {

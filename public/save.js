@@ -1,6 +1,8 @@
 // check if user is signed in
 var currentUser;
 var serveID;
+const dbRef = firebase.firestore().collections("users");
+var docRef;
 
 firebase.auth().onAuthStateChanged(function(user) {
     // check for params in URL
@@ -12,10 +14,23 @@ firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
         // User is signed in.
         currentUser = firebase.auth().currentUser;
-        console.log("displayName: " + currentUser.displayName); // TODO get rid of these console prints
-        console.log("email: " + currentUser.email);
-        console.log("uid: " + currentUser.uid);
-        console.log('https://yearbook-hhs.web.app/app.html?user=' + currentUser.uid); // unique URL for user <======================= USE THIS TO SEND TO FRIENDS
+        docRef = dbRef.doc(currentUser.uid);
+
+        // If new user, add their info to Cloud Firestore database
+        if (newUser) {
+            docRef.set({
+                displayName: currentUser.displayName,
+                email: currentUser.email,
+                theme: themeSelector.options[themeSelector.selectedIndex].value,
+                userID: currentUser.uid,
+                pfpURL: "",
+                numDownloadEmails: 0
+            }).then(function() {
+                console.log("Document successfully written");
+            }).catch(function(error) {
+                console.log("Error adding document " + error);
+            });
+        }
     } else {
         // No user is signed in. Kick them out to login screen preserving any URL params
         if (serveID) {
@@ -25,17 +40,38 @@ firebase.auth().onAuthStateChanged(function(user) {
         }
     }
 
+    // get the database entry for currentUser theme to set the website theme
+    docRef.get().then(function(doc) {
+        if (doc.exists) {
+            // Change the theme to user's preferred theme
+            var preferredTheme = doc.get('theme');
+            changeTheme(preferredTheme);
+
+            // Update the menu theme selector
+            document.querySelector('#themeSelector [value="' + preferredTheme + '"]').selected = true;
+        } else {
+            console.log("No such document exists.");
+        }
+    }).catch(function(error) {
+        console.log("Error getting document: " + error);
+    });
+
     // handle params in URL
     if (!serveID || serveID == currentUser.uid) {
         // Viewing own page
         serveID = currentUser.uid;
-        document.getElementById('owner').innerHTML = "You are viewing your own yearbook. Share this link to let your friends sign it:";
-        document.getElementById('sharingLink').innerHTML = "<a href='https://yearbook-hhs.web.app/app.html?user=" + currentUser.uid + "'>https://yearbook-hhs.web.app/app.html?user=" + currentUser.uid + "</a>";
+        document.getElementById('owner').innerHTML = "You are viewing your own yearbook.";
     } else {
-        document.getElementById('owner').innerHTML = "You are viewing someone else's yearbook. Sign away!";
-        document.getElementById('sharingLink').innerHTML = " Return to your own page: <a href='https://yearbook-hhs.web.app/app.html'>https://yearbook-hhs.web.app/app.html</a>";
+        // Get the name of the yearbook's owner
+        var name = "someone else";
+        dbRef.doc(serveID).get().then(function(doc) {
+            name = doc.get("displayName");
+        }).catch(function(error) {
+            console.log("No such document exists.");
+        });
+        document.getElementById('owner').innerHTML = "You are viewing " + name + "'s yearbook. Sign away!";
         document.getElementById('downloadButton').remove();
-        document.querySelector('#toolbars').style.width = "576px";
+        document.querySelector('#toolbars').style.width = "600px";
     }
 
     // get the image from storage and draw it onto the canvas if user's old.png exists
