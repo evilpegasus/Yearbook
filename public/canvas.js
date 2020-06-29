@@ -82,16 +82,12 @@ window.addEventListener('load', () => {
     }
 
     document.querySelector('#main').onpointerover = function() {
-        canvas.click();
-    }
-
-    // Show the toolbar label and shrink the toolbar
-    canvas.onclick = function() {
         setTimeout(function() {
-                document.querySelector('.canvas-toolbar-title').style.display = 'initial';
+            document.querySelector('.canvas-toolbar-title').style.display = 'initial';
         }, 500);        
         toolbars.style.bottom = '-150px';
     }
+
 
     // detect and respond to user actions
     window.addEventListener("wheel", adjustOffsets);
