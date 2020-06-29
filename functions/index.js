@@ -144,6 +144,7 @@ exports.exportYearbook = functions.storage.object().onFinalize(async (object) =>
     bucket.file(filePath).delete().then(function() {
         // Deleted successfully
         console.log('Request file deleted');
+        return null;
     }).catch(function(error) {
         // An error occurred
         console.log(error);
@@ -153,7 +154,11 @@ exports.exportYearbook = functions.storage.object().onFinalize(async (object) =>
         const displayName = doc.get('displayName');
         const email = doc.get('email');
         return sendYearbookCopyEmail(email, displayName, tempFilePath, tempPdfPath);
+    }).catch(function(error) {
+        console.log("Error sending email: " + error);
     });
+
+    return null;
 });
 
 // Sends a copy of the yearbook to the given user.
