@@ -66,18 +66,20 @@ body {
 }
 
 #toolbars {
-    position: sticky;
-    top: 70%;
+    position: fixed;
     text-align: center;
     margin: auto;
     border-radius: 20px;
     background-color: var(--theme-color);
-    bottom: 10px;
+    bottom: -110px;
+    left: 0;
+    right: 0;
     z-index: 40;
     height: 160px;
     width: 800px;
     border: 1px solid var(--text-color);
     transition: all 0.2s;
+    transition: bottom 0.5s;
 }
 
 .button-toolbar {
@@ -165,6 +167,23 @@ body {
     color: var(--text-color);
 }
 
+.canvas-toolbar-title {
+    text-align: center;
+    display: initial;
+    font-variant: small-caps;
+}
+
+.canvas-toolbar-title p {
+    display: inline-block;
+    font-size: 20px;
+    width: 120px;
+    height: 28px;
+    margin: 16px 10px 0px 10px;
+    padding: 0px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: var(--text-color);
+}
+
 a {
     transition: all 0.2s;
 }
@@ -189,11 +208,11 @@ a:active {
 
 #sideMenu {
     height: 100%;
-    width: 0;
+    width: 250;
     position: fixed;
     z-index: 100;
     top: 0;
-    left: 0;
+    left: -250px;
     background-color: var(--menu-color);
     overflow-x: hidden;
     padding-top: 60px;
@@ -300,4 +319,8 @@ a:active {
     margin: auto;
     margin-top: 50px;
     border-radius: 10px;
+}
+
+footer {
+    margin-bottom: 70px;
 }

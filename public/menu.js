@@ -1,9 +1,9 @@
 function openMenu() {
-    document.querySelector("#sideMenu").style.width = "250px";
+    document.querySelector("#sideMenu").style.left = "0";
 }
   
 function closeMenu() {
-    document.querySelector("#sideMenu").style.width = "0";
+    document.querySelector("#sideMenu").style.left = "-250px";
 }
 
 function signOut() {

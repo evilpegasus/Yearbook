@@ -7,6 +7,7 @@ window.addEventListener('load', () => {
     const clearButton = document.querySelector("#clearButton");
     const colorSelector = document.querySelector("#colorSelector");
     const widthSelector = document.querySelector("#widthSelector");
+    const toolbars = document.querySelector("#toolbars");
 
     // set canvas properties
     canvas.height = 2500;
@@ -72,6 +73,20 @@ window.addEventListener('load', () => {
             ctx.fillStyle = "white";
             ctx.fillRect(0, 0, canvas.width, canvas.height);
         });
+    }
+
+    // Hide the toolbar label and show the toolbar
+    toolbars.onpointerover = function() {
+        document.querySelector('.canvas-toolbar-title').style.display = 'none';
+        toolbars.style.bottom = '10px';
+    }
+
+    // Show the toolbar label and shrink the toolbar
+    canvas.onpointerdown = function() {
+        setTimeout(function() {
+                document.querySelector('.canvas-toolbar-title').style.display = 'initial';
+        }, 500);        
+        toolbars.style.bottom = '-110px';
     }
 
     // detect and respond to user actions
