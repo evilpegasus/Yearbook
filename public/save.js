@@ -2,14 +2,8 @@
 var currentUser;
 var serveID;
 
-// initialize firestore
-firebase.initializeApp({
-    apiKey: '### FIREBASE API KEY ###',
-    authDomain: '### FIREBASE AUTH DOMAIN ###',
-    projectId: '### CLOUD FIRESTORE PROJECT ID ###'
-});
-const db = firebase.firestore();
-const dbRef = db.collections("users");
+// set firestore information
+const dbRef = firebase.firestore().collection("users");
 var docRef;
 
 firebase.auth().onAuthStateChanged(function(user) {
