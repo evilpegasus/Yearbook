@@ -88,7 +88,6 @@ window.addEventListener('load', () => {
         toolbars.style.bottom = '-150px';
     }
 
-
     // detect and respond to user actions
     window.addEventListener("wheel", adjustOffsets);
     window.addEventListener("scroll", adjustOffsets);
