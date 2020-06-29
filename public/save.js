@@ -189,14 +189,14 @@ function getImage(alert = true) {
                 canvas.style.backgroundColor = "transparent";
                 backgroundImage.style.display = "inline-block";
                 if (alert) {
-                    window.alert("Image retrieved successfully");
+                    window.alert("Page updated successfully");
                 }
                 console.log("Image from server drawn onto canvas. URL = ", url);
             }
         }).catch(function(error) {
             console.log("Failed to get image from the server.");
             console.log(error);
-            window.alert("Something went wrong while getting your image:\n" + error.message);
+            window.alert("Something went wrong while updating the page:\n" + error.message);
     
             // A full list of error codes is available at
             // https://firebase.google.com/docs/storage/web/handle-errors
@@ -219,7 +219,7 @@ function getImage(alert = true) {
             }
         });
     } catch(error) {
-        window.alert("Something went wrong while getting your image:\n" + error.message);
+        window.alert("Something went wrong while updating the page:\n" + error.message);
         console.log(error);
     }
 }
