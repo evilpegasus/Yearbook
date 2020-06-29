@@ -65,18 +65,18 @@ firebase.auth().onAuthStateChanged(function(user) {
         document.getElementById('owner').innerHTML = "You are viewing your own yearbook.";
     } else {
         // Get the name of the yearbook's owner
-        var name = "someone else";
         dbRef.doc(serveID).get().then(function(doc) {
             if (doc.exists) {
-                name = doc.get('displayName');
-                console.log("Name retrieved successfully");
+                var name = doc.get('displayName');
+                console.log("Name retrieved successfully.");
+                document.querySelector('#owner').innerHTML = "You are viewing " + name + "'s yearbook. Sign away!";
             }
             console.log("No such document exists.");
         }).catch(function(error) {
             console.log("Error retrieving document: " + error);
         });
-        document.getElementById('owner').innerHTML = "You are viewing " + name + "'s yearbook. Sign away!";
-        document.getElementById('downloadButton').remove();
+        document.querySelector('#owner').innerHTML = "You are viewing someone else's yearbook. Sign away!";
+        document.querySelector('#downloadButton').remove();
         document.querySelector('#toolbars').style.width = "600px";
     }
 
