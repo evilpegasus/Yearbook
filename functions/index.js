@@ -170,7 +170,7 @@ async function sendYearbookCopyEmail(email, displayName, pngPath, /* pdfPath */)
         to: email,
         attachments: [{
             filename: 'yearbook.png',
-            streamSource: fs.createReadStream(pngPath)
+            path: pngPath
         } /* , {
             filename: 'yearbook.pdf',
             content: fs.createReadStream(pdfPath)
