@@ -132,13 +132,15 @@ exports.exportYearbook = functions.storage.object().onFinalize(async (object) =>
     // Download file from bucket
     const bucket = admin.storage().bucket(fileBucket);
     const tempFilePath = path.join(os.tmpdir(), oldName);
-    const tempPdfPath = path.join(os.tmpdir(), "old.pdf");
+    // const tempPdfPath = path.join(os.tmpdir(), "old.pdf");
     await bucket.file(filePath).download({destination: tempFilePath});
     console.log('Image downloaded locally to', tempFilePath);
 
     // Merge the images using ImageMagick
+    /*
     await spawn('convert', [tempFilePath, tempPdfPath]);
     console.log('Image converted to PDF at', tempPdfPath);
+    */
 
     // delete the request file
     bucket.file(filePath).delete().then(function() {
@@ -153,7 +155,7 @@ exports.exportYearbook = functions.storage.object().onFinalize(async (object) =>
     db.collection("users").doc(uid).get().then(function(doc) {
         const displayName = doc.get('displayName');
         const email = doc.get('email');
-        return sendYearbookCopyEmail(email, displayName, tempFilePath, tempPdfPath);
+        return sendYearbookCopyEmail(email, displayName, tempFilePath, /* tempPdfPath*/ );
     }).catch(function(error) {
         console.log("Error sending email: " + error);
     });
@@ -162,17 +164,17 @@ exports.exportYearbook = functions.storage.object().onFinalize(async (object) =>
 });
 
 // Sends a copy of the yearbook to the given user.
-async function sendYearbookCopyEmail(email, displayName, pngPath, pdfPath) {
+async function sendYearbookCopyEmail(email, displayName, pngPath, /* pdfPath */) {
      const mailOptions = {
         from: APP_NAME + " <noreply@firebase.com>",
         to: email,
         attachments: [{
             filename: 'yearbook.png',
             content: fs.createReadStream(pngPath)
-        }, {
+        } /* , {
             filename: 'yearbook.pdf',
             content: fs.createReadStream(pdfPath)
-        }]
+        } */ ]
     };
 
     // Body of the email
@@ -183,6 +185,6 @@ async function sendYearbookCopyEmail(email, displayName, pngPath, pdfPath) {
     
     // Delete temporary files once email is sent
     fs.unlinkSync(pngPath);
-    fs.unlinkSync(pdfPath);
+    // fs.unlinkSync(pdfPath);
     return null;
 }
