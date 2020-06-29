@@ -78,15 +78,19 @@ window.addEventListener('load', () => {
     // Hide the toolbar label and show the toolbar
     toolbars.onpointerover = function() {
         document.querySelector('.canvas-toolbar-title').style.display = 'none';
-        toolbars.style.bottom = '10px';
+        toolbars.style.bottom = '-40px';
+    }
+
+    document.querySelector('#main').onpointerover = function() {
+        canvas.click();
     }
 
     // Show the toolbar label and shrink the toolbar
-    canvas.onpointerdown = function() {
+    canvas.onclick = function() {
         setTimeout(function() {
                 document.querySelector('.canvas-toolbar-title').style.display = 'initial';
         }, 500);        
-        toolbars.style.bottom = '-110px';
+        toolbars.style.bottom = '-150px';
     }
 
     // detect and respond to user actions

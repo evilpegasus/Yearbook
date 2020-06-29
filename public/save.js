@@ -222,7 +222,6 @@ function getImage(alert = true) {
 }
 
 function download() {
-    /*
     var storage = firebase.storage();
     var pathReference = storage.ref(currentUser.uid + '/old.png');
 
@@ -236,16 +235,16 @@ function download() {
         document.body.removeChild(link);
         delete link;
     });
-    */
     
+    /*
     // Create a reference with an initial file path and name
     var storageRef = firebase.storage().ref();
     var uploadTask = storageRef.child(serveID + '/' + serveID).putString(serveID).then(function() {
-        // Upload completed successfully, now we can get the download URL
         window.alert("A copy of your yearbook will be emailed to you soon!");
     }).catch(function(error) {
         window.alert('An error occurred, please try again later.');
     });
+    */
 }
 
 function resetYearbook() {

@@ -65,58 +65,59 @@
             <button id="signOutButton" class="btn" onclick="signOut()">Sign Out</button>
         </div>
         <p id="openSideMenuButton" onclick="openMenu()">&#9776;</p>
+        
+        <div id="toolbars">
+            <div class="canvas-toolbar-title">
+                <p>Toolbar</p>
+            </div>
+            <div class="canvas-toolbar-label">
+                <p>Size:</p>
+                <p>Color:</p>
+            </div>
+
+            <div class="canvas-toolbar">
+                <select id="widthSelector" class="selector">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="4" selected = "selected">4</option>
+                    <option value="6">6</option>
+                    <option value="8">8</option>
+                    <option value="10">12</option>
+                    <option value="24">24</option>
+                    <option value="36">36</option>
+                </select>
+        
+                <select id="colorSelector" class="selector">
+                    <option value="black" selected="selected">Black</option>
+                    <option value="blue">Blue</option>
+                    <option value="saddlebrown">Brown</option>
+                    <option value="green">Green</option>
+                    <option value="gray">Gray</option>
+                    <option value="deepskyblue">Light Blue</option>
+                    <option value="lime">Light Green</option>
+                    <option value="darkorange">Orange</option>
+                    <option value="deeppink">Pink</option>
+                    <option value="purple">Purple</option>
+                    <option value="red">Red</option>
+                    <option value="white">Eraser</option>
+                </select>
+            </div>
+
+            <div class="button-toolbar">
+                <button id="clearButton" class="btn" type="button">Clear Changes</button>
+                <a id="download" download="yearbook.png"><button id="downloadButton" class="btn" type="button" onclick="download()">Download</button></a>
+                <button id="saveButton" class="btn" type="button" onclick="upload()">Upload</button>
+                <button id="getImageButton" class="btn" type="button" onclick="getImage()">Update Page</button>
+                <!-- <button id="resetButton" class="btn" type="button" onclick="resetYearbook()">Reset Yearbook</button> -->
+            </div>
+        </div>
+        
         <div id="main" onpointerdown="closeMenu()">
             <h1 class="title-box">Yearbook 2020</h1>
             <p id="owner"></p>
             <div id="canvas-container" width="1500" height="2500">
                 <img src="//:0" id="backgroundImage" width="1500" height="2500">
                 <canvas id="canvas" width="1500" height="2500" crossOrigin="anonymous">Your browser is not supported.</canvas>
-            </div>
-
-            <div id="toolbars">
-                <div class="canvas-toolbar-title">
-                    <p>Toolbar</p>
-                </div>
-                <div class="canvas-toolbar-label">
-                    <p>Size:</p>
-                    <p>Color:</p>
-                </div>
-
-                <div class="canvas-toolbar">
-                    <select id="widthSelector" class="selector">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="4" selected = "selected">4</option>
-                        <option value="6">6</option>
-                        <option value="8">8</option>
-                        <option value="10">12</option>
-                        <option value="24">24</option>
-                        <option value="36">36</option>
-                    </select>
-            
-                    <select id="colorSelector" class="selector">
-                        <option value="black" selected="selected">Black</option>
-                        <option value="blue">Blue</option>
-                        <option value="saddlebrown">Brown</option>
-                        <option value="green">Green</option>
-                        <option value="gray">Gray</option>
-                        <option value="deepskyblue">Light Blue</option>
-                        <option value="lime">Light Green</option>
-                        <option value="darkorange">Orange</option>
-                        <option value="deeppink">Pink</option>
-                        <option value="purple">Purple</option>
-                        <option value="red">Red</option>
-                        <option value="white">Eraser</option>
-                    </select>
-                </div>
-
-                <div class="button-toolbar">
-                    <button id="clearButton" class="btn" type="button">Clear Changes</button>
-                    <a id="download" download="yearbook.png"><button id="downloadButton" class="btn" type="button" onclick="download()">Download</button></a>
-                    <button id="saveButton" class="btn" type="button" onclick="upload()">Upload</button>
-                    <button id="getImageButton" class="btn" type="button" onclick="getImage()">Update Page</button>
-                    <!-- <button id="resetButton" class="btn" type="button" onclick="resetYearbook()">Reset Yearbook</button> -->
-                </div>
             </div>
             <br>
             <br>

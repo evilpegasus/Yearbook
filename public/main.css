@@ -71,11 +71,11 @@ body {
     margin: auto;
     border-radius: 20px;
     background-color: var(--theme-color);
-    bottom: -110px;
+    bottom: -150px;
     left: 0;
     right: 0;
     z-index: 40;
-    height: 160px;
+    height: 200px;
     width: 800px;
     border: 1px solid var(--text-color);
     transition: all 0.2s;
