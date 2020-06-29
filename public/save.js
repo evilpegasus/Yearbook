@@ -1,7 +1,15 @@
 // check if user is signed in
 var currentUser;
 var serveID;
-const dbRef = firebase.firestore().collections("users");
+
+// initialize firestore
+firebase.initializeApp({
+    apiKey: '### FIREBASE API KEY ###',
+    authDomain: '### FIREBASE AUTH DOMAIN ###',
+    projectId: '### CLOUD FIRESTORE PROJECT ID ###'
+});
+const db = firebase.firestore();
+const dbRef = db.collections("users");
 var docRef;
 
 firebase.auth().onAuthStateChanged(function(user) {
