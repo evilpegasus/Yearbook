@@ -67,9 +67,13 @@ firebase.auth().onAuthStateChanged(function(user) {
         // Get the name of the yearbook's owner
         var name = "someone else";
         dbRef.doc(serveID).get().then(function(doc) {
-            name = doc.get("displayName");
-        }).catch(function(error) {
+            if (doc.exists) {
+                name = doc.get('displayName');
+                console.log("Name retrieved successfully");
+            }
             console.log("No such document exists.");
+        }).catch(function(error) {
+            console.log("Error retrieving document: " + error);
         });
         document.getElementById('owner').innerHTML = "You are viewing " + name + "'s yearbook. Sign away!";
         document.getElementById('downloadButton').remove();
