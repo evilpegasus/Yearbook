@@ -232,11 +232,13 @@ function download() {
         var downloadEmail = firebase.functions().httpsCallable('exportYearbook');
         downloadEmail({url: url}).then(function(result) {
             console.log(result.data.status);
+            window.alert("A copy of your yearbook will be emailed to you soon!");
         }).catch(function(error) {
             var code = error.code;
             var message = error.message;
             var details = error.details;
             console.log("An error occurred: " + code + " " + message + " " + details);
+            window.alert('An error occurred. Please try again later.');
         });
     });
 }
