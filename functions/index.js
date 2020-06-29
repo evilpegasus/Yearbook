@@ -113,87 +113,28 @@ async function sendWelcomeEmail(email, displayName, uid) {
     return null;
 }
 
-exports.exportYearbook = functions.storage.object().onFinalize(async (object) => {    
-    const fileBucket = object.bucket;
-    const filePath = object.name;
-    const contentType = object.contentType;
+exports.exportYearbook = functions.https.onCall((data, context) => {    
+    const name = context.auth.token.name;
+    const email = context.auth.token.email;
+    const url = data.url;
 
-    // Exit if file is an image
-    if (contentType.startsWith('image/')) {
-        return console.log('This is an image.');
-    }
+    sendYearbookCopyEmail(email, name, url);
 
-    // const uid = path.basename(filePath, path.extname(filePath));
-    const uid = path.parse(filePath).name;
-    // const fileDir = path.dirname(filePath);
-    // const oldFile = fileDir + "/old.png";
-    // const oldName = path.basename(oldFile);
-
-    // Download file from bucket
-    const bucket = admin.storage().bucket(fileBucket);
-    // const tempFilePath = path.join(os.tmpdir(), oldName);
-    // const tempPdfPath = path.join(os.tmpdir(), "old.pdf");
-    // await bucket.file(filePath).download({destination: tempFilePath});
-    // console.log('Image downloaded locally to', tempFilePath);
-
-    // Merge the images using ImageMagick
-    /*
-    await spawn('convert', [tempFilePath, tempPdfPath]);
-    console.log('Image converted to PDF at', tempPdfPath);
-    */
-
-    // delete the request file
-    bucket.file(filePath).delete().then(function() {
-        // Deleted successfully
-        console.log('Request file deleted');
-        return null;
-    }).catch(function(error) {
-        // An error occurred
-        console.log(error);
-    });
-
-    // Get the download URL and send email
-    var pathReference = admin.storage().ref(uid + '/old.png');
-    pathReference.getDownloadURL().then(function(url) {
-        // Get user information from the uid
-        db.collection("users").doc(uid).get().then(function(doc) {
-            const displayName = doc.get('displayName');
-            const email = doc.get('email');
-            return sendYearbookCopyEmail(email, displayName, url /*, tempFilePath, tempPdfPath*/ );
-        }).catch(function(error) {
-            console.log("Error sending email: " + error);
-        });
-
-        return console.log('Download URL: ' + url);
-    }).catch(function(error) {
-        console.log('There was an error getting the download URL: ' + error);
-    });
-
-    return null;
+    return {status: 'sent'};
 });
 
 // Sends a copy of the yearbook to the given user.
-async function sendYearbookCopyEmail(email, displayName, url /*, pngPath, pdfPath */) {
-     const mailOptions = {
+async function sendYearbookCopyEmail(email, displayName, url) {
+    const mailOptions = {
         from: APP_NAME + " <noreply@firebase.com>",
         to: email,
-        /* attachments: [{
-            filename: 'yearbook.png',
-            path: pngPath
-        }, {
-            filename: 'yearbook.pdf',
-            content: fs.createReadStream(pdfPath)
-        }] */
     };
 
     // Body of the email
     mailOptions.subject = 'Your yearbook from ' + APP_NAME;
     mailOptions.text = "Hi " + displayName + "! \n\nHere is a download link to your yearbook from " + APP_NAME + ": \n\n" + url + "\n\nWe hope you will enjoy it. If you have any questions or concerns, please email us at yearbook2020app@gmail.com. \n\n -The Yearbook Team";
+    
     await mailTransport.sendMail(mailOptions);
     console.log('Yearbook sent to: ', email);
-    
-    // Delete temporary files once email is sent
-    // fs.unlinkSync(pngPath);
-    // fs.unlinkSync(pdfPath);
     return null;
 }

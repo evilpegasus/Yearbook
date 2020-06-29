@@ -6,6 +6,9 @@ var serveID;
 const dbRef = firebase.firestore().collection("users");
 var docRef;
 
+// set up cloud functions for download
+var functions = firebase.functions();
+
 firebase.auth().onAuthStateChanged(function(user) {
     // check for params in URL
     const queryString = window.location.search;
@@ -222,28 +225,19 @@ function getImage(alert = true) {
 }
 
 function download() {
-    /*
     var storage = firebase.storage();
     var pathReference = storage.ref(currentUser.uid + '/old.png');
 
     pathReference.getDownloadURL().then(function(url) {
-        var link = document.createElement("a");
-        link.setAttribute("download", "yearbook.png");
-        link.setAttribute("target", "_blank");
-        link.href = url;
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-        delete link;
-    });
-    */
-    
-    // Create a reference with an initial file path and name
-    var storageRef = firebase.storage().ref();
-    var uploadTask = storageRef.child(serveID + '/' + serveID).putString(serveID).then(function() {
-        window.alert("A copy of your yearbook will be emailed to you soon!");
-    }).catch(function(error) {
-        window.alert('An error occurred, please try again later.');
+        var downloadEmail = firebase.functions().httpsCallable('exportYearbook');
+        downloadEmail({url: url}).then(function(result) {
+            console.log(result.data.status);
+        }).catch(function(error) {
+            var code = error.code;
+            var message = error.message;
+            var details = error.details;
+            console.log("An error occurred: " + code + " " + message + " " + details);
+        });
     });
 }
 
