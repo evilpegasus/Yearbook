@@ -324,3 +324,32 @@ a:active {
 footer {
     margin-bottom: 70px;
 }
+
+.profile-div {
+    padding: 10px;
+}
+
+.profile {
+    text-align: left;
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 40px;
+    margin-right: 40px;
+    width: 80px;
+    display: inline-block;
+    width: 30%;
+    height: auto;
+    border-radius: 40px;
+    box-shadow: var(--canvas-shadow);
+    padding: 20px
+}
+
+.profile-picture {
+    border-radius: 50%;
+    width: 40%;
+    height: auto;
+    display: block;
+    margin: auto;
+    box-shadow: var(--canvas-shadow);
+  }
