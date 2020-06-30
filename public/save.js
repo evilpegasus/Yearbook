@@ -112,8 +112,10 @@ function upload(alert = true) {
     // show working popup
     var popup = document.querySelector("#workingPopup");
     var popupContainer = document.querySelector("#popupContainer");
-    var animation = document.querySelector("#animation");
-    animation.style.display = 'block';
+    var animations = document.querySelectorAll(".animation");
+    animations.forEach(function(animation) {
+        animation.style.display = 'block';
+    });
     document.body.style.overflow = 'hidden';
     popup.style.height = '200px';
     popup.style.width = '200px';
@@ -158,8 +160,10 @@ function upload(alert = true) {
                     // Close the working popup
                     var popup = document.querySelector("#workingPopup");
                     var popupContainer = document.querySelector("#popupContainer");
-                    var animation = document.querySelector("#animation");
-                    animation.style.display = 'none';
+                    var animations = document.querySelectorAll(".animation");
+                    animations.forEach(function(animation) {
+                        animation.style.display = 'none';
+                    });
                     document.body.style.overflow = 'visible';
                     popup.style.height = '0';
                     popup.style.width = '0';
@@ -200,8 +204,10 @@ function upload(alert = true) {
         // Close the working popup
         var popup = document.querySelector("#workingPopup");
         var popupContainer = document.querySelector("#popupContainer");
-        var animation = document.querySelector("#animation");
-        animation.style.display = 'none';
+        var animations = document.querySelectorAll(".animation");
+        animations.forEach(function(animation) {
+            animation.style.display = 'none';
+        });
         document.body.style.overflow = 'visible';
         popup.style.height = '0';
         popup.style.width = '0';
@@ -228,8 +234,10 @@ function assertTempDeleted() {
         // Close the working popup
         var popup = document.querySelector("#workingPopup");
         var popupContainer = document.querySelector("#popupContainer");
-        var animation = document.querySelector("#animation");
-        animation.style.display = 'none';
+        var animations = document.querySelectorAll(".animation");
+        animations.forEach(function(animation) {
+            animation.style.display = 'none';
+        });
         document.body.style.overflow = 'visible';
         popup.style.height = '0';
         popup.style.width = '0';
@@ -248,8 +256,10 @@ function getImage(alert = true, uploadAlert = false) {
     // show working popup
     var popup = document.querySelector("#workingPopup");
     var popupContainer = document.querySelector("#popupContainer");
-    var animation = document.querySelector("#animation");
-    animation.style.display = 'block';
+    var animations = document.querySelectorAll(".animation");
+    animations.forEach(function(animation) {
+        animation.style.display = 'block';
+    });
     document.body.style.overflow = 'hidden';
     popup.style.height = '200px';
     popup.style.width = '200px';
@@ -281,8 +291,10 @@ function getImage(alert = true, uploadAlert = false) {
                 // Close the working popup
                 var popup = document.querySelector("#workingPopup");
                 var popupContainer = document.querySelector("#popupContainer");
-                var animation = document.querySelector("#animation");
-                animation.style.display = 'none';
+                var animations = document.querySelectorAll(".animation");
+                animations.forEach(function(animation) {
+                    animation.style.display = 'none';
+                });
                 document.body.style.overflow = 'visible';
                 popup.style.height = '0';
                 popup.style.width = '0';
@@ -302,8 +314,10 @@ function getImage(alert = true, uploadAlert = false) {
             // Close the working popup
             var popup = document.querySelector("#workingPopup");
             var popupContainer = document.querySelector("#popupContainer");
-            var animation = document.querySelector("#animation");
-            animation.style.display = 'none';
+            var animations = document.querySelectorAll(".animation");
+            animations.forEach(function(animation) {
+                animation.style.display = 'none';
+            });
             document.body.style.overflow = 'visible';
             popup.style.height = '0';
             popup.style.width = '0';
@@ -340,8 +354,10 @@ function getImage(alert = true, uploadAlert = false) {
         // Close the working popup
         var popup = document.querySelector("#workingPopup");
         var popupContainer = document.querySelector("#popupContainer");
-        var animation = document.querySelector("#animation");
-        animation.style.display = 'none';
+        var animations = document.querySelectorAll(".animation");
+        animations.forEach(function(animation) {
+            animation.style.display = 'none';
+        });
         document.body.style.overflow = 'visible';
         popup.style.height = '0';
         popup.style.width = '0';
