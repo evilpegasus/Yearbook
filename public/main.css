@@ -16,6 +16,7 @@ body {
     color: var(--text-color);
     font-family: sans-serif;
     text-align: center;
+    transition: 0.2s;
 }
 
 #canvas {
@@ -63,6 +64,7 @@ body {
     margin: auto;
     margin-top: 50px;
     border-radius: 10px;
+    transition: 0.2s;
 }
 
 #toolbars {
@@ -217,11 +219,12 @@ a:active {
     overflow-x: hidden;
     padding-top: 60px;
     transition: 0.5s;
-    box-shadow: var(--menu-shadow);
+    box-shadow: none;
 }
 
 #sideMenu .selector {
     background-color: var(--menu-color);
+    width: 150px;
     transition: 0.2s;
 }
 
@@ -319,6 +322,7 @@ a:active {
     margin: auto;
     margin-top: 50px;
     border-radius: 10px;
+    transition: 0.2s;
 }
 
 footer {

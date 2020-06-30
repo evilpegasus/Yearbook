@@ -15,6 +15,9 @@ window.addEventListener('load', () => {
     var painting = false;
     var offsetY = canvas.getBoundingClientRect().top;
     var offsetX = canvas.getBoundingClientRect().left;
+    if (randomInt(1, 100) == 1) {
+        document.querySelector('.title-box').style.fontVariant = 'normal';
+    }
     
     // adjust the X and Y offsets of the painting
     function adjustOffsets() {
