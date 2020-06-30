@@ -165,13 +165,9 @@ function upload(alert = true) {
                         
                         // Move canvas contents to background image so they can't be cleared and get image after one second to allow for image merge
                         setTimeout(() => {
-                            getImage(false);
+                            getImage(false, true);
                             ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-                            if (alert) {
-                                window.alert("Upload successful");
-                            }
-                        }, 1000);
+                        }, 2000);
                     });
                 });
             });
@@ -182,7 +178,7 @@ function upload(alert = true) {
     }
 };
 
-function getImage(alert = true) {
+function getImage(alert = true, uploadAlert = false) {
     try {
         const canvas = document.querySelector("#canvas");
         const backgroundImage = document.querySelector("#backgroundImage");
@@ -201,10 +197,13 @@ function getImage(alert = true) {
                 backgroundImage.src = url; // can also be a remote URL e.g. http://
                 canvas.style.backgroundColor = "transparent";
                 backgroundImage.style.display = "inline-block";
+                console.log("Image from server drawn onto canvas. URL = ", url);
                 if (alert) {
                     window.alert("Page updated successfully");
                 }
-                console.log("Image from server drawn onto canvas. URL = ", url);
+                if (uploadAlert) {
+                    window.alert('Upload successful');
+                }
             }
         }).catch(function(error) {
             console.log("Failed to get image from the server.");
