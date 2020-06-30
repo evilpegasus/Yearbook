@@ -396,17 +396,17 @@ footer {
 }
 
 @keyframes working {
-    0%   {top: 100px; left: 65px;}
-    25%  {top: 100px; left: 115px;}
-    50%  {top: 150px; left: 115px;}
-    75%  {top: 150px; left: 65px;}
-    100% {top: 100px; left: 65px;}
+    0%   {top: 80px; left: 55px;}
+    25%  {top: 80px; left: 125px;}
+    50%  {top: 150px; left: 125px;}
+    75%  {top: 150px; left: 55px;}
+    100% {top: 80px; left: 55px;}
 }
 
 #animation {
     width: 20px;
     height: 20px;
-    border-radius: 0;
+    border-radius: 50%;
     background-color: var(--text-color);
     position: absolute;
     top: 0;
@@ -436,7 +436,7 @@ footer {
     margin: auto;
     transition: 0.6s;
     display: none;
-    padding: 2%;
+    padding: 0;
 }
 
 #welcomePopup #closePopup {
