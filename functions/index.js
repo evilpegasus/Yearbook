@@ -74,6 +74,10 @@ exports.combineImages = functions.storage.object().onFinalize(async (object) => 
         metadata: metadata,
     });
 
+    // Once the image has been uploaded delete the local files to free up disk space
+    fs.unlinkSync(tempFilePath);
+    fs.unlinkSync(tempOldPath);
+
     // Delete the temporary overlay file
     bucket.file(filePath).delete().then(function() {
         // Deleted successfully
@@ -84,9 +88,6 @@ exports.combineImages = functions.storage.object().onFinalize(async (object) => 
         console.log(error);
     });
 
-    // Once the image has been uploaded delete the locals file to free up disk space
-    fs.unlinkSync(tempFilePath);
-    fs.unlinkSync(tempOldPath);
     return null;
 });
 

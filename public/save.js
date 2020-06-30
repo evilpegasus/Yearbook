@@ -164,10 +164,7 @@ function upload(alert = true) {
                         console.log('File available at', downloadURL);
                         
                         // Move canvas contents to background image so they can't be cleared and get image after one second to allow for image merge
-                        setTimeout(() => {
-                            getImage(false, true);
-                            ctx.clearRect(0, 0, canvas.width, canvas.height);
-                        }, 8000);
+                        setTimeout(assertTempDeleted(), 5000);
                     });
                 });
             });
@@ -177,6 +174,18 @@ function upload(alert = true) {
         console.log(error);
     }
 };
+
+function assertTempDeleted() {
+    var pathRef = firebase.storage().ref(serveID + '/temp.png');
+    pathRef.getDownloadURL().then(function(url) {
+        // If temp still exists, wait one second and run the function again
+        setTimeout(assertTempDeleted(), 1000);
+    }).catch(function(error) {
+        // If temp doesn't exist, the cloud function has finished executing and we can draw the image on the canvas
+        getImage(false, true);
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+    });
+}
 
 function getImage(alert = true, uploadAlert = false) {
     try {
