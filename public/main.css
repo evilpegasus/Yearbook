@@ -406,9 +406,3 @@ footer {
     transition: 0.1s;
     display: none;
 }
-
-h2 {
-    color: var(--text-color);
-    font-size: 32px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
