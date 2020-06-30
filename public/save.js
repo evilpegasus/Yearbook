@@ -108,6 +108,18 @@ firebase.auth().onAuthStateChanged(function(user) {
 });
 
 function upload(alert = true) {
+
+    // show working popup
+    var popup = document.querySelector("#workingPopup");
+    var popupContainer = document.querySelector("#popupContainer");
+    document.body.style.overflow = 'hidden';
+    popup.style.height = '650px';
+    popup.style.width = '1000px';
+    popup.style.display = 'block';
+    popupContainer.style.height = '100%';
+    popupContainer.style.width = '100%';
+    popupContainer.style.display = 'block';
+
     try {
         const canvas = document.querySelector("#canvas");
         const ctx = canvas.getContext("2d");
@@ -141,6 +153,17 @@ function upload(alert = true) {
                             break;
                     }
                 }, function(error) {
+                    // Close the working popup
+                    var popup = document.querySelector("#workingPopup");
+                    var popupContainer = document.querySelector("#popupContainer");
+                    document.body.style.overflow = 'visible';
+                    popup.style.height = '0';
+                    popup.style.width = '0';
+                    popup.style.display = 'none;'
+                    popupContainer.style.height = '0';
+                    popupContainer.style.width = '0';
+                    popupContainer.style.display = 'none';
+
                     console.log("Failed to upload image to the server.");
                     console.log(error);
                     // A full list of error codes is available at
@@ -170,6 +193,17 @@ function upload(alert = true) {
             });
         });
     } catch(error) {
+        // Close the working popup
+        var popup = document.querySelector("#workingPopup");
+        var popupContainer = document.querySelector("#popupContainer");
+        document.body.style.overflow = 'visible';
+        popup.style.height = '0';
+        popup.style.width = '0';
+        popup.style.display = 'none;'
+        popupContainer.style.height = '0';
+        popupContainer.style.width = '0';
+        popupContainer.style.display = 'none';
+
         window.alert("Something went wrong while uploading your image:\n" + error.message);
         console.log(error);
     }
@@ -184,12 +218,36 @@ function assertTempDeleted() {
         setTimeout(assertTempDeleted(), 1000);
     }).catch(function(error) {
         // If temp doesn't exist, the cloud function has finished executing and we can draw the image on the canvas
+
+        // Close the working popup
+        var popup = document.querySelector("#workingPopup");
+        var popupContainer = document.querySelector("#popupContainer");
+        document.body.style.overflow = 'visible';
+        popup.style.height = '0';
+        popup.style.width = '0';
+        popup.style.display = 'none;'
+        popupContainer.style.height = '0';
+        popupContainer.style.width = '0';
+        popupContainer.style.display = 'none';
+
+        // Draw the image and clear the canvas
         getImage(false, true);
         ctx.clearRect(0, 0, canvas.width, canvas.height);
     });
 }
 
 function getImage(alert = true, uploadAlert = false) {
+    // show working popup
+    var popup = document.querySelector("#workingPopup");
+    var popupContainer = document.querySelector("#popupContainer");
+    document.body.style.overflow = 'hidden';
+    popup.style.height = '650px';
+    popup.style.width = '1000px';
+    popup.style.display = 'block';
+    popupContainer.style.height = '100%';
+    popupContainer.style.width = '100%';
+    popupContainer.style.display = 'block';
+
     try {
         const canvas = document.querySelector("#canvas");
         const backgroundImage = document.querySelector("#backgroundImage");
@@ -209,6 +267,18 @@ function getImage(alert = true, uploadAlert = false) {
                 canvas.style.backgroundColor = "transparent";
                 backgroundImage.style.display = "inline-block";
                 console.log("Image from server drawn onto canvas. URL = ", url);
+
+                // Close the working popup
+                var popup = document.querySelector("#workingPopup");
+                var popupContainer = document.querySelector("#popupContainer");
+                document.body.style.overflow = 'visible';
+                popup.style.height = '0';
+                popup.style.width = '0';
+                popup.style.display = 'none;'
+                popupContainer.style.height = '0';
+                popupContainer.style.width = '0';
+                popupContainer.style.display = 'none';
+
                 if (alert) {
                     window.alert("Page updated successfully");
                 }
@@ -217,6 +287,17 @@ function getImage(alert = true, uploadAlert = false) {
                 }
             }
         }).catch(function(error) {
+            // Close the working popup
+            var popup = document.querySelector("#workingPopup");
+            var popupContainer = document.querySelector("#popupContainer");
+            document.body.style.overflow = 'visible';
+            popup.style.height = '0';
+            popup.style.width = '0';
+            popup.style.display = 'none;'
+            popupContainer.style.height = '0';
+            popupContainer.style.width = '0';
+            popupContainer.style.display = 'none';
+
             console.log("Failed to get image from the server.");
             console.log(error);
             window.alert("Something went wrong while updating the page:\n" + error.message);
@@ -242,6 +323,17 @@ function getImage(alert = true, uploadAlert = false) {
             }
         });
     } catch(error) {
+        // Close the working popup
+        var popup = document.querySelector("#workingPopup");
+        var popupContainer = document.querySelector("#popupContainer");
+        document.body.style.overflow = 'visible';
+        popup.style.height = '0';
+        popup.style.width = '0';
+        popup.style.display = 'none;'
+        popupContainer.style.height = '0';
+        popupContainer.style.width = '0';
+        popupContainer.style.display = 'none';
+
         window.alert("Something went wrong while updating the page:\n" + error.message);
         console.log(error);
     }
