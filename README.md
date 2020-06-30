@@ -6,6 +6,10 @@ Try it here:
 
 https://yearbook-hhs.web.app/
 
+[![Demo Image](demo.png)](https://yearbook-hhs.web.app/)
+
+# Usage
+
 ## Signing in
 You must use either a Google account or a Facebook account to authenticate. You cannot access the app without authenticating. More sign in options may be added in the future.
 
