@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>About Yearbook 2020</title>
+        <script src="/__/firebase/7.15.3/firebase-app.js"></script>
+
+        <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+        <script src="/__/firebase/7.15.4/firebase-analytics.js"></script>
+
+        <!-- Add the entire Firebase JavaScript SDK -->
+        <script src="/__/firebase/7.15.3/firebase.js"></script>
+
+        <!-- Initialize Firebase -->
+        <script src="/__/firebase/init.js"></script>
+
+
+        <!-- Font -->
+        <link href="https://fonts.googleapis.com/css2?family=Gruppo&display=swap" rel="stylesheet">
+
+
+        <script src="canvas.js"></script>
+        <script src="save.js"></script>
+        <script src="menu.js"></script>
+        <link id="stylesheet" rel="stylesheet" href="main.css">
+        <link rel="icon" href="favicon-512x512.png">
+
+        <!-- Link preview metadata -->
+        <meta name="name"                      content="Yearbook 2020" />
+        <meta property="og:url"                content="https://yearbook-hhs.web.app/about.html" />
+        <meta property="og:type"               content="website" />
+        <meta property="og:title"              content="Yearbook 2020" />
+        <meta property="og:description"        content="About Yearbook 2020! Yearbook 2020 is an online yearbook signing app developed to keep people connected during the quarantine." />
+        <meta name="description"               content="About Yearbook 2020! Yearbook 2020 is an online yearbook signing app developed to keep people connected during the quarantine." />
+        <meta property="og:image"              content="https://yearbook-hhs.web.app/logo-500x200.png" />
+        <meta itemprop="image"                 content="https://yearbook-hhs.web.app/logo-500x200.png" />
+        <meta name="image"                     content="https://yearbook-hhs.web.app/logo-500x200.png" />
+        <meta property="og:image:width "       content="500" />
+        <meta property="og:image:height"       content="200" />
+        <meta property="fb:app_id"             content="582201189392211" />
+    </head>
+    <body>
+        <div id="sideMenu">
+            <a id="closeMenu" onclick="closeMenu()">&times;</a>
+            <p class="sideMenuLabel">Theme:</p>
+            <select id="themeSelector" class="selector" onchange="changeTheme()">
+                <option value="black">Black</option>
+                <option value="blue" selected="selected">Blue</option>
+                <option value="green">Green</option>
+                <option value="red">Red</option>
+                <option value="white">White</option>
+            </select>
+            <br><br><br><br>
+            <p class="sideMenuLabel">Go to:</p>
+            <a href='app.html'><button id="goToYourYearbookButton" class="btn">Your Yearbook</button></a>
+            <br><br>
+            <button id="goToSomeoneElseYearbookButton" class="btn" onclick="goToAnotherYearbook()">Someone Else's Yearbook</button>
+            <br><br><br><br><br>
+            <button id="shareButton" class="btn" onclick="copyURL()">Share Your Yearbook</button>
+            <br><br><br><br><br>
+            <a href='faq.html'><button id="faqButton" class="btn">Frequently Asked Questions</button></a>
+            <br><br><br><br><br>
+            <button id="signOutButton" class="btn" onclick="signOut()">Sign Out</button>
+        </div>
+        <p id="openSideMenuButton" onclick="openMenu()">&#9776;</p>
+        <div id="main" onmousedown="closeMenu()">
+
+            <h1 class="faq-title-box">Yearbook 2020</h1>
+            <div class="faq-center-div">
+                <h1>About Yearbook 2020</h1>
+                  <h2>Mission Statement</h2>
+                  <p>Yearbook 2020 was created during the COVID-19 quarantine. The goal of this project is to keep classmates, teachers, and friends connected dispite the shortening of the 2019-2020 school year.</p>
+            </div>
+    </body>
+</html>
