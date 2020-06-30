@@ -395,6 +395,30 @@ footer {
     padding: 2%;
 }
 
+@keyframes working {
+    0%   {top: 100px; left: 65px;}
+    25%  {top: 100px; left: 115px;}
+    50%  {top: 150px; left: 115px;}
+    75%  {top: 150px; left: 65px;}
+    100% {top: 100px; left: 65px;}
+}
+
+#animation {
+    width: 20px;
+    height: 20px;
+    border-radius: 0;
+    background-color: var(--text-color);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 145;
+    margin: 0;
+    display: none;
+    animation-name: working;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+}
+
 #workingPopup {
     width: 0;
     height: 0;
