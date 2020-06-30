@@ -166,12 +166,12 @@ function upload(alert = true) {
                         // Move canvas contents to background image so they can't be cleared and get image after one second to allow for image merge
                         setTimeout(() => {
                             getImage(false);
-                        }, 2000);
-                        ctx.clearRect(0, 0, canvas.width, canvas.height);
+                            ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-                        if (alert) {
-                            window.alert("Upload successful");
-                        }
+                            if (alert) {
+                                window.alert("Upload successful");
+                            }
+                        }, 1000);
                     });
                 });
             });
