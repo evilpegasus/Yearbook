@@ -14,9 +14,10 @@
 body {
     background-color: var(--theme-color);
     color: var(--text-color);
-    font-family: sans-serif;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     text-align: center;
     transition: 0.2s;
+    overflow: visible;
 }
 
 #canvas {
@@ -76,7 +77,7 @@ body {
     bottom: -150px;
     left: 0;
     right: 0;
-    z-index: 40;
+    z-index: 70;
     height: 200px;
     width: 800px;
     border: 1px solid var(--text-color);
@@ -260,7 +261,6 @@ a:active {
 #sideMenu #closeMenu {
     padding: 8px 8px 8px 32px;
     text-decoration: none;
-    font-size: 25px;
     color: var(--text-color);
     display: block;
     transition: 0.2s;
@@ -327,4 +327,60 @@ a:active {
 
 footer {
     margin-bottom: 70px;
+}
+
+#welcomePopup {
+    width: 0;
+    height: 0;
+    border-radius: 10px;
+    background-color: var(--theme-color);
+    color: var(--text-color);
+    box-shadow: var(--menu-shadow);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 150;
+    text-align: center;
+    margin: auto;
+    transition: 0.6s;
+    display: none;
+}
+
+#welcomePopup #closePopup {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    color: var(--text-color);
+    display: block;
+    transition: 0.2s;
+    position: absolute;
+    top: 0;
+    right: 10px;
+    font-size: 32px;
+    margin-left: 50px;
+}
+  
+#welcomePopup #closePopup:hover {
+    text-shadow: var(--text-shadow);
+    color: var(--text-color);
+    cursor: pointer;
+}
+
+#popupContainer {
+    width: 0;
+    height: 0;
+    background-color: rgba(187, 187, 187, 0.8);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 130;
+    transition: 0.1s;
+    display: none;
+}
+
+h2 {
+    color: var(--text-color);
+    font-size: 32px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }

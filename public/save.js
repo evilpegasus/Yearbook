@@ -34,6 +34,17 @@ firebase.auth().onAuthStateChanged(function(user) {
             }).catch(function(error) {
                 console.log("Error adding document " + error);
             });
+
+            // show new user popup
+            var popup = document.querySelector("#welcomePopup");
+            var popupContainer = document.querySelector("#popupContainer");
+            document.body.style.overflow = 'hidden';
+            popup.style.height = '650px';
+            popup.style.width = '1000px';
+            popup.style.display = 'block';
+            popupContainer.style.height = '100%';
+            popupContainer.style.width = '100%';
+            popupContainer.style.display = 'block';
         }
     } else {
         // No user is signed in. Kick them out to login screen preserving any URL params

@@ -235,7 +235,15 @@ function copyURL() {
     window.alert("Your yearbook's unique sharing URL has been copied to your clipboard. Share it with your friends!");
 }
 
-function popup() {
-    // TODO: finish function
-    return;
+function closePopup() {
+    // close new user popup
+    var popup = document.querySelector("#welcomePopup");
+    var popupContainer = document.querySelector("#popupContainer");
+    document.body.style.overflow = 'visible';
+    popup.style.height = '0';
+    popup.style.width = '0';
+    popup.style.display = 'none;'
+    popupContainer.style.height = '0';
+    popupContainer.style.width = '0';
+    popupContainer.style.display = 'none';
 }
