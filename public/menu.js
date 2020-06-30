@@ -40,7 +40,7 @@ function changeTheme(newTheme = themeSelector.options[themeSelector.selectedInde
     const themeSelector = document.querySelector("#themeSelector");
     const root = document.documentElement;
 
-    // Set the light color for random, 0 or 1 of the three color values can be dark
+    // Set the light color for random themes, 0 or 1 of the three color values can be dark
     function generateLightColor() {
         var lightColor = [];
         switch (randomInt(1, 4)) {
@@ -77,7 +77,7 @@ function changeTheme(newTheme = themeSelector.options[themeSelector.selectedInde
     lightMenuColor.push(Math.floor(lightColor[1] * 3 / 4));
     lightMenuColor.push(Math.floor(lightColor[2] * 3 / 4));
 
-    // Set the dark color for random, 0 or 1 of the three color values can be light
+    // Set the dark color for random themes, 0 or 1 of the three color values can be light
     function generateDarkColor() {
         var darkColor = [];
         switch (randomInt(1, 4)) {
@@ -207,6 +207,8 @@ function changeTheme(newTheme = themeSelector.options[themeSelector.selectedInde
             root.style.setProperty('--menu-shadow', '0 0 30px black');
             break;
     }
+
+    // Update the database to match user's preferred theme
     docRef.update({
         theme: newTheme
     }).then(function() {

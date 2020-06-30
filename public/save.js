@@ -47,7 +47,7 @@ firebase.auth().onAuthStateChanged(function(user) {
             popupContainer.style.display = 'block';
         }
     } else {
-        // No user is signed in. Kick them out to login screen preserving any URL params
+        // No user is signed in, kick them out to login screen preserving any URL params
         if (serveID) {
             window.location.replace('https://yearbook-hhs.web.app/index.html?user=' + serveID);
         } else {
@@ -107,7 +107,7 @@ firebase.auth().onAuthStateChanged(function(user) {
     });
 });
 
-function upload(alert = true) {
+async function upload(alert = true) {
     try {
         const canvas = document.querySelector("#canvas");
         const ctx = canvas.getContext("2d");
@@ -164,7 +164,7 @@ function upload(alert = true) {
                         console.log('File available at', downloadURL);
                         
                         // Move canvas contents to background image so they can't be cleared and get image after half a second to allow for image merge
-                        setTimeout(getImage(false), 500);
+                        await getImage(false);
                         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
                         if (alert) {
@@ -180,7 +180,7 @@ function upload(alert = true) {
     }
 };
 
-function getImage(alert = true) {
+async function getImage(alert = true) {
     try {
         const canvas = document.querySelector("#canvas");
         const backgroundImage = document.querySelector("#backgroundImage");
@@ -235,10 +235,11 @@ function getImage(alert = true) {
     }
 }
 
-function download() {
+async function download() {
     var storage = firebase.storage();
     var pathReference = storage.ref(currentUser.uid + '/old.png');
 
+    // get the download url and email it to the user
     pathReference.getDownloadURL().then(function(url) {
         var downloadEmail = firebase.functions().httpsCallable('exportYearbook');
         downloadEmail({url: url}).then(function(result) {
