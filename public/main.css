@@ -468,6 +468,38 @@ footer {
     animation-delay: 0.3s;
 }
 
+#working {
+    display: none;
+}
+
+#message {
+    display: none;
+}
+
+#closePopupButton {
+    display: none;
+}
+
+#messagePopup {
+    width: 0;
+    height: 0;
+    border-radius: 10px;
+    background-color: var(--theme-color);
+    color: var(--text-color);
+    box-shadow: var(--menu-shadow);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 147;
+    text-align: center;
+    margin: auto;
+    transition: 0.6s;
+    display: none;
+    padding: 0;
+}
+
 #workingPopup {
     width: 0;
     height: 0;

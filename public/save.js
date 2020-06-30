@@ -107,15 +107,14 @@ firebase.auth().onAuthStateChanged(function(user) {
     });
 });
 
-function upload(alert = true) {
-
-    // show working popup
+function openWorkingPopup() {
     var popup = document.querySelector("#workingPopup");
     var popupContainer = document.querySelector("#popupContainer");
     var animations = document.querySelectorAll(".animation");
     animations.forEach(function(animation) {
         animation.style.display = 'block';
     });
+    document.querySelector('#working').style.display = 'block';
     document.body.style.overflow = 'hidden';
     popup.style.height = '200px';
     popup.style.width = '200px';
@@ -123,6 +122,59 @@ function upload(alert = true) {
     popupContainer.style.height = '100%';
     popupContainer.style.width = '100%';
     popupContainer.style.display = 'block';
+}
+
+function closeWorkingPopup() {
+    var popup = document.querySelector("#workingPopup");
+    var popupContainer = document.querySelector("#popupContainer");
+    var animations = document.querySelectorAll(".animation");
+    animations.forEach(function(animation) {
+        animation.style.display = 'none';
+    });
+    document.querySelector('#working').style.display = 'none';
+    document.body.style.overflow = 'visible';
+    popup.style.height = '0';
+    popup.style.width = '0';
+    popup.style.display = 'none;'
+    popupContainer.style.height = '0';
+    popupContainer.style.width = '0';
+    popupContainer.style.display = 'none';
+}
+
+function openMessagePopup(message) {
+    var popup = document.querySelector("#messagePopup");
+    var popupContainer = document.querySelector("#popupContainer");
+    var messageContainer = document.querySelector('#message');
+    document.body.style.overflow = 'hidden';
+    popup.style.height = '200px';
+    popup.style.width = '300px';
+    popup.style.display = 'block';
+    popupContainer.style.height = '100%';
+    popupContainer.style.width = '100%';
+    popupContainer.style.display = 'block';
+    messageContainer.style.display = 'block';
+    messageContainer.innerHTML = message;
+    document.querySelector('#closePopupButton').style.display = 'block';
+}
+
+function closeMessagePopup() {
+    var popup = document.querySelector("#messagePopup");
+    var popupContainer = document.querySelector("#popupContainer");
+    document.body.style.overflow = 'visible';
+    popup.style.height = '0';
+    popup.style.width = '0';
+    popup.style.display = 'none;'
+    popupContainer.style.height = '0';
+    popupContainer.style.width = '0';
+    popupContainer.style.display = 'none';
+    document.querySelector('#message').style.display = 'none';
+    document.querySelector('#closePopupButton').style.display = 'none';
+}
+
+function upload(alert = true) {
+
+    // show working popup
+    openWorkingPopup();
 
     try {
         const canvas = document.querySelector("#canvas");
@@ -158,19 +210,7 @@ function upload(alert = true) {
                     }
                 }, function(error) {
                     // Close the working popup
-                    var popup = document.querySelector("#workingPopup");
-                    var popupContainer = document.querySelector("#popupContainer");
-                    var animations = document.querySelectorAll(".animation");
-                    animations.forEach(function(animation) {
-                        animation.style.display = 'none';
-                    });
-                    document.body.style.overflow = 'visible';
-                    popup.style.height = '0';
-                    popup.style.width = '0';
-                    popup.style.display = 'none;'
-                    popupContainer.style.height = '0';
-                    popupContainer.style.width = '0';
-                    popupContainer.style.display = 'none';
+                    closeWorkingPopup();
 
                     console.log("Failed to upload image to the server.");
                     console.log(error);
@@ -195,33 +235,21 @@ function upload(alert = true) {
                         console.log('File available at', downloadURL);
                         
                         // Move canvas contents to background image so they can't be cleared and get image after one second to allow for image merge
-                        setTimeout(assertTempDeleted(), 5000);
+                        setTimeout(assertTempDeleted(alert), 5000);
                     });
                 });
             });
         });
     } catch(error) {
         // Close the working popup
-        var popup = document.querySelector("#workingPopup");
-        var popupContainer = document.querySelector("#popupContainer");
-        var animations = document.querySelectorAll(".animation");
-        animations.forEach(function(animation) {
-            animation.style.display = 'none';
-        });
-        document.body.style.overflow = 'visible';
-        popup.style.height = '0';
-        popup.style.width = '0';
-        popup.style.display = 'none;'
-        popupContainer.style.height = '0';
-        popupContainer.style.width = '0';
-        popupContainer.style.display = 'none';
+        closeWorkingPopup();
 
-        window.alert("Something went wrong while uploading your image:\n" + error.message);
+        openMessagePopup("Something went wrong while uploading your image:<br>" + error.message);
         console.log(error);
     }
 };
 
-function assertTempDeleted() {
+function assertTempDeleted(uploadAlert) {
     const canvas = document.querySelector("#canvas");
     const ctx = canvas.getContext("2d");
     var pathRef = firebase.storage().ref(serveID + '/temp.png');
@@ -232,41 +260,17 @@ function assertTempDeleted() {
         // If temp doesn't exist, the cloud function has finished executing and we can draw the image on the canvas
 
         // Close the working popup
-        var popup = document.querySelector("#workingPopup");
-        var popupContainer = document.querySelector("#popupContainer");
-        var animations = document.querySelectorAll(".animation");
-        animations.forEach(function(animation) {
-            animation.style.display = 'none';
-        });
-        document.body.style.overflow = 'visible';
-        popup.style.height = '0';
-        popup.style.width = '0';
-        popup.style.display = 'none;'
-        popupContainer.style.height = '0';
-        popupContainer.style.width = '0';
-        popupContainer.style.display = 'none';
+        closeWorkingPopup();
 
         // Draw the image and clear the canvas
-        getImage(false, true);
+        getImage(false, uploadAlert);
         ctx.clearRect(0, 0, canvas.width, canvas.height);
     });
 }
 
 function getImage(alert = true, uploadAlert = false) {
     // show working popup
-    var popup = document.querySelector("#workingPopup");
-    var popupContainer = document.querySelector("#popupContainer");
-    var animations = document.querySelectorAll(".animation");
-    animations.forEach(function(animation) {
-        animation.style.display = 'block';
-    });
-    document.body.style.overflow = 'hidden';
-    popup.style.height = '200px';
-    popup.style.width = '200px';
-    popup.style.display = 'block';
-    popupContainer.style.height = '100%';
-    popupContainer.style.width = '100%';
-    popupContainer.style.display = 'block';
+    openWorkingPopup();
 
     try {
         const canvas = document.querySelector("#canvas");
@@ -289,46 +293,22 @@ function getImage(alert = true, uploadAlert = false) {
                 console.log("Image from server drawn onto canvas. URL = ", url);
 
                 // Close the working popup
-                var popup = document.querySelector("#workingPopup");
-                var popupContainer = document.querySelector("#popupContainer");
-                var animations = document.querySelectorAll(".animation");
-                animations.forEach(function(animation) {
-                    animation.style.display = 'none';
-                });
-                document.body.style.overflow = 'visible';
-                popup.style.height = '0';
-                popup.style.width = '0';
-                popup.style.display = 'none;'
-                popupContainer.style.height = '0';
-                popupContainer.style.width = '0';
-                popupContainer.style.display = 'none';
+                closeWorkingPopup();
 
                 if (alert) {
-                    window.alert("Page updated successfully");
+                    openMessagePopup("Page updated successfully");
                 }
                 if (uploadAlert) {
-                    window.alert('Upload successful');
+                    openMessagePopup('Upload successful');
                 }
             }
         }).catch(function(error) {
             // Close the working popup
-            var popup = document.querySelector("#workingPopup");
-            var popupContainer = document.querySelector("#popupContainer");
-            var animations = document.querySelectorAll(".animation");
-            animations.forEach(function(animation) {
-                animation.style.display = 'none';
-            });
-            document.body.style.overflow = 'visible';
-            popup.style.height = '0';
-            popup.style.width = '0';
-            popup.style.display = 'none;'
-            popupContainer.style.height = '0';
-            popupContainer.style.width = '0';
-            popupContainer.style.display = 'none';
+            closeWorkingPopup();
 
             console.log("Failed to get image from the server.");
             console.log(error);
-            window.alert("Something went wrong while updating the page:\n" + error.message);
+            openMessagePopup("Something went wrong while updating the page:<br>" + error.message);
     
             // A full list of error codes is available at
             // https://firebase.google.com/docs/storage/web/handle-errors
@@ -352,21 +332,9 @@ function getImage(alert = true, uploadAlert = false) {
         });
     } catch(error) {
         // Close the working popup
-        var popup = document.querySelector("#workingPopup");
-        var popupContainer = document.querySelector("#popupContainer");
-        var animations = document.querySelectorAll(".animation");
-        animations.forEach(function(animation) {
-            animation.style.display = 'none';
-        });
-        document.body.style.overflow = 'visible';
-        popup.style.height = '0';
-        popup.style.width = '0';
-        popup.style.display = 'none;'
-        popupContainer.style.height = '0';
-        popupContainer.style.width = '0';
-        popupContainer.style.display = 'none';
+        closeWorkingPopup();
 
-        window.alert("Something went wrong while updating the page:\n" + error.message);
+        openMessagePopup("Something went wrong while updating the page:<br>" + error.message);
         console.log(error);
     }
 }
@@ -380,13 +348,13 @@ function download() {
         var downloadEmail = firebase.functions().httpsCallable('exportYearbook');
         downloadEmail({url: url}).then(function(result) {
             console.log(result.data.status);
-            window.alert("A copy of your yearbook will be emailed to you soon!");
+            openMessagePopup("A copy of your yearbook will be emailed to you soon!");
         }).catch(function(error) {
             var code = error.code;
             var message = error.message;
             var details = error.details;
             console.log("An error occurred: " + code + " " + message + " " + details);
-            window.alert('An error occurred. Please try again later.');
+            openMessagePopup('An error occurred. Please try again later.');
         });
     });
 }

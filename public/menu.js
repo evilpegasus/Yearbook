@@ -32,7 +32,7 @@ function goToAnotherYearbook() {
     if (redirectURL.startsWith('https://yearbook-hhs.web.app/app.html')) {
         window.location.assign(redirectURL);
     } else {
-        window.alert('Invalid URL');
+        openMessagePopup('Invalid URL');
     }
 }
 
@@ -234,7 +234,7 @@ function copyURL() {
     // Delete copyText
     document.body.removeChild(copyText);
     delete copyText;
-    window.alert("Your yearbook's unique sharing URL has been copied to your clipboard. Share it with your friends!");
+    openMessagePopup("Your yearbook's unique sharing URL has been copied to your clipboard. Share it with your friends!");
 }
 
 function closePopup() {
