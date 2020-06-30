@@ -176,14 +176,20 @@ function upload(alert = true) {
 };
 
 function assertTempDeleted() {
+    console.log('asserting temp deleted...');
     var pathRef = firebase.storage().ref(serveID + '/temp.png');
     pathRef.getDownloadURL().then(function(url) {
         // If temp still exists, wait one second and run the function again
         setTimeout(assertTempDeleted(), 1000);
+        console.log('temp exists, trying again');
     }).catch(function(error) {
         // If temp doesn't exist, the cloud function has finished executing and we can draw the image on the canvas
+        console.log('temp deleted, drawing image');
         getImage(false, true);
         ctx.clearRect(0, 0, canvas.width, canvas.height);
+        console.log(error);
+        console.log(error.message);
+        console.log(error.code);
     });
 }
 
