@@ -107,7 +107,7 @@ firebase.auth().onAuthStateChanged(function(user) {
     });
 });
 
-async function upload(alert = true) {
+function upload(alert = true) {
     try {
         const canvas = document.querySelector("#canvas");
         const ctx = canvas.getContext("2d");
@@ -163,8 +163,10 @@ async function upload(alert = true) {
                     uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
                         console.log('File available at', downloadURL);
                         
-                        // Move canvas contents to background image so they can't be cleared and get image after half a second to allow for image merge
-                        await getImage(false);
+                        // Move canvas contents to background image so they can't be cleared and get image after one second to allow for image merge
+                        setTimeout(() => {
+                            getImage(false);
+                        }, 1000);
                         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
                         if (alert) {
@@ -180,7 +182,7 @@ async function upload(alert = true) {
     }
 };
 
-async function getImage(alert = true) {
+function getImage(alert = true) {
     try {
         const canvas = document.querySelector("#canvas");
         const backgroundImage = document.querySelector("#backgroundImage");
@@ -235,7 +237,7 @@ async function getImage(alert = true) {
     }
 }
 
-async function download() {
+function download() {
     var storage = firebase.storage();
     var pathReference = storage.ref(currentUser.uid + '/old.png');
 
