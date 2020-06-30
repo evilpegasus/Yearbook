@@ -305,7 +305,7 @@ a:active {
 
 .faq-center-div {
     max-width: 68%;
-    text-align: center;
+    text-align: left;
     margin-left: auto;
     margin-right: auto;
     margin-top: 80px;
