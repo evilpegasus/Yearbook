@@ -167,7 +167,7 @@ function upload(alert = true) {
                         setTimeout(() => {
                             getImage(false, true);
                             ctx.clearRect(0, 0, canvas.width, canvas.height);
-                        }, 2000);
+                        }, 8000);
                     });
                 });
             });
