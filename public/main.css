@@ -350,7 +350,7 @@ footer {
     padding-left: 3%;
     padding-right: 3%;
     background-color: var(--text-color);
-    color: var(--theme-color)
+    color: var(--theme-color);
 }
 
 .profile-picture {
@@ -359,7 +359,7 @@ footer {
     height: auto;
     display: block;
     margin: auto;
-    box-shadow: var(--canvas-shadow);
+    box-shadow: 0 5px 20px black;
 }
 
 .profile-icon-div {
