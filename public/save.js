@@ -142,19 +142,21 @@ function closeWorkingPopup() {
 }
 
 function openMessagePopup(message) {
-    var popup = document.querySelector("#messagePopup");
-    var popupContainer = document.querySelector("#popupContainer");
-    var messageContainer = document.querySelector('#message');
-    document.body.style.overflow = 'hidden';
-    popup.style.height = '200px';
-    popup.style.width = '300px';
-    popup.style.display = 'block';
-    popupContainer.style.height = '100%';
-    popupContainer.style.width = '100%';
-    popupContainer.style.display = 'block';
-    messageContainer.style.display = 'block';
-    messageContainer.innerHTML = message;
-    document.querySelector('#closePopupButton').style.display = 'block';
+    setTimeout(function() {
+        var popup = document.querySelector("#messagePopup");
+        var popupContainer = document.querySelector("#popupContainer");
+        var messageContainer = document.querySelector('#message');
+        document.body.style.overflow = 'hidden';
+        popup.style.height = '200px';
+        popup.style.width = '300px';
+        popup.style.display = 'block';
+        popupContainer.style.height = '100%';
+        popupContainer.style.width = '100%';
+        popupContainer.style.display = 'block';
+        messageContainer.style.display = 'block';
+        messageContainer.innerHTML = message;
+        document.querySelector('#closePopupButton').style.display = 'block';
+    }, 500);
 }
 
 function closeMessagePopup() {
