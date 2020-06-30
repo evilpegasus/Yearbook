@@ -101,6 +101,7 @@ window.addEventListener('load', () => {
     canvas.addEventListener("pointerout", endPainting);
 });
 
+// Confirm user wants to leave the site with potentially unsaved changes
 window.onbeforeunload = function(e) {
     return 'Are you sure you want to leave this site? Changes you have made since the last upload will not be saved.';
 };
