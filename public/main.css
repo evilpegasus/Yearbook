@@ -346,17 +346,25 @@ footer {
     height: auto;
     border-radius: 40px;
     box-shadow: var(--canvas-shadow);
-    padding: 20px
+    padding: 30px;
+    background-color: var(--text-color);
+    color: var(--theme-color)
 }
 
 .profile-picture {
     border-radius: 50%;
-    width: 40%;
+    width: 50%;
     height: auto;
     display: block;
     margin: auto;
     box-shadow: var(--canvas-shadow);
   }
+
+.profile-icon{
+    color: var(--theme-color);
+    display: inline-block;
+}
+
 #welcomePopup {
     width: 0;
     height: 0;
