@@ -249,6 +249,7 @@ function closePopup() {
     popupContainer.style.height = '0';
     popupContainer.style.width = '0';
     popupContainer.style.display = 'none';
+    document.querySelector('#closePopup').style.display = 'none';
 
     const canvas = document.querySelector("#canvas");
     const ctx = canvas.getContext("2d");
