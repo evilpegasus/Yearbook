@@ -100,9 +100,3 @@ window.addEventListener('load', () => {
     canvas.addEventListener("pointermove", draw);
     canvas.addEventListener("pointerout", endPainting);
 });
-
-// Confirm user wants to leave the site with potentially unsaved changes
-// Cannot use custom popup for this
-window.onbeforeunload = function(e) {
-    return 'Are you sure you want to leave this site? Changes you have made since the last upload will not be saved.';
-};
