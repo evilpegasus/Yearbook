@@ -245,6 +245,7 @@ function closePopup() {
     document.body.style.overflow = 'visible';
     popup.style.height = '0';
     popup.style.width = '0';
+    popup.style.padding ='0';
     popup.style.display = 'none;'
     popupContainer.style.height = '0';
     popupContainer.style.width = '0';

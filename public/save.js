@@ -41,6 +41,7 @@ firebase.auth().onAuthStateChanged(function(user) {
             document.body.style.overflow = 'hidden';
             popup.style.height = '650px';
             popup.style.width = '1000px';
+            popup.style.padding = '2%';
             popup.style.display = 'block';
             popupContainer.style.height = '100%';
             popupContainer.style.width = '100%';
