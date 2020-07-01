@@ -235,7 +235,7 @@ function upload(alert = true) {
                         console.log('File available at', downloadURL);
                         
                         // Move canvas contents to background image so they can't be cleared and get image after one second to allow for image merge
-                        setTimeout(assertTempDeleted(alert), 5000);
+                        setTimeout(assertTempDeleted(), 5000);
                     });
                 });
             });
@@ -249,7 +249,7 @@ function upload(alert = true) {
     }
 };
 
-function assertTempDeleted(uploadAlert) {
+function assertTempDeleted() {
     const canvas = document.querySelector("#canvas");
     const ctx = canvas.getContext("2d");
     var pathRef = firebase.storage().ref(serveID + '/temp.png');
@@ -263,7 +263,7 @@ function assertTempDeleted(uploadAlert) {
         closeWorkingPopup();
 
         // Draw the image and clear the canvas
-        getImage(false, uploadAlert);
+        getImage(false, true);
         ctx.clearRect(0, 0, canvas.width, canvas.height);
     });
 }
