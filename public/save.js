@@ -38,6 +38,10 @@ firebase.auth().onAuthStateChanged(function(user) {
             // show new user popup
             var popup = document.querySelector("#welcomePopup");
             var popupContainer = document.querySelector("#popupContainer");
+            var welcomeText = document.querySelectorAll(".welcomeText");
+            welcomeText.forEach(function(welcomeText) {
+                welcomeText.style.display = 'initial';
+            });
             document.body.style.overflow = 'hidden';
             popup.style.height = '650px';
             popup.style.width = '1000px';

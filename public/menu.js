@@ -242,6 +242,10 @@ function closePopup() {
     // close new user popup
     var popup = document.querySelector("#welcomePopup");
     var popupContainer = document.querySelector("#popupContainer");
+    var welcomeText = document.querySelectorAll(".welcomeText");
+    welcomeText.forEach(function(welcomeText) {
+        welcomeText.style.display = 'none';
+    });
     document.body.style.overflow = 'visible';
     popup.style.height = '0';
     popup.style.width = '0';

@@ -395,6 +395,10 @@ footer {
     padding: 0;
 }
 
+.welcomeText {
+    display: none;
+}
+
 @keyframes working {
     from { transform: rotate(-90deg) translateX(35px) rotate(90deg); }
     to   { transform: rotate(270deg) translateX(35px) rotate(-270deg); }
