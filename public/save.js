@@ -45,6 +45,12 @@ firebase.auth().onAuthStateChanged(function(user) {
             popupContainer.style.height = '100%';
             popupContainer.style.width = '100%';
             popupContainer.style.display = 'block';
+
+            const canvas = document.querySelector("#canvas");
+            const ctx = canvas.getContext("2d");
+            ctx.fillStyle = "white";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            upload(false);
         }
     } else {
         // No user is signed in, kick them out to login screen preserving any URL params
@@ -170,8 +176,17 @@ function upload(alert = true) {
                     uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
                         console.log('File available at', downloadURL);
                         
-                        // Move canvas contents to background image so they can't be cleared and get image after one second to allow for image merge
-                        setTimeout(assertTempDeleted(), 5000);
+                        if (alert) {
+                            // Move canvas contents to background image so they can't be cleared and get image after one second to allow for image merge
+                            setTimeout(assertTempDeleted(), 5000);
+                        } else {
+                            // Close the working popup
+                            closeWorkingPopup();
+
+                            // Draw the image and clear the canvas
+                            getImage(false, true);
+                            ctx.clearRect(0, 0, canvas.width, canvas.height);
+                        }
                     });
                 });
             });
