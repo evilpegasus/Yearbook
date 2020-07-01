@@ -255,7 +255,6 @@ function closePopup() {
     ctx.fillStyle = "white";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     upload(false);
-    openWorkingPopup();
     assertOldExists();
 }
 
@@ -264,7 +263,6 @@ function assertOldExists() {
     const ctx = canvas.getContext("2d");
     var pathRef = firebase.storage().ref(serveID + '/old.png');
     pathRef.getDownloadURL().then(function(url) {
-        closeWorkingPopup();
         // If old exists, we can continue with the redirect
         // check for params in URL
         const queryString = window.location.search;
