@@ -184,7 +184,7 @@ function upload(alert = true) {
                             closeWorkingPopup();
 
                             // Draw the image and clear the canvas
-                            getImage(false, true);
+                            getImage(false, false);
                             ctx.clearRect(0, 0, canvas.width, canvas.height);
                         }
                     });
