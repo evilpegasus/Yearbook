@@ -40,7 +40,7 @@ firebase.auth().onAuthStateChanged(function(user) {
             var popupContainer = document.querySelector("#popupContainer");
             var welcomeText = document.querySelectorAll(".welcomeText");
             welcomeText.forEach(function(welcomeText) {
-                welcomeText.style.display = 'initial';
+                welcomeText.style.display = 'block';
             });
             document.body.style.overflow = 'hidden';
             popup.style.height = '650px';
