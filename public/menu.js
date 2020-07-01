@@ -249,4 +249,16 @@ function closePopup() {
     popupContainer.style.height = '0';
     popupContainer.style.width = '0';
     popupContainer.style.display = 'none';
+
+    // Redirect the user to the same site without the new user
+    // check for params in URL
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    serveID = urlParams.get('user');
+
+    if (serveID) {
+        window.location.replace('https://yearbook-hhs.web.app/app.html?user=' + serveID);
+    } else {
+        window.location.replace('https://yearbook-hhs.web.app/app.html');
+    }
 }
