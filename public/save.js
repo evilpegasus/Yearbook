@@ -45,12 +45,6 @@ firebase.auth().onAuthStateChanged(function(user) {
             popupContainer.style.height = '100%';
             popupContainer.style.width = '100%';
             popupContainer.style.display = 'block';
-
-            const canvas = document.querySelector("#canvas");
-            const ctx = canvas.getContext("2d");
-            ctx.fillStyle = "white";
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-            upload(false);
         }
     } else {
         // No user is signed in, kick them out to login screen preserving any URL params

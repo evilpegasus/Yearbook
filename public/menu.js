@@ -250,6 +250,12 @@ function closePopup() {
     popupContainer.style.width = '0';
     popupContainer.style.display = 'none';
 
+    const canvas = document.querySelector("#canvas");
+    const ctx = canvas.getContext("2d");
+    ctx.fillStyle = "white";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    upload(false);
+
     // Redirect the user to the same site without the new user
     // check for params in URL
     const queryString = window.location.search;
