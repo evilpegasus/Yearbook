@@ -102,3 +102,51 @@ function closeConfirmPopup() {
     document.querySelector('#confirmNo').style.display = 'none';
     confirmYes.onclick = function() {};
 }
+
+function openPromptPopup(message, label, callback) {
+    var popupContainer = document.querySelector("#popupContainer");
+    var popup = document.querySelector("#promptPopup");
+    var messageContainer = document.querySelector('#promptMessage');
+    var urlLabel = document.querySelector("#urlLabel");
+    var submitPrompt = document.querySelector('#submitPrompt');
+    var url = document.querySelector('#url');
+    document.body.style.overflow = 'hidden';
+    popup.style.height = '200px';
+    popup.style.width = '700px';
+    popup.style.display = 'block';
+    popupContainer.style.height = '100%';
+    popupContainer.style.width = '100%';
+    popupContainer.style.display = 'block';
+    messageContainer.style.display = 'block';
+    messageContainer.innerHTML = message;
+    url.placeholder = label;
+    url.style.display = 'initial';
+    document.querySelector('#promptButtonContainer').style.display = 'block';
+    submitPrompt.style.display = 'inline-block';
+    document.querySelector('#cancelPrompt').style.display = 'inline-block';
+    submitPrompt.onclick = function() {
+        callback(url.value);
+        closePromptPopup();
+    }
+}
+
+function closePromptPopup() {
+    var popup = document.querySelector("#promptPopup");
+    var popupContainer = document.querySelector("#popupContainer");
+    var submitPrompt = document.querySelector('#submitPrompt');
+    var url = document.querySelector('#url');
+    document.body.style.overflow = 'visible';
+    popup.style.height = '0';
+    popup.style.width = '0';
+    popup.style.display = 'none;'
+    popupContainer.style.height = '0';
+    popupContainer.style.width = '0';
+    popupContainer.style.display = 'none';
+    document.querySelector('#promptButtonContainer').style.display = 'none';
+    document.querySelector('#promptMessage').style.display = 'none';
+    submitPrompt.style.display = 'none';
+    document.querySelector('#cancelPrompt').style.display = 'none';
+    url.value = '';
+    url.style.display = 'none';
+    submitPrompt.onclick = function() {};
+}

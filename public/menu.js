@@ -21,19 +21,20 @@ function signOut() {
 }
 
 function goToAnotherYearbook() {
-    var redirectURL = window.prompt("Enter the URL of the yearbook you want to visit:");
-    
-    // Check if redirectURL is null (user pressed cancel)
-    if (!redirectURL) {
-        return;
-    }
+    openPromptPopup("Enter the URL of the yearbook you want to visit:", 'Yearbook URL', function(input) {    
+        // Check if input is null (user didn't put a URL)
+        if (!input) {
+            return;
+        }
 
-    // Mavigate to the URL if it is valid
-    if (redirectURL.startsWith('https://yearbook-hhs.web.app/app.html')) {
-        window.location.assign(redirectURL);
-    } else {
-        openMessagePopup('Invalid URL');
-    }
+        // Mavigate to the URL if it is valid
+        if (input.startsWith('https://yearbook-hhs.web.app/app.html')) {
+            window.location.assign(input);
+        } else {
+            closePromptPopup();
+            openMessagePopup('Invalid URL');
+        }
+    });
 }
 
 function changeTheme(newTheme = themeSelector.options[themeSelector.selectedIndex].value) {
