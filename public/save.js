@@ -107,70 +107,6 @@ firebase.auth().onAuthStateChanged(function(user) {
     });
 });
 
-function openWorkingPopup() {
-    var popup = document.querySelector("#workingPopup");
-    var popupContainer = document.querySelector("#popupContainer");
-    var animations = document.querySelectorAll(".animation");
-    animations.forEach(function(animation) {
-        animation.style.display = 'block';
-    });
-    document.querySelector('#working').style.display = 'block';
-    document.body.style.overflow = 'hidden';
-    popup.style.height = '200px';
-    popup.style.width = '200px';
-    popup.style.display = 'block';
-    popupContainer.style.height = '100%';
-    popupContainer.style.width = '100%';
-    popupContainer.style.display = 'block';
-}
-
-function closeWorkingPopup() {
-    var popup = document.querySelector("#workingPopup");
-    var popupContainer = document.querySelector("#popupContainer");
-    var animations = document.querySelectorAll(".animation");
-    animations.forEach(function(animation) {
-        animation.style.display = 'none';
-    });
-    document.querySelector('#working').style.display = 'none';
-    document.body.style.overflow = 'visible';
-    popup.style.height = '0';
-    popup.style.width = '0';
-    popup.style.display = 'none;'
-    popupContainer.style.height = '0';
-    popupContainer.style.width = '0';
-    popupContainer.style.display = 'none';
-}
-
-function openMessagePopup(message) {
-    var popupContainer = document.querySelector("#popupContainer");
-    var popup = document.querySelector("#messagePopup");
-    var messageContainer = document.querySelector('#message');
-    document.body.style.overflow = 'hidden';
-    popup.style.height = '200px';
-    popup.style.width = '300px';
-    popup.style.display = 'block';
-    popupContainer.style.height = '100%';
-    popupContainer.style.width = '100%';
-    popupContainer.style.display = 'block';
-    messageContainer.style.display = 'block';
-    messageContainer.innerHTML = message;
-    document.querySelector('#closePopupButton').style.display = 'inline-block';
-}
-
-function closeMessagePopup() {
-    var popup = document.querySelector("#messagePopup");
-    var popupContainer = document.querySelector("#popupContainer");
-    document.body.style.overflow = 'visible';
-    popup.style.height = '0';
-    popup.style.width = '0';
-    popup.style.display = 'none;'
-    popupContainer.style.height = '0';
-    popupContainer.style.width = '0';
-    popupContainer.style.display = 'none';
-    document.querySelector('#message').style.display = 'none';
-    document.querySelector('#closePopupButton').style.display = 'none';
-}
-
 function upload(alert = true) {
 
     // show working popup
@@ -361,26 +297,24 @@ function download() {
 
 function resetYearbook() {
     // Confirm yearbook should be reset
-    if (!confirm("Are you sure you want to reset your yearbook? This action cannot be undone.")) {
-        return;
-    }
+    openConfirmPopup("Are you sure you want to reset your yearbook? This action cannot be undone.", function() {
+        // Reset yearbook
+        var storageRef = firebase.storage().ref();
+        const canvas = document.querySelector("#canvas");
+        const ctx = canvas.getContext("2d");
+        const backgroundImage = document.querySelector("#backgroundImage");
+        
+        // Delete image in storage
+        var imageRef = storageRef.child(serveID + '/old.png');
+        imageRef.delete().then(function() {
+            console.log("Yearbook deleted successfully");
+        }).catch(function(error) {
+            console.log(error);
+        });
 
-    // Reset yearbook
-    var storageRef = firebase.storage().ref();
-    const canvas = document.querySelector("#canvas");
-    const ctx = canvas.getContext("2d");
-    const backgroundImage = document.querySelector("#backgroundImage");
-    
-    // Delete image in storage
-    var imageRef = storageRef.child(serveID + '/old.png');
-    imageRef.delete().then(function() {
-        console.log("Yearbook deleted successfully");
-    }).catch(function(error) {
-        console.log(error);
+        // Clear client image
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        backgroundImage.src = "//:0";
+        canvas.style.backgroundColor = "white";
     });
-
-    // Clear client image
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    backgroundImage.src = "//:0";
-    canvas.style.backgroundColor = "white";
 }

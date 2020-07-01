@@ -59,22 +59,22 @@ window.addEventListener('load', () => {
 
     // clear the canvas
     clearButton.onclick = function() {
-        const canvas = document.querySelector("#canvas");
-        const ctx = canvas.getContext("2d");
+        openConfirmPopup("Are you sure you want to clear what you have drawn? This action cannot be undone.", function() {
+            const canvas = document.querySelector("#canvas");
+            const ctx = canvas.getContext("2d");
 
-        if (confirm("Are you sure you want to clear what you have drawn? This action cannot be undone.")) {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-        }
-        
-        // get the image from storage and draw it onto the canvas if user's old.png exists
-        var storageRef = firebase.storage().ref();
-        storageRef.child(serveID + "/old.png").getDownloadURL().then(function() {
-            // old.png already exists
-            getImage(false);
-        }, function() {
-            // old.png does not exist, draw a white background
-            ctx.fillStyle = "white";
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // get the image from storage and draw it onto the canvas if user's old.png exists
+            var storageRef = firebase.storage().ref();
+            storageRef.child(serveID + "/old.png").getDownloadURL().then(function() {
+                // old.png already exists
+                getImage(false);
+            }, function() {
+                // old.png does not exist, draw a white background
+                ctx.fillStyle = "white";
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+            });
         });
     }
 
@@ -102,6 +102,7 @@ window.addEventListener('load', () => {
 });
 
 // Confirm user wants to leave the site with potentially unsaved changes
+// Cannot use custom popup for this
 window.onbeforeunload = function(e) {
     return 'Are you sure you want to leave this site? Changes you have made since the last upload will not be saved.';
 };

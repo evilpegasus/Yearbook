@@ -24,6 +24,7 @@
         <script src="canvas.js"></script>
         <script src="save.js"></script>
         <script src="menu.js"></script>
+        <script src="popup.js"></script>
         <link rel="stylesheet" href="main.css">
         <link rel="icon" href="favicon-512x512.png">
 
@@ -109,7 +110,7 @@
 
             <div class="button-toolbar">
                 <button id="clearButton" class="btn" type="button">Clear Changes</button>
-                <a id="download" download="yearbook.png"><button id="downloadButton" class="btn" type="button" onclick="download()">Download</button></a>
+                <button id="downloadButton" class="btn" type="button" onclick="download()">Download</button>
                 <button id="saveButton" class="btn" type="button" onclick="upload()">Upload</button>
                 <button id="getImageButton" class="btn" type="button" onclick="getImage()">Update Page</button>
                 <!-- <button id="resetButton" class="btn" type="button" onclick="resetYearbook()">Reset Yearbook</button> -->
@@ -155,6 +156,15 @@
                     <p id='message'></p>
                     <br>
                     <button id='closePopupButton' class='btn' onclick='closeMessagePopup()'>OK</button>
+                </div>
+                <div id='confirmPopup' width='500' height='200'>
+                    <br>
+                    <p id='confirmMessage'></p>
+                    <br>
+                    <div id='confirmButtonContainer'>
+                        <button id='confirmYes' class='btn'>Yes</button>
+                        <button id='confirmNo' class='btn' onclick='closeConfirmPopup()'>No</button>
+                    </div>
                 </div>
             </div>
             <br>
