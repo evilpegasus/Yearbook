@@ -6,7 +6,7 @@ Try it here:
 
 https://yearbook-hhs.web.app/
 
-![Demo Image](demo.png)
+![Demo Image](https://github.com/evilpegasus/Yearbook/blob/master/demo.PNG)
 
 # Usage
 
@@ -19,7 +19,7 @@ To draw, select a color or the eraser and click and drag on the white canvas. Li
 When you have finished drawing, click the **Upload** button to save your changes to our servers. The **Update Page** button will update the canvas to reflect any changes to the canvas that may have happened since the last update. This will not overwrite your changes.
 
 ## Sharing Yearbooks
-You can share you Yearbook page by opening the menu in the top left and selecting **Share your Yearbook**. This will copy a custom link to your page to your clipboard. You can then share this link with other people. **Anyone with your link can write on your page.** Only share your link with people you trust. You can access your friends' Yearbooks through the custom links they send you.
+You can share your Yearbook page by opening the menu in the top left and selecting **Share your Yearbook**. This will copy a custom link to your page to your clipboard. You can then share this link with other people. **Anyone with your link can write on your page.** Only share your link with people you trust. You can access your friends' Yearbooks through the custom links they send you.
 
 ## Saving your Yearbook  
 To download your yearbook page, open the **Toolbar** at the bottom of your page and select **Download**. A link to a picture of your page will be emailed to the email you signed in with. You can then save the picture locally.
