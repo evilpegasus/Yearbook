@@ -1,5 +1,3 @@
-const { assert } = require("console");
-
 // check if user is signed in
 var currentUser;
 var serveID;
