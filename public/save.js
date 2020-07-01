@@ -154,7 +154,7 @@ function openMessagePopup(message) {
     popupContainer.style.display = 'block';
     messageContainer.style.display = 'block';
     messageContainer.innerHTML = message;
-    document.querySelector('#closePopupButton').style.display = 'block';
+    document.querySelector('#closePopupButton').style.display = 'inline-block';
 }
 
 function closeMessagePopup() {

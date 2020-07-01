@@ -500,7 +500,7 @@ footer {
     z-index: 147;
     text-align: center;
     margin: auto;
-    transition: 0.6s;
+    transition: 0.3s;
     display: none;
     padding: 0;
 }
