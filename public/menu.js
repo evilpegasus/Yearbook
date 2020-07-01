@@ -255,16 +255,29 @@ function closePopup() {
     ctx.fillStyle = "white";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     upload(false);
+    openWorkingPopup();
+    assertOldExists();
+}
 
-    // Redirect the user to the same site without the new user
-    // check for params in URL
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
-    serveID = urlParams.get('user');
+function assertOldExists() {
+    const canvas = document.querySelector("#canvas");
+    const ctx = canvas.getContext("2d");
+    var pathRef = firebase.storage().ref(serveID + '/old.png');
+    pathRef.getDownloadURL().then(function(url) {
+        closeWorkingPopup();
+        // If old exists, we can continue with the redirect
+        // check for params in URL
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        serveID = urlParams.get('user');
 
-    if (serveID) {
-        window.location.replace('https://yearbook-hhs.web.app/app.html?user=' + serveID);
-    } else {
-        window.location.replace('https://yearbook-hhs.web.app/app.html');
-    }
+        if (serveID) {
+            window.location.replace('https://yearbook-hhs.web.app/app.html?user=' + serveID);
+        } else {
+            window.location.replace('https://yearbook-hhs.web.app/app.html');
+        }
+    }).catch(function(error) {
+        // It old doesn't exist, we wait one second and try again
+        setTimeout(assertOldExists(), 1000);
+    });
 }
