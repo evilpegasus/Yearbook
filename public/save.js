@@ -1,3 +1,5 @@
+const { assert } = require("console");
+
 // check if user is signed in
 var currentUser;
 var serveID;
@@ -142,9 +144,13 @@ function closeWorkingPopup() {
 }
 
 function openMessagePopup(message) {
-    setTimeout(function() {
+    assertWorkingPopupClosed(message);
+}
+
+function assertWorkingPopupClosed(message) {
+    var popupContainer = document.querySelector("#popupContainer");
+    if (popupContainer.style.display === 'none') {
         var popup = document.querySelector("#messagePopup");
-        var popupContainer = document.querySelector("#popupContainer");
         var messageContainer = document.querySelector('#message');
         document.body.style.overflow = 'hidden';
         popup.style.height = '200px';
@@ -156,7 +162,9 @@ function openMessagePopup(message) {
         messageContainer.style.display = 'block';
         messageContainer.innerHTML = message;
         document.querySelector('#closePopupButton').style.display = 'block';
-    }, 500);
+    } else {
+        setTimeout(assertWorkingPopupClosed(message), 500);
+    }
 }
 
 function closeMessagePopup() {
