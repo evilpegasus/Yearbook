@@ -649,3 +649,13 @@ footer {
     transition: 0.1s;
     display: none;
 }
+
+::placeholder {
+    color: var(--text-color);
+    opacity: 0.8;
+}
+
+::-webkit-input-placeholder {
+    color: var(--text-color);
+    opacity: 0.8;
+}
