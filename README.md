@@ -6,7 +6,7 @@ Try it here:
 
 https://yearbook-hhs.web.app/
 
-[![Demo Image](demo.png)](https://yearbook-hhs.web.app/)
+![Demo Image](demo.png)
 
 # Usage
 
