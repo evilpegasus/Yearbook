@@ -45,6 +45,7 @@ firebase.auth().onAuthStateChanged(function(user) {
             popupContainer.style.height = '100%';
             popupContainer.style.width = '100%';
             popupContainer.style.display = 'block';
+            document.querySelector('#closePopup').style.display = 'block';
         } else {
             // User is not new, require confirmation before leaving
             // Cannot use custom popup for this

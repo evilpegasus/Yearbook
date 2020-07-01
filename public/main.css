@@ -623,7 +623,7 @@ footer {
     padding: 8px 8px 8px 32px;
     text-decoration: none;
     color: var(--text-color);
-    display: block;
+    display: none;
     transition: 0.2s;
     position: absolute;
     top: 0;
