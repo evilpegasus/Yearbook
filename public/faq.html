@@ -67,6 +67,7 @@
         </div>
         <p id="openSideMenuButton" onclick="openMenu()">&#9776;</p>
         <div id="main" onmousedown="closeMenu()">
+
             <h1 class="faq-title-box">Yearbook 2020</h1>
             <div class="faq-center-div">
                 <h1>Frequently Asked Questions</h1>
@@ -121,8 +122,65 @@
                 <h2>How are babies made?</h2>
                 <p>Ask your parents. Click <a href="https://youtu.be/dQw4w9WgXcQ" target="_blank">here</a> for a video demonstration.</p>
             </div>
-            <img src="https://forthebadge.com/images/badges/built-with-love.svg" alt="Build with <3"> by <a class="name" href="https://mingyfong.github.io/" target="_blank">Ming Fong</a> and <a class="name" href="https://arnavthareja.github.io" target="_blank">Arnav Thareja</a>. June 2020
+
+            <div id="popupContainer">
+                <div id="welcomePopup" width="700" height="400">
+                    <a id="closePopup" onclick="closePopup()">&times;</a>
+                    <h2 class='welcomeText'>Welcome to Yearbook 2020!</h2>
+                    <p class='welcomeText'>Here are some basic instructions to get you started:<br></p>
+                    <br>
+                    <p class='welcomeText'>You can sign your Yearbook 2020 page or your friends' pages by moving your mouse with the left mouse button held down or drawing with your fingers
+                        or a stylus if you have a touchscreen. Make sure to respect others' signatures by not erasing them or drawing over them!<br></p>
+                    <br>
+                    <p class='welcomeText'>Hovering over the <strong>Toolbar</strong> at the bottom of your screen will open up a menu with different buttons and options, including <strong>Brush Size</strong>, <strong>Brush Color</strong>
+                        , <strong>Clear Changes</strong>, <strong>Download</strong>, <strong>Upload</strong>, and <strong>Update Page</strong>. For more information about the buttons, please visit our <a href='faq.html' target="_blank">Frequently Asked Questions (FAQ)</a> page.<br></p>
+                    <br>
+                    <p class='welcomeText'>Clicking the three lines in the top left corner will open up a menu with quick links to useful pages, including <strong>your yearbook</strong>, the <strong>Frequently Asked Questions (FAQ)</strong> page,
+                        and a <strong>sharing link</strong> to your yearbook. You can also change the website's theme from the menu.<br></p>
+                    <br>
+                    <p class='welcomeText'>If you still have questions or want more information about Yearbook 2020, please visit our <a href='faq.html' target="_blank">Frequently Asked Questions (FAQ)</a> page or our <a href='about.html' target="_blank">About</a> page.<br></p>
+                    <br>
+                    <p class='welcomeText'>We hope you enjoy Yearbook 2020!</p>
+                </div>
+                <div id="workingPopup" width="200" height="200">
+                    <br>
+                    <p id='working'>Working...</p>
+                    <div class='animation' id='one' width="10" height="10"></div>
+                    <div class='animation' id='two' width="10" height="10"></div>
+                    <div class='animation' id='three' width="10" height="10"></div>
+                    <div class='animation' id='four' width="10" height="10"></div>
+                </div>
+                <div id='messagePopup' width="300" height="200">
+                    <br>
+                    <p id='message'></p>
+                    <br>
+                    <button id='closePopupButton' class='btn' onclick='closeMessagePopup()'>OK</button>
+                </div>
+                <div id='confirmPopup' width='500' height='200'>
+                    <br>
+                    <p id='confirmMessage'></p>
+                    <br>
+                    <div id='confirmButtonContainer'>
+                        <button id='confirmYes' class='btn'>Yes</button>
+                        <button id='confirmNo' class='btn' onclick='closeConfirmPopup()'>No</button>
+                    </div>
+                </div>
+                <div id='promptPopup' width="700" height="200">
+                    <br>
+                    <p id='promptMessage'></p>
+                    <input type='text' id='url' name='url'>
+                    <br>
+                    <div id='promptButtonContainer'>
+                        <button id='submitPrompt' class='btn'>Submit</button>
+                        <button id='cancelPrompt' class='btn' onclick='closePromptPopup()'>Cancel</button>
+                    </div>
+                </div>
+            </div>
+
+            <footer>
+                <img src="https://forthebadge.com/images/badges/built-with-love.svg" alt="Build with <3"> by <a class="name" href="https://mingyfong.github.io/" target="_blank">Ming Fong</a> and <a class="name" href="https://arnavthareja.github.io" target="_blank">Arnav Thareja</a>. June 2020
             <p>Question or issues? Contact us at <a href="mailto:yearbook2020app@gmail.com">yearbook2020app@gmail.com</a>.</p>
+            </footer>
         </div>
     </body>
 </html>
