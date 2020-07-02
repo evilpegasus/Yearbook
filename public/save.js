@@ -201,7 +201,7 @@ function upload(alert = true) {
         // Close the working popup
         closeWorkingPopup();
 
-        openMessagePopup("Something went wrong while uploading your image:<br>" + error.message);
+        openMessagePopup("Something went wrong while uploading your image. Please try again later.");
         console.log(error);
     }
 };
@@ -265,7 +265,7 @@ function getImage(alert = true, uploadAlert = false) {
 
             console.log("Failed to get image from the server.");
             console.log(error);
-            openMessagePopup("Something went wrong while updating the page:<br>" + error.message);
+            openMessagePopup("Something went wrong while updating the page. Please try again later.");
     
             // A full list of error codes is available at
             // https://firebase.google.com/docs/storage/web/handle-errors
@@ -291,7 +291,7 @@ function getImage(alert = true, uploadAlert = false) {
         // Close the working popup
         closeWorkingPopup();
 
-        openMessagePopup("Something went wrong while updating the page:<br>" + error.message);
+        openMessagePopup("Something went wrong while updating the page. Please try again later.");
         console.log(error);
     }
 }
