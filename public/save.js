@@ -94,7 +94,7 @@ firebase.auth().onAuthStateChanged(function(user) {
             if (doc.exists) {
                 var name = doc.get('displayName');
                 console.log("Name retrieved successfully.");
-                document.querySelector('#owner').innerHTML = "You are viewing " + name + "'s yearbook. Sign away!";
+                document.querySelector('#owner').innerHTML = "You are viewing <strong>" + name + "</strong>'s yearbook. Sign away!";
             }
             console.log("No such document exists.");
         }).catch(function(error) {
