@@ -338,19 +338,29 @@ footer {
     justify-content: center;
     margin-top: 10px;
     margin-bottom: 10px;
-    margin-left: 40px;
-    margin-right: 40px;
+    margin-left: 4%;
+    margin-right: 4%;
     display: inline-block;
     width: 32%;
     height: auto;
     border-radius: 40px;
     box-shadow: var(--canvas-shadow);
-    padding-top: 2%;
-    padding-bottom: 2%;
-    padding-left: 3%;
-    padding-right: 3%;
+    padding-top: 3%;
+    padding-bottom: 3%;
+    padding-left: 4%;
+    padding-right: 4%;
     background-color: var(--text-color);
     color: var(--theme-color);
+}
+
+@media only screen and (max-width: 641px) {
+    .profile {
+        width: 100%;
+        padding-top: 5%;
+        padding-bottom: 5%;
+        padding-left: 5%;
+        padding-right: 5%;
+    }
 }
 
 .profile-picture {
@@ -365,8 +375,6 @@ footer {
 .profile-icon-div {
     display: flex;
     justify-content: space-between;
-    padding-left: 10%;
-    padding-right: 10%;
     padding-top: 10%;
 }
 
