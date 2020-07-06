@@ -132,7 +132,7 @@ async function sendYearbookCopyEmail(email, displayName, url) {
     };
 
     // Body of the email
-    mailOptions.subject = 'Your ' + APP_NAME + 'Download Link is Ready';
+    mailOptions.subject = 'Your ' + APP_NAME + ' Download Link is Ready';
     mailOptions.text = "Hi " + displayName + "! \n\nHere is a download link to your yearbook from " + APP_NAME + ": \n\n" + url + "\n\nTo download your page follow these steps: \n 1. Open the download link in a browser \n 2. Right click the image that appears and select \"Save image as...\" \n 3. Select your download location and save the image to your computer \n\nIf you have any questions, please email us at yearbook2020app@gmail.com. \n\n -The Yearbook 2020 Team";
     
     await mailTransport.sendMail(mailOptions);
