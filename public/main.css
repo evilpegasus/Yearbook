@@ -405,6 +405,7 @@ footer {
 
 .welcomeText {
     display: none;
+    margin-bottom: 24px;
 }
 
 @keyframes working {
