@@ -43,8 +43,8 @@ firebase.auth().onAuthStateChanged(function(user) {
                 welcomeText.style.display = 'block';
             });
             document.body.style.overflow = 'hidden';
-            popup.style.height = '650px';
-            popup.style.width = '1000px';
+            popup.style.height = 'fit-content';
+            popup.style.width = '60%';
             popup.style.padding = '2%';
             popup.style.display = 'block';
             popupContainer.style.height = '100%';
