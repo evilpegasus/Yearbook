@@ -82,7 +82,7 @@ body {
     width: 800px;
     border: 1px solid var(--text-color);
     transition: all 0.2s;
-    transition: bottom 0.5s;
+    transition: bottom 0.4s;
 }
 
 .button-toolbar {
