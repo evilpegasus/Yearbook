@@ -81,7 +81,7 @@ firebase.auth().onAuthStateChanged(function(user) {
     if (!serveID || serveID == currentUser.uid) {
         // Viewing own page
         serveID = currentUser.uid;
-        document.getElementById('owner').innerHTML = "You are viewing your own yearbook.";
+        document.querySelector('#owner').innerHTML = "You are viewing your own yearbook.";
     } else {
         // Get the name of the yearbook's owner
         dbRef.doc(serveID).get().then(function(doc) {
@@ -89,6 +89,7 @@ firebase.auth().onAuthStateChanged(function(user) {
                 var name = doc.get('displayName');
                 console.log("Name retrieved successfully.");
                 document.querySelector('#owner').innerHTML = "You are viewing <strong>" + name + "</strong>'s yearbook. Sign away!";
+                document.title = name + "'s Yearbook | Yearbook 2020";
             }
             console.log("No such document exists.");
         }).catch(function(error) {
