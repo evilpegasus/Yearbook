@@ -51,12 +51,6 @@ firebase.auth().onAuthStateChanged(function(user) {
             popupContainer.style.width = '100%';
             popupContainer.style.display = 'block';
             document.querySelector('#closePopup').style.display = 'block';
-        } else {
-            // User is not new, require confirmation before leaving
-            // Cannot use custom popup for this
-            window.onbeforeunload = function(e) {
-                return 'Are you sure you want to leave this site? Changes you have made since the last upload will not be saved.';
-            };
         }
     } else {
         // No user is signed in, kick them out to login screen preserving any URL params
