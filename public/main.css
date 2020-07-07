@@ -690,3 +690,14 @@ footer {
     color: var(--text-color);
     opacity: 0.8;
 }
+
+:disabled {
+    opacity: 0.35;
+}
+
+:disabled:hover {
+    color: var(--text-color);
+    background-color: var(--theme-color);
+    box-shadow: none;
+    cursor: default;
+}

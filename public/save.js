@@ -96,8 +96,7 @@ firebase.auth().onAuthStateChanged(function(user) {
             console.log("Error retrieving document: " + error);
         });
         document.querySelector('#owner').innerHTML = "You are viewing someone else's yearbook. Sign away!";
-        document.querySelector('#downloadButton').remove();
-        document.querySelector('#toolbars').style.width = "600px";
+        document.querySelector('#downloadButton').disabled = true;
     }
 
     // get the image from storage and draw it onto the canvas if user's old.png exists
