@@ -115,6 +115,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 });
 
 function upload(alert = true) {
+    // alert = false implies new user because no other call to upload(false) is made other than new user initial upload
 
     // show working popup
     openWorkingPopup();
@@ -129,6 +130,10 @@ function upload(alert = true) {
         canvas.toBlob(function(blob){
 
             var uploadTask;
+            // if new user set serveID to current uid to prevent yearbook clearing
+            if (!alert) {
+                serveID = currentUser.uid;
+            }
             // Create old.png if first time uploading, otherwise write to temp.png
             storageRef.child(serveID + "/old.png").getDownloadURL().then(function() {
                 // old.png already exists, write to temp.png
@@ -178,7 +183,7 @@ function upload(alert = true) {
                         console.log('File available at', downloadURL);
                         
                         if (alert) {
-                            // Move canvas contents to background image so they can't be cleared and get image after one second to allow for image merge
+                            // Move canvas contents to background image so they can't be cleared and get image after five seconds to allow for image merge
                             setTimeout(assertTempDeleted(), 5000);
                         } else {
                             // Close the working popup

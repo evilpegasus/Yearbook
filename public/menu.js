@@ -267,7 +267,7 @@ function closePopup() {
 function assertOldExists() {
     const canvas = document.querySelector("#canvas");
     const ctx = canvas.getContext("2d");
-    var pathRef = firebase.storage().ref(serveID + '/old.png');
+    var pathRef = firebase.storage().ref(currentUser.uid + '/old.png');
     pathRef.getDownloadURL().then(function(url) {
         // If old exists, we can continue with the redirect
         // check for params in URL
