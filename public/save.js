@@ -109,8 +109,8 @@ firebase.auth().onAuthStateChanged(function(user) {
         getImage(false);
     }, function() {
         // old.png does not exist, draw a white background
-        ctx.fillStyle = "white";
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        //ctx.fillStyle = "white";
+        //ctx.fillRect(0, 0, canvas.width, canvas.height);
     });
 });
 
