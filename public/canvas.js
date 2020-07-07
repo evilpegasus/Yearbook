@@ -126,6 +126,7 @@ window.addEventListener('load', () => {
 
         if (undo.length === 0) {
             window.removeEventListener('beforeunload', confirmPageExit);
+            exitListenerAdded = false;
         }
     }
 
