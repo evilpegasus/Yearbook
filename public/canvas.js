@@ -1,7 +1,25 @@
+// create variable to track if unsaved changes exit confirmation has been added
+var exitListenerAdded = false;
+
+// confirm page exit if unsaved changes exist
+function confirmPageExit(e) {
+    e.preventDefault();
+    e.returnValue = '';
+}
+
+// create the undo and redo arrays
+var undo = [];
+var redo = [];
+
 window.addEventListener('load', () => {
     // create the canvas
     const canvas = document.querySelector("#canvas");
     const ctx = canvas.getContext("2d");
+
+    // Create variables to hold points for undo
+    var currentLine = [];
+    var mouseX;
+    var mouseY;
 
     // create the buttons on the canvas
     const clearButton = document.querySelector("#clearButton");
@@ -15,6 +33,8 @@ window.addEventListener('load', () => {
     var painting = false;
     var offsetY = canvas.getBoundingClientRect().top;
     var offsetX = canvas.getBoundingClientRect().left;
+    ctx.lineCap = "round";
+    ctx.lineJoin = 'round';
     if (randomInt(1, 100) == 1) {
         document.querySelector('.title-box').style.fontVariant = 'normal';
     }
@@ -26,16 +46,38 @@ window.addEventListener('load', () => {
     }
 
     // enable painting
-    function startPainting() {
+    function startPainting(e) {
         adjustOffsets();
         painting = true;
         canvas.focus({preventScroll: true});
+        ctx.beginPath();
+
+        // set line properties
+        ctx.lineWidth = widthSelector.options[widthSelector.selectedIndex].value;
+        ctx.strokeStyle = colorSelector.options[colorSelector.selectedIndex].value;
+        mouseX = e.clientX - offsetX;
+        mouseY = e.clientY - offsetY;
+
+        // Add start point to current line
+        currentLine.push({
+            x: mouseX,
+            y: mouseY,
+            color: ctx.strokeStyle,
+            width: ctx.lineWidth
+        });
     }
     
     // disable painting
-    function endPainting() {
+    function endPainting(e) {
         painting = false;
         ctx.beginPath();
+
+        // Add the previous line to the undo stack and clear the current line array
+        if (currentLine.length > 1) {
+            undo.push(currentLine);
+            redo = [];
+        }
+        currentLine = [];
     }
 
     // paint at the cursor's location
@@ -44,17 +86,73 @@ window.addEventListener('load', () => {
         if (!painting) {
             return;
         }
-        
-        // set line properties
-        ctx.lineWidth = widthSelector.options[widthSelector.selectedIndex].value;
-        ctx.lineCap = "round";
-        ctx.strokeStyle = colorSelector.options[colorSelector.selectedIndex].value;
+
+        mouseX = e.clientX - offsetX;
+        mouseY = e.clientY - offsetY;
 
         // draw the line
-        ctx.lineTo(e.clientX - offsetX, e.clientY - offsetY);
+        ctx.lineTo(mouseX, mouseY);
         ctx.stroke();
         ctx.beginPath();
-        ctx.moveTo(e.clientX - offsetX, e.clientY - offsetY);
+        ctx.moveTo(mouseX, mouseY);
+
+        // Add point to current line
+        currentLine.push({
+            x: mouseX,
+            y: mouseY
+        });
+
+        // add unsaved changes exit confirmation
+        if (!exitListenerAdded) {
+            window.addEventListener('beforeunload', confirmPageExit);
+            exitListenerAdded = true;
+        }
+    }
+
+    function redrawAll() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        for (var i = 0; i < undo.length; i++) {
+            ctx.beginPath();
+            ctx.moveTo(undo[i][0].x, undo[i][0].y);
+            ctx.lineWidth = undo[i][0].width;
+            ctx.strokeStyle = undo[i][0].color;
+            
+            for (var j = 1; j < undo[i].length; j++) {
+                ctx.lineTo(undo[i][j].x, undo[i][j].y);
+            }
+            ctx.stroke();
+        };
+
+        if (undo.length === 0) {
+            window.removeEventListener('beforeunload', confirmPageExit);
+        }
+    }
+
+    function undoLast() {
+        if (undo.length === 0) {
+            return;
+        }
+
+        redo.push(undo.pop());
+        redrawAll();
+    }
+
+    function redoLast() {
+        if (redo.length === 0) {
+            return;
+        }
+
+        undo.push(redo.pop());
+        redrawAll();
+    }
+
+    // bind undo and redo to the buttons
+    document.querySelector('#undo').onclick = function() {
+        undoLast();
+    }
+    document.querySelector('#redo').onclick = function() {
+        redoLast();
     }
 
     // clear the canvas
@@ -64,6 +162,7 @@ window.addEventListener('load', () => {
             const ctx = canvas.getContext("2d");
 
             ctx.clearRect(0, 0, canvas.width, canvas.height);
+            redo = [];
             
             // get the image from storage and draw it onto the canvas if user's old.png exists
             var storageRef = firebase.storage().ref();
@@ -75,6 +174,12 @@ window.addEventListener('load', () => {
                 ctx.fillStyle = "white";
                 ctx.fillRect(0, 0, canvas.width, canvas.height);
             });
+
+            // remove unsaved changes exit confirmation
+            if (exitListenerAdded) {
+                window.removeEventListener('beforeunload', confirmPageExit);
+                exitListenerAdded = false;
+            }
         });
     }
 
@@ -87,7 +192,7 @@ window.addEventListener('load', () => {
     document.querySelector('#main').onpointerover = function() {
         setTimeout(function() {
             document.querySelector('.canvas-toolbar-title').style.display = 'initial';
-        }, 500);        
+        }, 200);        
         toolbars.style.bottom = '-150px';
     }
 

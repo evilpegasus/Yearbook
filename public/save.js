@@ -192,6 +192,7 @@ function upload(alert = true) {
                             // Draw the image and clear the canvas
                             getImage(false, false);
                             ctx.clearRect(0, 0, canvas.width, canvas.height);
+                            redo = [];
                         }
                     });
                 });
@@ -222,6 +223,13 @@ function assertTempDeleted() {
         // Draw the image and clear the canvas
         getImage(false, true);
         ctx.clearRect(0, 0, canvas.width, canvas.height);
+        redo = [];
+
+        // remove unsaved changes exit confirmation
+        if (exitListenerAdded) {
+            window.removeEventListener('beforeunload', confirmPageExit);
+            exitListenerAdded = false;
+        }
     });
 }
 

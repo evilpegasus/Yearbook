@@ -85,6 +85,24 @@ body {
     transition: bottom 0.4s;
 }
 
+#undo {
+    margin-right: 20px;
+}
+
+#redo {
+    margin-right: 40px;
+}
+
+#undoGhost {
+    margin-left: 20px;
+    visibility: hidden;
+}
+
+#redoGhost {
+    margin-left: 40px;
+    visibility: hidden;
+}
+
 .button-toolbar {
     text-align: center;
     margin-bottom: 10%;
