@@ -30,5 +30,8 @@ Any computer running a modern web browser will be able to access Yearbook. Touch
 ## Contributing  
 This project is open for new features, improvements, or bug fixes. If you want to contribute, please send us a [pull request](https://github.com/evilpegasus/Yearbook/compare).
 
+## Report a Bug
+If you find a bug, please open a new [issue](https://github.com/evilpegasus/Yearbook/issues/new). Please include steps to reproduce the bug and any other helpful debugging information.
+
 ## Contact
 The Yearbook 2020 team can be reached at yearbook2020app@gmail.com.
