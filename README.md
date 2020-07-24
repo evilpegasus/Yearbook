@@ -28,7 +28,7 @@ To download your yearbook page, open the **Toolbar** at the bottom of your page 
 Any computer running a modern web browser will be able to access Yearbook. Touchscreen devices are recommended, as drawing with a mouse/trackpad may be difficult. Touchscreen devices will only be able to touch scroll if touched outside the canvas.
 
 ## Contributing  
-Yearbook 2020 is a work in progress. If you want to contribute, please send us a pull request.
+Yearbook 2020 is a work in progress. If you want to contribute, please send us a [pull request](https://github.com/evilpegasus/Yearbook/compare).
 
 ## Contact
 The Yearbook 2020 team can be reached at yearbook2020app@gmail.com.
