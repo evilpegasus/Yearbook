@@ -1,15 +1,56 @@
 // Initialize the FirebaseUI Widget using Firebase.
-var ui = new firebaseui.auth.AuthUI(firebase.auth());
+//var ui = new firebaseui.auth.AuthUI(firebase.auth());
 
 // check for params in URL
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 serveID = urlParams.get('user');
+demo = serveID == 'demo';
+anon = urlParams.get('anon');
 
 // set the redirect URL preserving any URL params
 var redirectLink = 'https://yearbook-hhs.web.app/app.html';
+//var redirectParams = [];
+
+if (demo) {
+  window.location.assign(redirectLink + '?user=demo');
+}
+
 if (serveID) {
   redirectLink += '?user=' + serveID;
+  window.onload = function() {
+    document.querySelector('#anonText').style.display = 'block';
+    document.querySelector('#anonLink').style.display = 'inline';
+    document.querySelector('#anonNote').style.display = 'block';
+  }
+}
+
+if (anon && serveID) {
+  window.location.assign(redirectLink + '&anon=true');
+}
+
+// Old test code
+/*
+// Add parameters to redirect link
+if (serveID) {
+  redirectParams.push({
+    param: 'user',
+    value: serveID
+  });
+}
+if (anon && !demo) {
+  redirectParams.push({
+    param: 'anon',
+    value: 'true'
+  });
+}
+*/
+
+function anonRedirect() {
+  if (!serveID) {
+    window.alert("You are not able to enter anonymous mode. Make sure you follow someone's sharing link!")
+  }
+  window.location.assign(redirectLink += '&anon=true');
 }
 
 var uiConfig = {
@@ -19,12 +60,31 @@ var uiConfig = {
       // Return type determines whether we continue the redirect automatically
       // or whether we leave that to developer to handle.
       if (authResult.additionalUserInfo.isNewUser) {
+        // Old test code
+        /*
+        redirectParams.push({
+          param: 'newUser',
+          value: 'true'
+        });
+      }
+
+      redirectParams.forEach(function(redirectParam, index) {
+        if (index == 0) {
+          redirectLink += '?';
+        } else {
+          redirectLink += '&';
+        }
+        redirectLink += redirectParam.param + '=' + redirectParam.value;
+      });
+      */
+
         if (serveID) {
           redirectLink += '&newUser=true';
         } else {
           redirectLink += '?newUser=true';
         }
       }
+
       window.location.assign(redirectLink);
       return false;
     },
@@ -53,6 +113,8 @@ var uiConfig = {
  * @param {!firebase.User} user
  */
 var handleSignedInUser = function(user) {
+  // Old code
+  /*
   document.getElementById('user-signed-in').style.display = 'block';
   document.getElementById('user-signed-out').style.display = 'none';
   document.getElementById('name').textContent = user.displayName;
@@ -73,6 +135,8 @@ var handleSignedInUser = function(user) {
   } else {
     document.getElementById('photo').style.display = 'none';
   }
+  */
+  window.location.assign(redirectLink);
 };
 
 ui.start('#firebaseui-auth-container', uiConfig);

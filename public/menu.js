@@ -209,15 +209,17 @@ function changeTheme(newTheme = themeSelector.options[themeSelector.selectedInde
             break;
     }
 
-    // Update the database to match user's preferred theme
-    docRef.update({
-        theme: newTheme
-    }).then(function() {
-        console.log("Theme successfully updated to " + newTheme);
-    }).catch(function(error) {
-        console.log("Error updating theme: " + error);
-    });
-    console.log('Theme changed to ' + newTheme);
+    if (!demo && !anon) {
+        // Update the database to match user's preferred theme
+        docRef.update({
+            theme: newTheme
+        }).then(function() {
+            console.log("Theme successfully updated to " + newTheme);
+        }).catch(function(error) {
+            console.log("Error updating theme: " + error);
+        });
+        console.log('Theme changed to ' + newTheme);
+    }
 }
 
 function copyURL() {

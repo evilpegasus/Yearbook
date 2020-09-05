@@ -1,6 +1,8 @@
-// check if user is signed in
+// check if user is signed in or in demo or anonymous mode
 var currentUser;
 var serveID;
+var demo;
+var anon;
 
 // set firestore information
 const dbRef = firebase.firestore().collection("users");
@@ -15,44 +17,11 @@ firebase.auth().onAuthStateChanged(function(user) {
     const urlParams = new URLSearchParams(queryString);
     serveID = urlParams.get('user');
     var newUser = urlParams.get('newUser');
-
-    if (user) {
-        // User is signed in.
-        currentUser = firebase.auth().currentUser;
-        docRef = dbRef.doc(currentUser.uid);
-
-        // If new user, add their info to Cloud Firestore database
-        if (newUser) {
-            docRef.set({
-                displayName: currentUser.displayName,
-                email: currentUser.email,
-                theme: themeSelector.options[themeSelector.selectedIndex].value,
-                userID: currentUser.uid,
-                pfpURL: ""
-            }).then(function() {
-                console.log("Document successfully written");
-            }).catch(function(error) {
-                console.log("Error adding document " + error);
-            });
-
-            // show new user popup
-            var popup = document.querySelector("#welcomePopup");
-            var popupContainer = document.querySelector("#popupContainer");
-            var welcomeText = document.querySelectorAll(".welcomeText");
-            welcomeText.forEach(function(welcomeText) {
-                welcomeText.style.display = 'block';
-            });
-            document.body.style.overflow = 'hidden';
-            popup.style.height = 'fit-content';
-            popup.style.width = '68%';
-            popup.style.padding = '2%';
-            popup.style.display = 'block';
-            popupContainer.style.height = '100%';
-            popupContainer.style.width = '100%';
-            popupContainer.style.display = 'block';
-            document.querySelector('#closePopup').style.display = 'block';
-        }
-    } else {
+    demo = serveID == 'demo';
+    anon = urlParams.get('anon');
+    
+    // User is considered signed in if they signed in to the webiste, are using the demo, or in anonymous mode with a serveID provided
+    if (!user && !demo && !(anon && serveID)) {
         // No user is signed in, kick them out to login screen preserving any URL params
         if (serveID) {
             window.location.replace('https://yearbook-hhs.web.app/index.html?user=' + serveID);
@@ -61,21 +30,63 @@ firebase.auth().onAuthStateChanged(function(user) {
         }
     }
 
-    // get the database entry for currentUser theme to set the website theme
-    docRef.get().then(function(doc) {
-        if (doc.exists) {
-            // Change the theme to user's preferred theme
-            var preferredTheme = doc.get('theme');
-            changeTheme(preferredTheme);
+    if (user) {
+        // User is signed in
+        currentUser = firebase.auth().currentUser;
+        docRef = dbRef.doc(currentUser.uid);
+    }
 
-            // Update the menu theme selector
-            document.querySelector('#themeSelector [value="' + preferredTheme + '"]').selected = true;
-        } else {
-            console.log("No such document exists.");
-        }
-    }).catch(function(error) {
-        console.log("Error getting document: " + error);
-    });
+    // If user is signed in and new, add their info to Cloud Firestore database
+    if (user && newUser) {
+        docRef.set({
+            displayName: currentUser.displayName,
+            email: currentUser.email,
+            theme: themeSelector.options[themeSelector.selectedIndex].value,
+            userID: currentUser.uid,
+            pfpURL: ""
+        }).then(function() {
+            console.log("Document successfully written");
+        }).catch(function(error) {
+            console.log("Error adding document " + error);
+        });
+    }
+
+    if (demo || anon || newUser) {
+        // show new user popup
+        var popup = document.querySelector("#welcomePopup");
+        var popupContainer = document.querySelector("#popupContainer");
+        var welcomeText = document.querySelectorAll(".welcomeText");
+        welcomeText.forEach(function(welcomeText) {
+            welcomeText.style.display = 'block';
+        });
+        document.body.style.overflow = 'hidden';
+        popup.style.height = 'fit-content';
+        popup.style.width = '68%';
+        popup.style.padding = '2%';
+        popup.style.display = 'block';
+        popupContainer.style.height = '100%';
+        popupContainer.style.width = '100%';
+        popupContainer.style.display = 'block';
+        document.querySelector('#closePopup').style.display = 'block';
+    }
+
+    if (user) {
+        // get the database entry for currentUser theme to set the website theme
+        docRef.get().then(function(doc) {
+            if (doc.exists) {
+                // Change the theme to user's preferred theme
+                var preferredTheme = doc.get('theme');
+                changeTheme(preferredTheme);
+
+                // Update the menu theme selector
+                document.querySelector('#themeSelector [value="' + preferredTheme + '"]').selected = true;
+            } else {
+                console.log("No such document exists.");
+            }
+        }).catch(function(error) {
+            console.log("Error getting document: " + error);
+        });
+    }
 
     // handle params in URL
     if (!serveID || serveID == currentUser.uid) {
@@ -83,20 +94,39 @@ firebase.auth().onAuthStateChanged(function(user) {
         serveID = currentUser.uid;
         document.querySelector('#owner').innerHTML = "You are viewing your own yearbook.";
     } else {
-        // Get the name of the yearbook's owner
-        dbRef.doc(serveID).get().then(function(doc) {
-            if (doc.exists) {
-                var name = doc.get('displayName');
-                console.log("Name retrieved successfully.");
-                document.querySelector('#owner').innerHTML = "You are viewing <strong>" + name + "</strong>'s yearbook. Sign away!";
-                document.title = name + "'s Yearbook | Yearbook 2020";
-            }
-            console.log("No such document exists.");
-        }).catch(function(error) {
-            console.log("Error retrieving document: " + error);
-        });
         document.querySelector('#owner').innerHTML = "You are viewing someone else's yearbook. Sign away!";
         document.querySelector('#downloadButton').disabled = true;
+
+        if (!demo) {
+            // Get the name of the yearbook's owner
+            dbRef.doc(serveID).get().then(function(doc) {
+                if (doc.exists) {
+                    var name = doc.get('displayName');
+                    console.log("Name retrieved successfully.");
+                    document.querySelector('#owner').innerHTML = "You are viewing <strong>" + name + "</strong>'s yearbook. Sign away!";
+                    document.title = name + "'s Yearbook | Yearbook 2020";
+                }
+                console.log("No such document exists.");
+            }).catch(function(error) {
+                console.log("Error retrieving document: " + error);
+            });
+        } else {
+            document.querySelector('#owner').innerHTML = "You are viewing a <strong>demo</strong> yearbook. Sign away!";
+            document.title = "Demo Yearbook | Yearbook 2020";
+        }
+    }
+
+    // Disable some menu buttons in demo and anonymous modes
+    if (demo || anon) {
+        document.querySelector('#goToYourYearbookButton').disabled = true;
+        document.querySelector('#yourYearbookLink').href = '#';
+        document.querySelector('#shareButton').disabled = true;
+        document.querySelector('#signOutButton').disabled = true;
+    }
+
+    // Disable the go to another yearbook button on demo mode
+    if (demo) {
+        document.querySelector('#goToAnotherYearbookButton').disabled = true;
     }
 
     // get the image from storage and draw it onto the canvas if user's old.png exists
@@ -114,7 +144,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 });
 
 function upload(alert = true) {
-    // alert = false implies new user because no other call to upload(false) is made other than new user initial upload
+    // alert = false only used in new user initial upload
 
     // show working popup
     openWorkingPopup();
