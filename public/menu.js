@@ -267,14 +267,14 @@ function closePopup() {
 }
 
 function assertOldExists() {
-    const canvas = document.querySelector("#canvas");
-    const ctx = canvas.getContext("2d");
+    // const canvas = document.querySelector("#canvas");
+    // const ctx = canvas.getContext("2d");
     var pathRef = firebase.storage().ref(currentUser.uid + '/old.png');
     pathRef.getDownloadURL().then(function(url) {
         // If old exists, we can continue with the redirect
         // check for params in URL
-        const queryString = window.location.search;
-        const urlParams = new URLSearchParams(queryString);
+        // const queryString = window.location.search;
+        const urlParams = new URLSearchParams(window.location.search);
         serveID = urlParams.get('user');
 
         if (serveID) {
