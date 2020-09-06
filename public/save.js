@@ -89,7 +89,7 @@ firebase.auth().onAuthStateChanged(function(user) {
     }
 
     // handle params in URL
-    if (!serveID || serveID == currentUser.uid) {
+    if (currentUser && (!serveID || serveID == currentUser.uid)) {
         // Viewing own page
         serveID = currentUser.uid;
         document.querySelector('#owner').innerHTML = "You are viewing your own yearbook.";
@@ -160,9 +160,10 @@ function upload(alert = true) {
 
             var uploadTask;
             // if new user set serveID to current uid to prevent yearbook clearing
-            if (!alert) {
+            if (!alert && currentUser) {
                 serveID = currentUser.uid;
             }
+            
             // Create old.png if first time uploading, otherwise write to temp.png
             storageRef.child(serveID + "/old.png").getDownloadURL().then(function() {
                 // old.png already exists, write to temp.png

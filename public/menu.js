@@ -258,17 +258,21 @@ function closePopup() {
     popupContainer.style.display = 'none';
     document.querySelector('#closePopup').style.display = 'none';
 
-    const canvas = document.querySelector("#canvas");
-    const ctx = canvas.getContext("2d");
-    ctx.fillStyle = "white";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-    upload(false);
-    assertOldExists();
+    if (currentUser) {
+        const canvas = document.querySelector("#canvas");
+        const ctx = canvas.getContext("2d");
+        ctx.fillStyle = "white";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        upload(false);
+        assertOldExists();
+    }
 }
 
 function assertOldExists() {
     // const canvas = document.querySelector("#canvas");
     // const ctx = canvas.getContext("2d");
+
+    // This function is only called when the user is signed in, so we can use their uid
     var pathRef = firebase.storage().ref(currentUser.uid + '/old.png');
     pathRef.getDownloadURL().then(function(url) {
         // If old exists, we can continue with the redirect
