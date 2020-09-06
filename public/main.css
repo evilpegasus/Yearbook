@@ -701,3 +701,8 @@ footer {
     box-shadow: none;
     cursor: default;
 }
+
+#sideMenu :disabled:hover {
+    color: var(--text-color);
+    background-color: var(--menu-color);
+}
