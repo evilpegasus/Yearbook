@@ -77,6 +77,7 @@ window.addEventListener('load', () => {
             undo.push(currentLine);
             redo = [];
         }
+        
         currentLine = [];
     }
 

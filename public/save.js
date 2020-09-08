@@ -150,7 +150,6 @@ firebase.auth().onAuthStateChanged(function(user) {
 function upload(alert = true) {
     // alert = false only used in new user initial upload
 
-    // show working popup
     openWorkingPopup();
 
     try {
@@ -226,6 +225,7 @@ function upload(alert = true) {
                             // Draw the image and clear the canvas
                             getImage(false, false);
                             ctx.clearRect(0, 0, canvas.width, canvas.height);
+                            undo = [];
                             redo = [];
                         }
                     });
@@ -257,6 +257,7 @@ function assertTempDeleted() {
         // Draw the image and clear the canvas
         getImage(false, true);
         ctx.clearRect(0, 0, canvas.width, canvas.height);
+        undo = [];
         redo = [];
 
         // remove unsaved changes exit confirmation

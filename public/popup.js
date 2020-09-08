@@ -145,12 +145,11 @@ function assertOldExists() {
     // const canvas = document.querySelector("#canvas");
     // const ctx = canvas.getContext("2d");
 
-    // This function is only called when the user is signed in, so we can use their uid
+    // This function is only called when the user is signed in, so we can use currentUser.uid
     var pathRef = firebase.storage().ref(currentUser.uid + '/old.png');
     pathRef.getDownloadURL().then(function(url) {
         // If old exists, we can continue with the redirect
         // check for params in URL
-        // const queryString = window.location.search;
         const urlParams = new URLSearchParams(window.location.search);
         serveID = urlParams.get('user');
 
@@ -160,7 +159,7 @@ function assertOldExists() {
             window.location.replace('https://yearbook-hhs.web.app/app.html');
         }
     }).catch(function(error) {
-        // It old doesn't exist, we wait one second and try again
+        // If old doesn't exist, we wait one second and try again
         setTimeout(assertOldExists(), 1000);
     });
 }
