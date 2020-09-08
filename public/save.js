@@ -226,6 +226,11 @@ function upload(alert = true) {
                             ctx.clearRect(0, 0, canvas.width, canvas.height);
                             undo = [];
                             redo = [];
+
+                            let redoButton = document.querySelector('#redo');
+                            let undoButton = document.querySelector('#undo');
+                            undoButton.setAttribute('data-link-disabled', 'true');
+                            redoButton.setAttribute('data-link-disabled', 'true');
                         }
                     });
                 });
@@ -258,6 +263,11 @@ function assertTempDeleted() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         undo = [];
         redo = [];
+
+        let redoButton = document.querySelector('#redo');
+        let undoButton = document.querySelector('#undo');
+        undoButton.setAttribute('data-link-disabled', 'true');
+        redoButton.setAttribute('data-link-disabled', 'true');
 
         // remove unsaved changes exit confirmation
         if (exitListenerAdded) {

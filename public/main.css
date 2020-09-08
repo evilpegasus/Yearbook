@@ -93,6 +93,16 @@ body {
     margin-right: 40px;
 }
 
+a[data-link-disabled='true'] {
+    cursor: default;
+    opacity: 0.35;
+}
+
+a[data-link-disabled='true']:hover {
+    text-shadow: none;
+    cursor: default;
+}
+
 #undoGhost {
     margin-left: 20px;
     visibility: hidden;
@@ -146,7 +156,6 @@ body {
 }
 
 .btn {
-    border-radius: 0px;
     width: 160px;
     height: 40px;
     margin: 0px 10px 0px 10px;

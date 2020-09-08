@@ -76,6 +76,9 @@ window.addEventListener('load', () => {
         if (currentLine.length > 1) {
             undo.push(currentLine);
             redo = [];
+
+            redoButton.setAttribute('data-link-disabled', 'true');
+            undoButton.setAttribute('data-link-disabled', 'false');
         }
         
         currentLine = [];
@@ -131,31 +134,56 @@ window.addEventListener('load', () => {
         }
     }
 
+    var redoButton = document.querySelector('#redo');
+    var undoButton = document.querySelector('#undo');
+    var redoDisabled;
+    var undoDisabled;
+
     function undoLast() {
-        if (undo.length === 0) {
+        redoDisabled = (redoButton.getAttribute('data-link-disabled') == 'true');
+        undoDisabled = (undoButton.getAttribute('data-link-disabled') == 'true');
+
+        if (undo.length === 0 || undoDisabled) {
             return;
         }
 
         redo.push(undo.pop());
+
+        if (undo.length === 0) {
+            undoButton.setAttribute('data-link-disabled', 'true');
+        }
+
+        if (redoDisabled) {
+            redoButton.setAttribute('data-link-disabled', 'false');
+        }
+
         redrawAll();
     }
 
     function redoLast() {
-        if (redo.length === 0) {
+        redoDisabled = (redoButton.getAttribute('data-link-disabled') == 'true');
+        undoDisabled = (undoButton.getAttribute('data-link-disabled') == 'true');
+
+        if (redo.length === 0 || redoDisabled) {
             return;
         }
 
         undo.push(redo.pop());
+
+        if (redo.length === 0) {
+            redoButton.setAttribute('data-link-disabled', 'true');
+        }
+
+        if (undoDisabled) {
+            undoButton.setAttribute('data-link-disabled', 'false');
+        }
+
         redrawAll();
     }
 
     // bind undo and redo to the buttons
-    document.querySelector('#undo').onclick = function() {
-        undoLast();
-    }
-    document.querySelector('#redo').onclick = function() {
-        redoLast();
-    }
+    undoButton.onclick = function() { undoLast() }
+    redoButton.onclick = function() { redoLast() }
 
     // clear the canvas
     clearButton.onclick = function() {
@@ -164,7 +192,10 @@ window.addEventListener('load', () => {
             const ctx = canvas.getContext("2d");
 
             ctx.clearRect(0, 0, canvas.width, canvas.height);
+            undo = [];
             redo = [];
+            undoButton.setAttribute('data-link-disabled', 'true');
+            redoButton.setAttribute('data-link-disabled', 'true');
             
             // get the image from storage and draw it onto the canvas if user's old.png exists
             var storageRef = firebase.storage().ref();
