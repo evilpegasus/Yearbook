@@ -55,7 +55,7 @@
             </select>
             <br><br><br><br>
             <p class="sideMenuLabel">Go to:</p>
-            <a href='app.html'><button id="goToYourYearbookButton" class="btn">Your Yearbook</button></a>
+            <a id='yourYearbookLink' href='app.html'><button id="goToYourYearbookButton" class="btn">Your Yearbook</button></a>
             <br><br>
             <button id="goToAnotherYearbookButton" class="btn" onclick="goToAnotherYearbook()">Someone Else's Yearbook</button>
             <br><br>
@@ -68,7 +68,7 @@
             <button id="signOutButton" class="btn" onclick="signOut()">Sign Out</button>
         </div>
         <p id="openSideMenuButton" onclick="openMenu()">&#9776;</p>
-        <div id="main" onmousedown="closeMenu()">
+        <div id="main" onpointerdown="closeMenu()">
 
             <h1 class="faq-title-box">Yearbook 2020</h1>
             <div class="faq-center-div">
@@ -127,21 +127,16 @@
 
             <div id="popupContainer">
                 <div id="welcomePopup" width="700" height="400">
-                    <a id="closePopup" onclick="closePopup()">&times;</a>
+                    <a id="closePopup" onclick="closeNewUserPopup()">&times;</a>
                     <h2 class='welcomeText'>Welcome to Yearbook 2020!</h2>
                     <p class='welcomeText'>Here are some basic instructions to get you started:<br></p>
-                    <br>
                     <p class='welcomeText'>You can sign your Yearbook 2020 page or your friends' pages by moving your mouse with the left mouse button held down or drawing with your fingers
                         or a stylus if you have a touchscreen. Make sure to respect others' signatures by not erasing them or drawing over them!<br></p>
-                    <br>
                     <p class='welcomeText'>Hovering over the <strong>Toolbar</strong> at the bottom of your screen will open up a menu with different buttons and options, including <strong>Brush Size</strong>, <strong>Brush Color</strong>
                         , <strong>Clear Changes</strong>, <strong>Download</strong>, <strong>Upload</strong>, and <strong>Update Page</strong>. For more information about the buttons, please visit our <a href='faq.html' target="_blank">Frequently Asked Questions (FAQ)</a> page.<br></p>
-                    <br>
                     <p class='welcomeText'>Clicking the three lines in the top left corner will open up a menu with quick links to useful pages, including <strong>your yearbook</strong>, the <strong>Frequently Asked Questions (FAQ)</strong> page,
                         and a <strong>sharing link</strong> to your yearbook. You can also change the website's theme from the menu.<br></p>
-                    <br>
                     <p class='welcomeText'>If you still have questions or want more information about Yearbook 2020, please visit our <a href='faq.html' target="_blank">Frequently Asked Questions (FAQ)</a> page or our <a href='about.html' target="_blank">About</a> page.<br></p>
-                    <br>
                     <p class='welcomeText'>We hope you enjoy Yearbook 2020!</p>
                 </div>
                 <div id="workingPopup" width="200" height="200">

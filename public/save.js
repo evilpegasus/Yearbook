@@ -56,20 +56,13 @@ firebase.auth().onAuthStateChanged(function(user) {
 
     if (demo || anon || newUser) {
         // show new user popup
+        openPopup('#welcomePopup', 'fit-content', '68%');
         var popup = document.querySelector("#welcomePopup");
-        var popupContainer = document.querySelector("#popupContainer");
+        popup.style.padding = '2%';
         var welcomeText = document.querySelectorAll(".welcomeText");
         welcomeText.forEach(function(welcomeText) {
             welcomeText.style.display = 'block';
         });
-        document.body.style.overflow = 'hidden';
-        popup.style.height = 'fit-content';
-        popup.style.width = '68%';
-        popup.style.padding = '2%';
-        popup.style.display = 'block';
-        popupContainer.style.height = '100%';
-        popupContainer.style.width = '100%';
-        popupContainer.style.display = 'block';
         document.querySelector('#closePopup').style.display = 'block';
     }
 
@@ -91,32 +84,34 @@ firebase.auth().onAuthStateChanged(function(user) {
         });
     }
 
-    // handle params in URL
-    if (currentUser && (!serveID || serveID == currentUser.uid)) {
-        // Viewing own page
-        serveID = currentUser.uid;
-        document.querySelector('#owner').innerHTML = "You are viewing your own yearbook.";
-    } else {
-        document.querySelector('#owner').innerHTML = "You are viewing someone else's yearbook. Sign away!";
-        document.title = "Someone Else's Yearbook | Yearbook 2020";
-        document.querySelector('#downloadButton').disabled = true;
-
-        if (!demo) {
-            // Get the name of the yearbook's owner
-            dbRef.doc(serveID).get().then(function(doc) {
-                if (doc.exists) {
-                    var name = doc.get('displayName');
-                    console.log("Name retrieved successfully.");
-                    document.querySelector('#owner').innerHTML = "You are viewing <strong>" + name + "</strong>'s yearbook. Sign away!";
-                    document.title = name + "'s Yearbook | Yearbook 2020";
-                }
-                console.log("No such document exists.");
-            }).catch(function(error) {
-                console.log("Error retrieving document: " + error);
-            });
+    if (onAppPage) {
+        // handle params in URL
+        if (currentUser && (!serveID || serveID == currentUser.uid)) {
+            // Viewing own page
+            serveID = currentUser.uid;
+            document.querySelector('#owner').innerHTML = "You are viewing your own yearbook.";
         } else {
-            document.querySelector('#owner').innerHTML = "You are viewing a <strong>demo</strong> yearbook. Sign away!";
-            document.title = "Demo Yearbook | Yearbook 2020";
+            document.querySelector('#owner').innerHTML = "You are viewing someone else's yearbook. Sign away!";
+            document.title = "Someone Else's Yearbook | Yearbook 2020";
+            document.querySelector('#downloadButton').disabled = true;
+
+            if (!demo) {
+                // Get the name of the yearbook's owner
+                dbRef.doc(serveID).get().then(function(doc) {
+                    if (doc.exists) {
+                        var name = doc.get('displayName');
+                        console.log("Name retrieved successfully.");
+                        document.querySelector('#owner').innerHTML = "You are viewing <strong>" + name + "</strong>'s yearbook. Sign away!";
+                        document.title = name + "'s Yearbook | Yearbook 2020";
+                    }
+                    console.log("No such document exists.");
+                }).catch(function(error) {
+                    console.log("Error retrieving document: " + error);
+                });
+            } else {
+                document.querySelector('#owner').innerHTML = "You are viewing a <strong>demo</strong> yearbook. Sign away!";
+                document.title = "Demo Yearbook | Yearbook 2020";
+            }
         }
     }
 
@@ -133,18 +128,20 @@ firebase.auth().onAuthStateChanged(function(user) {
         document.querySelector('#goToAnotherYearbookButton').disabled = true;
     }
 
-    // get the image from storage and draw it onto the canvas if user's old.png exists
-    var storageRef = firebase.storage().ref();
-    const canvas = document.querySelector("#canvas");
-    const ctx = canvas.getContext("2d");
-    storageRef.child(serveID + "/old.png").getDownloadURL().then(function() {
-        // old.png already exists
-        getImage(false);
-    }, function() {
-        // old.png does not exist, draw a white background
-        ctx.fillStyle = "white";
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-    });
+    if (onAppPage) {
+        // get the image from storage and draw it onto the canvas if user's old.png exists
+        var storageRef = firebase.storage().ref();
+        const canvas = document.querySelector("#canvas");
+        const ctx = canvas.getContext("2d");
+        storageRef.child(serveID + "/old.png").getDownloadURL().then(function() {
+            // old.png already exists
+            getImage(false);
+        }, function() {
+            // old.png does not exist, draw a white background
+            ctx.fillStyle = "white";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+        });
+    }
 });
 
 function upload(alert = true) {
