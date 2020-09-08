@@ -9,6 +9,7 @@ function openPopup(selector, height, width) {
     popupContainer.style.height = '100%';
     popupContainer.style.width = '100%';
     popupContainer.style.display = 'block';
+    document.body.style.overflow = 'hidden';
 }
 
 function closePopup(selector) {
@@ -21,6 +22,7 @@ function closePopup(selector) {
         popupContainer.style.height = '0';
         popupContainer.style.width = '0';
         popupContainer.style.display = 'none';
+        document.body.style.overflow = 'visible';
     }
 }
 
@@ -31,7 +33,6 @@ function openWorkingPopup() {
         animation.style.display = 'block';
     });
     document.querySelector('#working').style.display = 'block';
-    document.body.style.overflow = 'hidden';
 }
 
 function closeWorkingPopup() {
@@ -41,13 +42,11 @@ function closeWorkingPopup() {
         animation.style.display = 'none';
     });
     document.querySelector('#working').style.display = 'none';
-    document.body.style.overflow = 'visible';
 }
 
 function openMessagePopup(message) {
     openPopup('#messagePopup', '200px', '300px');
     var messageContainer = document.querySelector('#message');
-    document.body.style.overflow = 'hidden';
     messageContainer.style.display = 'block';
     messageContainer.innerHTML = message;
     document.querySelector('#closePopupButton').style.display = 'inline-block';
@@ -55,7 +54,6 @@ function openMessagePopup(message) {
 
 function closeMessagePopup() {
     closePopup('#messagePopup');
-    document.body.style.overflow = 'visible';
     document.querySelector('#message').style.display = 'none';
     document.querySelector('#closePopupButton').style.display = 'none';
 }
@@ -64,7 +62,6 @@ function openConfirmPopup(message, callback) {
     openPopup('#confirmPopup', '200px', '500px');
     var messageContainer = document.querySelector('#confirmMessage');
     var confirmYes = document.querySelector('#confirmYes');
-    document.body.style.overflow = 'hidden';
     messageContainer.style.display = 'block';
     messageContainer.innerHTML = message;
     document.querySelector('#confirmButtonContainer').style.display = 'block';
@@ -79,7 +76,6 @@ function openConfirmPopup(message, callback) {
 function closeConfirmPopup() {
     closePopup('#confirmPopup');
     var confirmYes = document.querySelector('#confirmYes');
-    document.body.style.overflow = 'visible';
     document.querySelector('#confirmButtonContainer').style.display = 'none';
     document.querySelector('#confirmMessage').style.display = 'none';
     confirmYes.style.display = 'none';
@@ -92,7 +88,6 @@ function openPromptPopup(message, label, callback) {
     var messageContainer = document.querySelector('#promptMessage');
     var submitPrompt = document.querySelector('#submitPrompt');
     var url = document.querySelector('#url');
-    document.body.style.overflow = 'hidden';
     messageContainer.style.display = 'block';
     messageContainer.innerHTML = message;
     url.placeholder = label;
@@ -110,7 +105,6 @@ function closePromptPopup() {
     closePopup('#promptPopup');
     var submitPrompt = document.querySelector('#submitPrompt');
     var url = document.querySelector('#url');
-    document.body.style.overflow = 'visible';
     document.querySelector('#promptButtonContainer').style.display = 'none';
     document.querySelector('#promptMessage').style.display = 'none';
     submitPrompt.style.display = 'none';
@@ -127,7 +121,6 @@ function closeNewUserPopup() {
     welcomeText.forEach(function(welcomeText) {
         welcomeText.style.display = 'none';
     });
-    document.body.style.overflow = 'visible';
     document.querySelector('#welcomePopup').style.padding ='0';
     document.querySelector('#closePopup').style.display = 'none';
 
