@@ -7,8 +7,6 @@ var anon;
 
 const onAppPage = (window.location.pathname == '/app.html');
 
-var newUserPopupClosed = false;
-
 // set firestore information
 const dbRef = firebase.firestore().collection("users");
 var docRef;
