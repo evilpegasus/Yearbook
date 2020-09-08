@@ -1,79 +1,70 @@
-function openWorkingPopup() {
-    var popup = document.querySelector("#workingPopup");
+var newUserPopupClosed = !onAppPage || !(demo || anon || newUser);
+
+function openPopup(selector, height, width) {
+    var popup = document.querySelector(selector);
     var popupContainer = document.querySelector("#popupContainer");
+    popup.style.height = height;
+    popup.style.width = width;
+    popup.style.display = 'block';
+    popupContainer.style.height = '100%';
+    popupContainer.style.width = '100%';
+    popupContainer.style.display = 'block';
+}
+
+function closePopup(selector) {
+    var popup = document.querySelector(selector);
+    var popupContainer = document.querySelector("#popupContainer");
+    popup.style.height = '0';
+    popup.style.width = '0';
+    popup.style.display = 'none;'
+    if (newUserPopupClosed) {
+        popupContainer.style.height = '0';
+        popupContainer.style.width = '0';
+        popupContainer.style.display = 'none';
+    }
+}
+
+function openWorkingPopup() {
+    openPopup('#workingPopup', '200px', '200px');
     var animations = document.querySelectorAll(".animation");
     animations.forEach(function(animation) {
         animation.style.display = 'block';
     });
     document.querySelector('#working').style.display = 'block';
     document.body.style.overflow = 'hidden';
-    popup.style.height = '200px';
-    popup.style.width = '200px';
-    popup.style.display = 'block';
-    popupContainer.style.height = '100%';
-    popupContainer.style.width = '100%';
-    popupContainer.style.display = 'block';
 }
 
 function closeWorkingPopup() {
-    var popup = document.querySelector("#workingPopup");
-    var popupContainer = document.querySelector("#popupContainer");
+    closePopup('#workingPopup');
     var animations = document.querySelectorAll(".animation");
     animations.forEach(function(animation) {
         animation.style.display = 'none';
     });
     document.querySelector('#working').style.display = 'none';
     document.body.style.overflow = 'visible';
-    popup.style.height = '0';
-    popup.style.width = '0';
-    popup.style.display = 'none;'
-    popupContainer.style.height = '0';
-    popupContainer.style.width = '0';
-    popupContainer.style.display = 'none';
 }
 
 function openMessagePopup(message) {
-    var popupContainer = document.querySelector("#popupContainer");
-    var popup = document.querySelector("#messagePopup");
+    openPopup('#messagePopup', '200px', '300px');
     var messageContainer = document.querySelector('#message');
     document.body.style.overflow = 'hidden';
-    popup.style.height = '200px';
-    popup.style.width = '300px';
-    popup.style.display = 'block';
-    popupContainer.style.height = '100%';
-    popupContainer.style.width = '100%';
-    popupContainer.style.display = 'block';
     messageContainer.style.display = 'block';
     messageContainer.innerHTML = message;
     document.querySelector('#closePopupButton').style.display = 'inline-block';
 }
 
 function closeMessagePopup() {
-    var popup = document.querySelector("#messagePopup");
-    var popupContainer = document.querySelector("#popupContainer");
+    closePopup('#messagePopup');
     document.body.style.overflow = 'visible';
-    popup.style.height = '0';
-    popup.style.width = '0';
-    popup.style.display = 'none;'
-    popupContainer.style.height = '0';
-    popupContainer.style.width = '0';
-    popupContainer.style.display = 'none';
     document.querySelector('#message').style.display = 'none';
     document.querySelector('#closePopupButton').style.display = 'none';
 }
 
 function openConfirmPopup(message, callback) {
-    var popupContainer = document.querySelector("#popupContainer");
-    var popup = document.querySelector("#confirmPopup");
+    openPopup('#confirmPopup', '200px', '500px');
     var messageContainer = document.querySelector('#confirmMessage');
     var confirmYes = document.querySelector('#confirmYes');
     document.body.style.overflow = 'hidden';
-    popup.style.height = '200px';
-    popup.style.width = '500px';
-    popup.style.display = 'block';
-    popupContainer.style.height = '100%';
-    popupContainer.style.width = '100%';
-    popupContainer.style.display = 'block';
     messageContainer.style.display = 'block';
     messageContainer.innerHTML = message;
     document.querySelector('#confirmButtonContainer').style.display = 'block';
@@ -86,16 +77,9 @@ function openConfirmPopup(message, callback) {
 }
 
 function closeConfirmPopup() {
-    var popup = document.querySelector("#confirmPopup");
-    var popupContainer = document.querySelector("#popupContainer");
+    closePopup('#confirmPopup');
     var confirmYes = document.querySelector('#confirmYes');
     document.body.style.overflow = 'visible';
-    popup.style.height = '0';
-    popup.style.width = '0';
-    popup.style.display = 'none;'
-    popupContainer.style.height = '0';
-    popupContainer.style.width = '0';
-    popupContainer.style.display = 'none';
     document.querySelector('#confirmButtonContainer').style.display = 'none';
     document.querySelector('#confirmMessage').style.display = 'none';
     confirmYes.style.display = 'none';
@@ -104,19 +88,11 @@ function closeConfirmPopup() {
 }
 
 function openPromptPopup(message, label, callback) {
-    var popupContainer = document.querySelector("#popupContainer");
-    var popup = document.querySelector("#promptPopup");
+    openPopup('#promptPopup', '200px', '700px');
     var messageContainer = document.querySelector('#promptMessage');
-    var urlLabel = document.querySelector("#urlLabel");
     var submitPrompt = document.querySelector('#submitPrompt');
     var url = document.querySelector('#url');
     document.body.style.overflow = 'hidden';
-    popup.style.height = '200px';
-    popup.style.width = '700px';
-    popup.style.display = 'block';
-    popupContainer.style.height = '100%';
-    popupContainer.style.width = '100%';
-    popupContainer.style.display = 'block';
     messageContainer.style.display = 'block';
     messageContainer.innerHTML = message;
     url.placeholder = label;
@@ -131,17 +107,10 @@ function openPromptPopup(message, label, callback) {
 }
 
 function closePromptPopup() {
-    var popup = document.querySelector("#promptPopup");
-    var popupContainer = document.querySelector("#popupContainer");
+    closePopup('#promptPopup');
     var submitPrompt = document.querySelector('#submitPrompt');
     var url = document.querySelector('#url');
     document.body.style.overflow = 'visible';
-    popup.style.height = '0';
-    popup.style.width = '0';
-    popup.style.display = 'none;'
-    popupContainer.style.height = '0';
-    popupContainer.style.width = '0';
-    popupContainer.style.display = 'none';
     document.querySelector('#promptButtonContainer').style.display = 'none';
     document.querySelector('#promptMessage').style.display = 'none';
     submitPrompt.style.display = 'none';
@@ -149,4 +118,49 @@ function closePromptPopup() {
     url.value = '';
     url.style.display = 'none';
     submitPrompt.onclick = function() {};
+}
+
+function closeNewUserPopup() {
+    newUserPopupClosed = true;
+    closePopup('#welcomePopup');
+    var welcomeText = document.querySelectorAll(".welcomeText");
+    welcomeText.forEach(function(welcomeText) {
+        welcomeText.style.display = 'none';
+    });
+    document.body.style.overflow = 'visible';
+    document.querySelector('#welcomePopup').style.padding ='0';
+    document.querySelector('#closePopup').style.display = 'none';
+
+    if (currentUser) {
+        const canvas = document.querySelector("#canvas");
+        const ctx = canvas.getContext("2d");
+        ctx.fillStyle = "white";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        upload(false);
+        assertOldExists();
+    }
+}
+
+function assertOldExists() {
+    // const canvas = document.querySelector("#canvas");
+    // const ctx = canvas.getContext("2d");
+
+    // This function is only called when the user is signed in, so we can use their uid
+    var pathRef = firebase.storage().ref(currentUser.uid + '/old.png');
+    pathRef.getDownloadURL().then(function(url) {
+        // If old exists, we can continue with the redirect
+        // check for params in URL
+        // const queryString = window.location.search;
+        const urlParams = new URLSearchParams(window.location.search);
+        serveID = urlParams.get('user');
+
+        if (serveID) {
+            window.location.replace('https://yearbook-hhs.web.app/app.html?user=' + serveID);
+        } else {
+            window.location.replace('https://yearbook-hhs.web.app/app.html');
+        }
+    }).catch(function(error) {
+        // It old doesn't exist, we wait one second and try again
+        setTimeout(assertOldExists(), 1000);
+    });
 }

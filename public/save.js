@@ -1,8 +1,11 @@
 // check if user is signed in or in demo or anonymous mode
 var currentUser;
 var serveID;
+var newUser;
 var demo;
 var anon;
+
+const onAppPage = (window.location.pathname == '/app.html');
 
 // set firestore information
 const dbRef = firebase.firestore().collection("users");
@@ -16,12 +19,12 @@ firebase.auth().onAuthStateChanged(function(user) {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     serveID = urlParams.get('user');
-    var newUser = urlParams.get('newUser');
+    newUser = urlParams.get('newUser');
     demo = serveID == 'demo';
     anon = urlParams.get('anon');
     
-    // User is considered signed in if they signed in to the webiste, are using the demo, or in anonymous mode with a serveID provided
-    if (!user && !demo && !(anon && serveID)) {
+    // User is considered signed in if they signed in to the website, are using the demo, in anonymous mode with a serveID provided, or visiting FAQ or About pages
+    if (!user && !demo && !(anon && serveID) && onAppPage) {
         // No user is signed in, kick them out to login screen preserving any URL params
         if (serveID) {
             window.location.replace('https://yearbook-hhs.web.app/index.html?user=' + serveID);
@@ -95,6 +98,7 @@ firebase.auth().onAuthStateChanged(function(user) {
         document.querySelector('#owner').innerHTML = "You are viewing your own yearbook.";
     } else {
         document.querySelector('#owner').innerHTML = "You are viewing someone else's yearbook. Sign away!";
+        document.title = "Someone Else's Yearbook | Yearbook 2020";
         document.querySelector('#downloadButton').disabled = true;
 
         if (!demo) {
@@ -116,16 +120,16 @@ firebase.auth().onAuthStateChanged(function(user) {
         }
     }
 
-    // Disable some menu buttons in demo and anonymous modes
-    if (demo || anon) {
+    // Disable some menu buttons in demo (if not signed in) and anonymous modes and on FAQ and About pages if not signed in
+    if ((demo && !user) || anon || (!onAppPage && !user)) {
         document.querySelector('#goToYourYearbookButton').disabled = true;
         document.querySelector('#yourYearbookLink').href = '#';
         document.querySelector('#shareButton').disabled = true;
         document.querySelector('#signOutButton').disabled = true;
     }
 
-    // Disable the go to another yearbook button on demo mode
-    if (demo) {
+    // Disable the go to another yearbook button on demo mode if not signed in
+    if (demo && !user) {
         document.querySelector('#goToAnotherYearbookButton').disabled = true;
     }
 
