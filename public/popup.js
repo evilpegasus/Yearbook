@@ -1,5 +1,3 @@
-var newUserPopupClosed = !onAppPage || !(demo || anon || newUser);
-
 function openPopup(selector, height, width) {
     var popup = document.querySelector(selector);
     var popupContainer = document.querySelector("#popupContainer");

@@ -2,10 +2,12 @@
 var currentUser;
 var serveID;
 var newUser;
-var demo;
+var demo = false;
 var anon;
 
 const onAppPage = (window.location.pathname == '/app.html');
+
+var newUserPopupClosed = false;
 
 // set firestore information
 const dbRef = firebase.firestore().collection("users");
@@ -20,8 +22,10 @@ firebase.auth().onAuthStateChanged(function(user) {
     const urlParams = new URLSearchParams(queryString);
     serveID = urlParams.get('user');
     newUser = urlParams.get('newUser');
-    demo = serveID == 'demo';
+    demo = (serveID == 'demo');
     anon = urlParams.get('anon');
+
+    newUserPopupClosed = !onAppPage || !(demo || anon || newUser);
     
     // User is considered signed in if they signed in to the website, are using the demo, in anonymous mode with a serveID provided, or visiting FAQ or About pages
     if (!user && !demo && !(anon && serveID) && onAppPage) {
