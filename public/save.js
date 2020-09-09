@@ -107,7 +107,7 @@ firebase.auth().onAuthStateChanged(function(user) {
                     if (doc.exists) {
                         let name = doc.get('displayName');
                         console.log("Name retrieved successfully.");
-                        document.querySelector('#owner').innerHTML = "You are viewing <strong>" + name + "</strong>'s yearbook. Sign away!";
+                        document.querySelector('#owner').innerHTML = "You are viewing <strong>" + name + "</strong>'s yearbook. Sign away!<br>Sign in or create an account to access your personal yearbook!";
                         document.title = name + "'s Yearbook | Yearbook 2020";
                     } else {
                         console.log("No such document exists.");
@@ -129,7 +129,7 @@ firebase.auth().onAuthStateChanged(function(user) {
                     getOwnerName();                
                 }
             } else {
-                document.querySelector('#owner').innerHTML = "You are viewing a <strong>demo</strong> yearbook. Sign away!";
+                document.querySelector('#owner').innerHTML = "You are viewing a <strong>demo</strong> yearbook. Sign away!<br>Sign in or create an account to access your personal yearbook!";
                 document.title = "Demo Yearbook | Yearbook 2020";
             }
         }

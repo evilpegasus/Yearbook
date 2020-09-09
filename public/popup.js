@@ -1,4 +1,5 @@
 var newUserPopupClosed = false;
+var promptPopupOpen = false;
 
 function openPopup(selector, height, width) {
     var popup = document.querySelector(selector);
@@ -84,6 +85,7 @@ function closeConfirmPopup() {
 }
 
 function openPromptPopup(message, label, callback) {
+    promptPopupOpen = true;
     openPopup('#promptPopup', '200px', '700px');
     var messageContainer = document.querySelector('#promptMessage');
     var submitPrompt = document.querySelector('#submitPrompt');
@@ -102,6 +104,7 @@ function openPromptPopup(message, label, callback) {
 }
 
 function closePromptPopup() {
+    promptPopupOpen = false;
     closePopup('#promptPopup');
     var submitPrompt = document.querySelector('#submitPrompt');
     var url = document.querySelector('#url');

@@ -237,4 +237,13 @@ window.addEventListener('load', () => {
     canvas.addEventListener("pointerup", endPainting);
     canvas.addEventListener("pointermove", draw);
     canvas.addEventListener("pointerout", endPainting);
+
+    // bind ctrl+z and ctrl+y to undo and redo if no prompt popup is open
+    window.addEventListener('keydown', function(e) {
+        if (e.ctrlKey && e.key === 'z' && !promptPopupOpen) {
+            undoLast();
+        } else if (e.ctrlKey && e.key === 'y' && !promptPopupOpen) {
+            redoLast();
+        }
+    });
 });
