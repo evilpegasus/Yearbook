@@ -239,10 +239,17 @@ window.addEventListener('load', () => {
     canvas.addEventListener("pointerout", endPainting);
 
     // bind ctrl+z and ctrl+y to undo and redo if no prompt popup is open
+    var ctrlTime;
     window.addEventListener('keydown', function(e) {
-        if (e.ctrlKey && e.key === 'z' && !promptPopupOpen) {
+        var timeBetween = 1000;
+
+        if (e.ctrlKey) {
+            ctrlTime = Date.now();
+        }
+
+        if (e.ctrlKey && e.key === 'z' && !promptPopupOpen && Date.now() - ctrlTime < timeBetween) {
             undoLast();
-        } else if (e.ctrlKey && e.key === 'y' && !promptPopupOpen) {
+        } else if (e.ctrlKey && e.key === 'y' && !promptPopupOpen && Date.now() - ctrlTime < timeBetween) {
             redoLast();
         }
     });
