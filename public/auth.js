@@ -4,6 +4,7 @@ var ui = new firebaseui.auth.AuthUI(firebase.auth());
 // check for params in URL
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
+createAccount = urlParams.get('createAccount');
 serveID = urlParams.get('user');
 demo = serveID == 'demo';
 anon = urlParams.get('anon');
@@ -34,6 +35,12 @@ function anonRedirect() {
   }
 
   window.location.assign(redirectLink + '&anon=true');
+}
+
+if (createAccount) {
+  document.title = 'Create Account | Yearbook 2020';
+  document.querySelector('#login-text').innerHTML = 'Create Account';
+  document.querySelector('#demoText').style.display = 'none';
 }
 
 var uiConfig = {

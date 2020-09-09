@@ -122,7 +122,8 @@ firebase.auth().onAuthStateChanged(function(user) {
         document.querySelector('#goToYourYearbookButton').disabled = true;
         document.querySelector('#yourYearbookLink').href = '#';
         document.querySelector('#shareButton').disabled = true;
-        document.querySelector('#signOutButton').disabled = true;
+        document.querySelector('#signOutButton').innerHTML = 'Create Account';
+        document.querySelector('#signOutButton').onclick = function() { window.location.assign('https://yearbook-hhs.web.app/?createAccount=true') }
     }
 
     // Disable the go to another yearbook button on demo mode if not signed in
