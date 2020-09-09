@@ -209,15 +209,17 @@ function changeTheme(newTheme = themeSelector.options[themeSelector.selectedInde
             break;
     }
 
-    // Update the database to match user's preferred theme
-    docRef.update({
-        theme: newTheme
-    }).then(function() {
-        console.log("Theme successfully updated to " + newTheme);
-    }).catch(function(error) {
-        console.log("Error updating theme: " + error);
-    });
-    console.log('Theme changed to ' + newTheme);
+    if (!demo && !anon) {
+        // Update the database to match user's preferred theme
+        docRef.update({
+            theme: newTheme
+        }).then(function() {
+            console.log("Theme successfully updated to " + newTheme);
+        }).catch(function(error) {
+            console.log("Error updating theme: " + error);
+        });
+        console.log('Theme changed to ' + newTheme);
+    }
 }
 
 function copyURL() {
@@ -236,52 +238,4 @@ function copyURL() {
     document.body.removeChild(copyText);
     delete copyText;
     openMessagePopup("Your yearbook's unique sharing URL has been copied to your clipboard. Share it with your friends!");
-}
-
-function closePopup() {
-    // close new user popup
-    var popup = document.querySelector("#welcomePopup");
-    var popupContainer = document.querySelector("#popupContainer");
-    var welcomeText = document.querySelectorAll(".welcomeText");
-    welcomeText.forEach(function(welcomeText) {
-        welcomeText.style.display = 'none';
-    });
-    document.body.style.overflow = 'visible';
-    popup.style.height = '0';
-    popup.style.width = '0';
-    popup.style.padding ='0';
-    popup.style.display = 'none;'
-    popupContainer.style.height = '0';
-    popupContainer.style.width = '0';
-    popupContainer.style.display = 'none';
-    document.querySelector('#closePopup').style.display = 'none';
-
-    const canvas = document.querySelector("#canvas");
-    const ctx = canvas.getContext("2d");
-    ctx.fillStyle = "white";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-    upload(false);
-    assertOldExists();
-}
-
-function assertOldExists() {
-    const canvas = document.querySelector("#canvas");
-    const ctx = canvas.getContext("2d");
-    var pathRef = firebase.storage().ref(currentUser.uid + '/old.png');
-    pathRef.getDownloadURL().then(function(url) {
-        // If old exists, we can continue with the redirect
-        // check for params in URL
-        const queryString = window.location.search;
-        const urlParams = new URLSearchParams(queryString);
-        serveID = urlParams.get('user');
-
-        if (serveID) {
-            window.location.replace('https://yearbook-hhs.web.app/app.html?user=' + serveID);
-        } else {
-            window.location.replace('https://yearbook-hhs.web.app/app.html');
-        }
-    }).catch(function(error) {
-        // It old doesn't exist, we wait one second and try again
-        setTimeout(assertOldExists(), 1000);
-    });
 }

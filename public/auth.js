@@ -4,12 +4,43 @@ var ui = new firebaseui.auth.AuthUI(firebase.auth());
 // check for params in URL
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
+createAccount = urlParams.get('createAccount');
 serveID = urlParams.get('user');
+demo = serveID == 'demo';
+anon = urlParams.get('anon');
 
 // set the redirect URL preserving any URL params
 var redirectLink = 'https://yearbook-hhs.web.app/app.html';
+
+if (demo) {
+  window.location.assign(redirectLink + '?user=demo');
+}
+
 if (serveID) {
   redirectLink += '?user=' + serveID;
+  window.onload = function() {
+    document.querySelector('#anonText').style.display = 'block';
+    document.querySelector('#anonLink').style.display = 'inline';
+    document.querySelector('#anonNote').style.display = 'block';
+  }
+}
+
+if (anon && serveID) {
+  window.location.assign(redirectLink + '&anon=true');
+}
+
+function anonRedirect() {
+  if (!serveID) {
+    return window.alert("You are not able to enter anonymous mode. Make sure you follow someone's sharing link!");
+  }
+
+  window.location.assign(redirectLink + '&anon=true');
+}
+
+if (createAccount) {
+  document.title = 'Create Account | Yearbook 2020';
+  document.querySelector('#login-text').innerHTML = 'Create Account';
+  document.querySelector('#demoText').style.display = 'none';
 }
 
 var uiConfig = {
@@ -25,6 +56,7 @@ var uiConfig = {
           redirectLink += '?newUser=true';
         }
       }
+
       window.location.assign(redirectLink);
       return false;
     },
@@ -53,26 +85,9 @@ var uiConfig = {
  * @param {!firebase.User} user
  */
 var handleSignedInUser = function(user) {
-  document.getElementById('user-signed-in').style.display = 'block';
-  document.getElementById('user-signed-out').style.display = 'none';
-  document.getElementById('name').textContent = user.displayName;
-  document.getElementById('email').textContent = user.email;
-  document.getElementById('phone').textContent = user.phoneNumber;
-  if (user.photoURL) {
-    var photoURL = user.photoURL;
-    // Append size to the photo URL for Google hosted images to avoid requesting
-    // the image with its original resolution (using more bandwidth than needed)
-    // when it is going to be presented in smaller size.
-    if ((photoURL.indexOf('googleusercontent.com') != -1) ||
-        (photoURL.indexOf('ggpht.com') != -1)) {
-      photoURL = photoURL + '?sz=' +
-          document.getElementById('photo').clientHeight;
-    }
-    document.getElementById('photo').src = photoURL;
-    document.getElementById('photo').style.display = 'block';
-  } else {
-    document.getElementById('photo').style.display = 'none';
-  }
+  window.location.assign(redirectLink);
 };
 
-ui.start('#firebaseui-auth-container', uiConfig);
+firebase.auth().onAuthStateChanged(function(user) {
+  (user && !user.isAnonymous) ? handleSignedInUser(user) : ui.start('#firebaseui-auth-container', uiConfig);
+});

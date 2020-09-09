@@ -20,10 +20,6 @@
         <!-- Font -->
         <link href="https://fonts.googleapis.com/css2?family=Gruppo&display=swap" rel="stylesheet">
 
-        <script src="canvas.js"></script>
-        <script src="save.js"></script>
-        <script src="menu.js"></script>
-        <script src="popup.js"></script>
         <link rel="stylesheet" href="main.css">
         <link rel="icon" href="favicon-512x512.png">
 
@@ -58,7 +54,7 @@
             </select>
             <br><br><br><br>
             <p class="sideMenuLabel">Go to:</p>
-            <a href='app.html'><button id="goToYourYearbookButton" class="btn">Your Yearbook</button></a>
+            <a id='yourYearbookLink' href='app.html'><button id="goToYourYearbookButton" class="btn">Your Yearbook</button></a>
             <br><br>
             <button id="goToAnotherYearbookButton" class="btn" onclick="goToAnotherYearbook()">Someone Else's Yearbook</button>
             <br><br>
@@ -82,8 +78,8 @@
             </div>
 
             <div class="canvas-toolbar">
-                <a id='undo'>Undo &#8634;</a>
-                <a id='redo'>&#8635; Redo</a>
+                <a id='undo' data-link-disabled='true'>Undo &#8634;</a>
+                <a id='redo' data-link-disabled='true'>&#8635; Redo</a>
 
                 <select id="widthSelector" class="selector">
                     <option value="1">1</option>
@@ -91,7 +87,7 @@
                     <option value="4" selected = "selected">4</option>
                     <option value="6">6</option>
                     <option value="8">8</option>
-                    <option value="10">12</option>
+                    <option value="12">12</option>
                     <option value="24">24</option>
                     <option value="36">36</option>
                 </select>
@@ -133,7 +129,7 @@
             </div>
             <div id="popupContainer">
                 <div id="welcomePopup" width="700" height="400">
-                    <a id="closePopup" onclick="closePopup()">&times;</a>
+                    <a id="closePopup" onclick="closeNewUserPopup()">&times;</a>
                     <h2 class='welcomeText'>Welcome to Yearbook 2020!</h2>
                     <p class='welcomeText'>Here are some basic instructions to get you started:<br></p>
                     <p class='welcomeText'>You can sign your Yearbook 2020 page or your friends' pages by moving your mouse with the left mouse button held down or drawing with your fingers
@@ -182,9 +178,14 @@
             <br>
             <br>
             <footer>
-                <img src="https://forthebadge.com/images/badges/built-with-love.svg" alt="Build with <3"> by <a class="name" href="https://mingyfong.github.io/" target="_blank">Ming Fong</a> and <a class="name" href="https://arnavthareja.github.io" target="_blank">Arnav Thareja</a>. June 2020
+                <img src="https://forthebadge.com/images/badges/built-with-love.svg" alt="Built with <3"> by <a class="name" href="https://mingyfong.github.io/" target="_blank">Ming Fong</a> and <a class="name" href="https://arnavthareja.github.io" target="_blank">Arnav Thareja</a>. June 2020
                 <p>Question or issues? Contact us at <a href="mailto:yearbook2020app@gmail.com">yearbook2020app@gmail.com</a>.</p>
             </footer>
         </div>
+
+        <script src="popup.js"></script>
+        <script src="canvas.js"></script>
+        <script src="save.js"></script>
+        <script src="menu.js"></script>
     </body>
 </html>
