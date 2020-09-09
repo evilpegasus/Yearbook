@@ -22,7 +22,7 @@ When you have finished drawing, click the **Upload** button to save your changes
 You can share your Yearbook page by opening the menu in the top left and selecting **Share your Yearbook**. This will copy a custom link to your page to your clipboard. You can then share this link with other people. **Anyone with your link can write on your page.** Only share your link with people you trust. You can access your friends' Yearbooks through the custom links they send you. You must be signed in to share your Yearbook.
 
 ## Saving your Yearbook  
-To download your yearbook page, open the **Toolbar** at the bottom of your page and select **Download**. A link to a picture of your page will be emailed to the email you signed in with. You can then save the picture locally.
+To download your yearbook page, open the **Toolbar** at the bottom of your page and select **Download**. A link to a picture of your page will be emailed to the email you signed in with. You can then save the picture locally. You must be signed in to save your Yearbook.
 
 ## Supported Devices  
 Any computer running a modern web browser will be able to access Yearbook. Touchscreen devices are recommended, as drawing with a mouse/trackpad may be difficult. Touchscreen devices will only be able to touch scroll if touched outside the canvas.
