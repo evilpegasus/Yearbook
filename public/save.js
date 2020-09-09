@@ -15,6 +15,11 @@ var docRef;
 var functions = firebase.functions();
 
 firebase.auth().onAuthStateChanged(function(user) {
+    // If user signed in anonymously, this function is already executing and we can exit
+    if (user && user.isAnonymous) {
+        return;
+    }
+
     // check for params in URL
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
@@ -97,19 +102,32 @@ firebase.auth().onAuthStateChanged(function(user) {
             document.title = "Someone Else's Yearbook | Yearbook 2020";
             document.querySelector('#downloadButton').disabled = true;
 
-            if (!demo) {
-                // Get the name of the yearbook's owner
+            function getOwnerName() {
                 dbRef.doc(serveID).get().then(function(doc) {
                     if (doc.exists) {
-                        var name = doc.get('displayName');
+                        let name = doc.get('displayName');
                         console.log("Name retrieved successfully.");
                         document.querySelector('#owner').innerHTML = "You are viewing <strong>" + name + "</strong>'s yearbook. Sign away!";
                         document.title = name + "'s Yearbook | Yearbook 2020";
+                    } else {
+                        console.log("No such document exists.");
                     }
-                    console.log("No such document exists.");
                 }).catch(function(error) {
                     console.log("Error retrieving document: " + error);
                 });
+            }
+
+            if (!demo) {
+                // Sign in anonymously if in anonymous mode to get access to database
+                if (anon) {
+                    firebase.auth().signInAnonymously().then(function() {
+                        getOwnerName();
+                    }).catch(function(error) {
+                        console.log(error);
+                    });
+                } else {
+                    getOwnerName();                
+                }
             } else {
                 document.querySelector('#owner').innerHTML = "You are viewing a <strong>demo</strong> yearbook. Sign away!";
                 document.title = "Demo Yearbook | Yearbook 2020";
