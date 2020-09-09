@@ -89,5 +89,5 @@ var handleSignedInUser = function(user) {
 };
 
 firebase.auth().onAuthStateChanged(function(user) {
-  user ? handleSignedInUser(user) : ui.start('#firebaseui-auth-container', uiConfig);
+  (user && !user.isAnonymous) ? handleSignedInUser(user) : ui.start('#firebaseui-auth-container', uiConfig);
 });
