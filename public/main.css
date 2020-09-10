@@ -68,6 +68,23 @@ body {
     transition: 0.2s;
 }
 
+.title-box-link {
+    text-decoration: none;
+}
+
+.title-box-link:hover {
+    color: inherit;
+    text-shadow: inherit;
+}
+
+.title-box-link:visited {
+    color: inherit;
+}
+
+.title-box-link:active {
+    color: inherit;
+}
+
 #toolbars {
     position: fixed;
     text-align: center;
