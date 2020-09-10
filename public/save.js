@@ -4,6 +4,7 @@ var serveID;
 var newUser;
 var demo = false;
 var anon;
+var initialSignIn = false;
 
 const onAppPage = (window.location.pathname == '/app.html');
 
@@ -15,10 +16,12 @@ var docRef;
 var functions = firebase.functions();
 
 firebase.auth().onAuthStateChanged(function(user) {
-    // If user signed in anonymously, this function is already executing and we can exit
-    if (user && user.isAnonymous) {
+    // If user is signed in anonymously and initialSignIn is true, this function is already executing and we can exit
+    if (user && user.isAnonymous && initialSignIn) {
         return;
     }
+
+    initialSignIn = true;
 
     // check for params in URL
     const queryString = window.location.search;
@@ -26,7 +29,7 @@ firebase.auth().onAuthStateChanged(function(user) {
     serveID = urlParams.get('user');
     newUser = urlParams.get('newUser');
     demo = (serveID == 'demo');
-    anon = urlParams.get('anon');
+    anon = (user && !user.isAnonymous) ? false : urlParams.get('anon');
 
     newUserPopupClosed = !onAppPage || !(demo || anon || newUser);
     
