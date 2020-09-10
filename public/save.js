@@ -23,18 +23,24 @@ firebase.auth().onAuthStateChanged(function(user) {
 
     initialSignIn = true;
 
+    if (user && !user.isAnonymous) {
+        // User is signed in
+        currentUser = firebase.auth().currentUser;
+        docRef = dbRef.doc(currentUser.uid);
+    }
+
     // check for params in URL
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     serveID = urlParams.get('user');
     newUser = urlParams.get('newUser');
     demo = (serveID == 'demo');
-    anon = (user && !user.isAnonymous) ? false : urlParams.get('anon');
+    anon = currentUser ? false : urlParams.get('anon');
 
     newUserPopupClosed = !onAppPage || !(demo || anon || newUser);
     
-    // User is considered signed in if they signed in to the website, are using the demo, in anonymous mode with a serveID provided, or visiting FAQ or About pages
-    if (!user && !demo && !(anon && serveID) && onAppPage) {
+    // User is not redirected if they are signed in to the website, are using the demo, in anonymous mode with a serveID provided, or visiting FAQ or About pages
+    if (!currentUser && !demo && !(anon && serveID) && onAppPage) {
         // No user is signed in, kick them out to login screen preserving any URL params
         if (serveID) {
             window.location.replace('https://yearbook-hhs.web.app/index.html?user=' + serveID);
@@ -43,14 +49,8 @@ firebase.auth().onAuthStateChanged(function(user) {
         }
     }
 
-    if (user) {
-        // User is signed in
-        currentUser = firebase.auth().currentUser;
-        docRef = dbRef.doc(currentUser.uid);
-    }
-
     // If user is signed in and new, add their info to Cloud Firestore database
-    if (user && newUser) {
+    if (currentUser && newUser) {
         docRef.set({
             displayName: currentUser.displayName,
             email: currentUser.email,
@@ -76,7 +76,7 @@ firebase.auth().onAuthStateChanged(function(user) {
         document.querySelector('#closePopup').style.display = 'block';
     }
 
-    if (user) {
+    if (currentUser) {
         // get the database entry for currentUser theme to set the website theme
         docRef.get().then(function(doc) {
             if (doc.exists) {
@@ -139,7 +139,7 @@ firebase.auth().onAuthStateChanged(function(user) {
     }
 
     // Disable some menu buttons in demo (if not signed in) and anonymous modes and on FAQ and About pages if not signed in
-    if ((demo && !user) || anon || (!onAppPage && !user)) {
+    if ((demo && !currentUser) || anon || (!onAppPage && !currentUser)) {
         document.querySelector('#goToYourYearbookButton').disabled = true;
         document.querySelector('#yourYearbookLink').href = '#';
         document.querySelector('#shareButton').disabled = true;
@@ -148,7 +148,7 @@ firebase.auth().onAuthStateChanged(function(user) {
     }
 
     // Disable the go to another yearbook button on demo mode if not signed in
-    if (demo && !user) {
+    if (demo && !currentUser) {
         document.querySelector('#goToAnotherYearbookButton').disabled = true;
     }
 
