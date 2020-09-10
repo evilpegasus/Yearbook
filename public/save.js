@@ -4,7 +4,7 @@ var serveID;
 var newUser;
 var demo = false;
 var anon;
-var initialSignIn = false;
+var initialSignIn = true;
 
 const onAppPage = (window.location.pathname == '/app.html');
 
@@ -17,11 +17,11 @@ var functions = firebase.functions();
 
 firebase.auth().onAuthStateChanged(function(user) {
     // If user is signed in anonymously and initialSignIn is true, this function is already executing and we can exit
-    if (user && user.isAnonymous && initialSignIn) {
+    if (user && user.isAnonymous && !initialSignIn) {
         return;
     }
 
-    initialSignIn = true;
+    initialSignIn = false;
 
     if (user && !user.isAnonymous) {
         // User is signed in
