@@ -1,5 +1,5 @@
 # Deploy all files
-firebase deploy
+# firebase deploy
 
 # Deploy only files in \public
-# firebase deploy --only hosting
+firebase deploy --only hosting
